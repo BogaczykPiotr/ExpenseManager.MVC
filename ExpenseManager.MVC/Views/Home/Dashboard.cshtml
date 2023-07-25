@@ -1,0 +1,94 @@
+﻿<link rel="stylesheet" href="@Url.Content("~/css/Site.css")">
+<div class="left-rectangle">
+    <img class="logo" src="@Url.Content("~/images/Logo.png")">
+    <a href="Dashboard.html" class="link first-group first-element">
+        <img src="@Url.Content("~/images/Dashboard.png")">
+        <span class="text">Dashboard</span>
+    </a>
+    <a href="Transfers.html" class="link first-group">
+        <img src="@Url.Content("~/images/Transfers.png")">
+        <span class="text">Transfers</span>
+    </a>
+    <a href="Savings.html" class="link first-group">
+        <img src="@Url.Content("~/images/Savings.png")">
+        <span class="text">Savings</span>
+    </a>
+    <a href="Achievements.html" class="link first-group">
+        <img src="@Url.Content("~/images/History.png")">
+        <span class="text">Achievements</span>
+    </a>
+    <hr class="line">
+    <a href="#" class="link second-group">
+        <img src="@Url.Content("~/images/Settings.png")">
+        <span class="text">Settings</span>
+    </a>
+    <a href="#" class="link second-group">
+        <img src="@Url.Content("~/images/ContactUs.png")">
+        <span class="text">Contact us</span>
+    </a>
+</div>
+<div class="right-rectangle">
+    <div class="right-content">
+        <a href="#" class="right-links">
+            <img class="right-link" src="@Url.Content("~/images/Stats.png")">
+        </a>
+        <a href="#" class="right-links">
+            <img class="right-link" src="@Url.Content("~/images/Alerts.png")">
+        </a>
+        <a href="#" class="right-links">
+            <img class="right-link" src="@Url.Content("~/images/Account.png")">
+        </a>
+    </div>
+    <div class="actions">
+        <div class="recent-actions">
+            <p>Recent Actions</p>
+            <!--database query-->
+            <a href="#"><img src="@Url.Content("~/images/More.png")"></a>
+        </div>
+        <div class="upcoming-actions">
+            <p>Upcoming Actions</p>
+            <!--database query-->
+            <a href="#"><img src="@Url.Content("~/images/More.png")"></a>
+        </div>
+    </div>
+</div>
+<div class="main-rectangle">
+    <div class="stats">
+        <img src="@Url.Content("~/images/TotalAmount.png")">
+        <p class="values">$$$</p> <!-- for ASP edit-->
+        <p class="stat-text">Total Amount</p>
+    </div>
+    <div class="stats">
+        <img src="@Url.Content("~/images/Spent.png")">
+        <p class="values">$$$</p> <!-- for ASP edit-->
+        <p class="stat-text">Spent (Month)</p>
+    </div>
+    <div class="stats">
+        <img src="@Url.Content("~/images/Left.png")">
+        <p class="values">$$$</p> <!-- for ASP edit-->
+        <p class="stat-text">Left (Month)</p>
+    </div>
+    <div class="stats">
+        <img src="@Url.Content("~/images/SavingGoal.png")">
+        <p class="values">$$$</p> <!-- for ASP edit-->
+        <p class="stat-text">Saving Goal</p>
+    </div>
+    <select class="chart-selector">
+        <!-- for ASP edit-->
+        <option>Total Amount</option>
+        <option>Spent</option>
+        <option>Left</option>
+        <option>Saving Goal</option>
+    </select>
+    <select class="time-selector">
+        <!-- for ASP edit-->
+        <option>1 day</option>
+        <option>1 week</option>
+        <option>1 month</option>
+        <option>1 year</option>
+    </select>
+
+    <div class="chart">
+        <canvas class="dashboard-chart"></canvas> <!--for ASP edit-->
+    </div>
+</div>
