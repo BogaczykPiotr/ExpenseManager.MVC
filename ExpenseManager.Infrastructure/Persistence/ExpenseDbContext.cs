@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ExpenseManager.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace ExpenseManager.Infrastructure.Persistence
 {
@@ -9,6 +10,14 @@ namespace ExpenseManager.Infrastructure.Persistence
 
         }
 
-        public DbSet<Domain.Entities.Expense> Expenses { get; set; }
+        public DbSet<Stat> Stats { get; set; }
+        public DbSet<Transfer> Transfers { get; set; }
+        public DbSet<SavingGoal> SavingGoals { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Stat>()
+                .HasOne(s => s.Value);
+        }
     }
 }

@@ -1,7 +1,10 @@
 ﻿<link rel="stylesheet" href="@Url.Content("~/css/Site.css")">
+<script defer src="@Url.Content("~/js/site.js")"></script>
+
+
 <div class="left-rectangle">
     <img class="logo" src="@Url.Content("~/images/Logo.png")">
-    <a href="Dashboard.html" class="link first-group first-element">
+    <a href="@Url.Action("Dashboard", "Home")" class="link first-group first-element">
         <img src="@Url.Content("~/images/Dashboard.png")">
         <span class="text">Dashboard</span>
     </a>
@@ -91,4 +94,8 @@
     <div class="chart">
         <canvas class="dashboard-chart"></canvas> <!--for ASP edit-->
     </div>
+
 </div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
