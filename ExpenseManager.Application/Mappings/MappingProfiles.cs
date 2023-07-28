@@ -1,12 +1,23 @@
-﻿using System;
+﻿using AutoMapper;
+using ExpenseManager.Application.DTOS;
+using ExpenseManager.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExpenseManager.Application.ExpenseManagerMappingProfiles
+namespace ExpenseManager.Application.Mappings
 {
-    internal class s
+    public class MappingProfiles : Profile
     {
+        public MappingProfiles()
+        {
+            CreateMap<SavingGoal, SavingGoalDto>();
+            CreateMap<Stat, StatDto>();
+            CreateMap<Transfer, TransferDto>();
+            CreateMap<User, UserDto>();
+
+        }
     }
 }
