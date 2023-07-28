@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace ExpenseManager.Application.DTOS
 {
-    public class SavingGoalDto
+    public class UserDto
     {
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
-        public int Goal { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
     }
 }
