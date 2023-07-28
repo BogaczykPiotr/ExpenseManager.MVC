@@ -1,6 +1,7 @@
-﻿<link rel="stylesheet" href="@Url.Content("~/css/Site.css")">
-<script defer src="@Url.Content("~/js/site.js")"></script>
+﻿@model IEnumerable<ExpenseManager.Application.DTOS.TransferDto>
 
+<link rel="stylesheet" href="@Url.Content("~/css/Site.css")">
+<script defer src="@Url.Content("~/js/site.js")"></script>
 
 <div class="left-rectangle">
     <img class="logo" src="@Url.Content("~/images/Logo.png")">
@@ -30,6 +31,7 @@
         <span class="text">Contact us</span>
     </a>
 </div>
+
 <div class="right-rectangle">
     <div class="right-content">
         <a href="#" class="right-links">
@@ -55,47 +57,20 @@
         </div>
     </div>
 </div>
-<div class="main-rectangle">
-    <div class="stats">
-        <img src="@Url.Content("~/images/TotalAmount.png")">
-        <p class="values">$$$</p> <!-- for ASP edit-->
-        <p class="stat-text">Total Amount</p>
-    </div>
-    <div class="stats">
-        <img src="@Url.Content("~/images/Spent.png")">
-        <p class="values">$$$</p> <!-- for ASP edit-->
-        <p class="stat-text">Spent (Month)</p>
-    </div>
-    <div class="stats">
-        <img src="@Url.Content("~/images/Left.png")">
-        <p class="values">$$$</p> <!-- for ASP edit-->
-        <p class="stat-text">Left (Month)</p>
-    </div>
-    <div class="stats">
-        <img src="@Url.Content("~/images/SavingGoal.png")">
-        <p class="values">$$$</p> <!-- for ASP edit-->
-        <p class="stat-text">Saving Goal</p>
-    </div>
-    <select class="chart-selector">
-        <!-- for ASP edit-->
-        <option>Total Amount</option>
-        <option>Spent</option>
-        <option>Left</option>
-        <option>Saving Goal</option>
-    </select>
-    <select class="time-selector">
-        <!-- for ASP edit-->
-        <option>1 day</option>
-        <option>1 week</option>
-        <option>1 month</option>
-        <option>1 year</option>
-    </select>
-
-    <div class="chart">
-        <canvas class="dashboard-chart"></canvas> <!--for ASP edit-->
-    </div>
-
+<a href="History.html" class="transfers-history">Show All Transfers</a>
+<a class="create-transfer" href="#">New Transfer</a> <!--for ASP edit-->
+<p class="last-transfers">Last Transfers</p>
+<div class="main-rectangle-transfers">
+   
+        @foreach(var transfer in Model)
+        {
+        <div class="transfers-list">
+            <h1 class="transfers-money">@transfer.Value</h1>
+            <p class="transfers-category">@transfer.Category</p>
+            <p class="transfers-date">@transfer.CreatedAt</p>
+            <a href="#" class="show-details">
+                <span>Details</span>
+            </a>
+        </div>
+        }
 </div>
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>

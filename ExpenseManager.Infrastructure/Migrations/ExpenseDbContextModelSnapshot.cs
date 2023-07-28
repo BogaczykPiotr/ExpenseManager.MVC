@@ -33,7 +33,7 @@ namespace ExpenseManager.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("Value")
+                    b.Property<int>("Goal")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -49,21 +49,32 @@ namespace ExpenseManager.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Left")
+                    b.Property<float>("Left")
+                        .HasColumnType("real");
+
+                    b.Property<int>("SavingGoalForeignKey")
                         .HasColumnType("int");
 
-                    b.Property<int>("Spent")
+                    b.Property<int>("SavingGoalId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TotalAmount")
+                    b.Property<float>("Spent")
+                        .HasColumnType("real");
+
+                    b.Property<float>("TotalAmount")
+                        .HasColumnType("real");
+
+                    b.Property<int>("UserForeignKey")
                         .HasColumnType("int");
 
-                    b.Property<int>("ValueId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ValueId");
+                    b.HasIndex("SavingGoalId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Stats");
                 });
@@ -76,9 +87,6 @@ namespace ExpenseManager.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<float>("Amount")
-                        .HasColumnType("real");
-
                     b.Property<string>("Category")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -90,20 +98,72 @@ namespace ExpenseManager.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<float>("Value")
+                        .HasColumnType("real");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Transfers");
                 });
 
+            modelBuilder.Entity("ExpenseManager.Domain.Entities.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+                });
+
             modelBuilder.Entity("ExpenseManager.Domain.Entities.Stat", b =>
                 {
-                    b.HasOne("ExpenseManager.Domain.Entities.SavingGoal", "Value")
+                    b.HasOne("ExpenseManager.Domain.Entities.SavingGoal", "SavingGoal")
                         .WithMany()
-                        .HasForeignKey("ValueId")
+                        .HasForeignKey("SavingGoalId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Value");
+                    b.HasOne("ExpenseManager.Domain.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SavingGoal");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ExpenseManager.Domain.Entities.Transfer", b =>
+                {
+                    b.HasOne("ExpenseManager.Domain.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }
