@@ -1,12 +1,17 @@
 using Microsoft.Extensions.FileProviders;
 using ExpenseManager.Infrastructure.Extensions;
+using ExpenseManager.Application.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddInfrastructure(builder.Configuration);
+
+builder.Services.AddApplication();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddInfrastructure(builder.Configuration);
+
 
 var app = builder.Build();
 
