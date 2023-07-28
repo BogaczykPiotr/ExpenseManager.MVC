@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ExpenseManager.Domain.Interfaces
 {
-    internal class ExpenseManagerRepository
+    public interface IExpenseManagerRepository
     {
+        Task<IEnumerable<Domain.Entities.Transfer>> GetAllTransfers();
     }
 }
