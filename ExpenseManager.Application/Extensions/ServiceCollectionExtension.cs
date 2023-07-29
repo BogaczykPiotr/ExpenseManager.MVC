@@ -1,5 +1,5 @@
-﻿using ExpenseManager.Application.Mappings;
-using ExpenseManager.Application.Queries.GetAllTransfers;
+﻿using ExpenseManager.Application.Commands.CreateTransfer;
+using ExpenseManager.Application.Mappings;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -16,7 +16,7 @@ namespace ExpenseManager.Application.Extensions
         {
             services.AddAutoMapper(typeof(MappingProfiles));
 
-            services.AddMediatR(typeof(GetAllTransfersQuery));
+            services.AddMediatR(typeof(CreateTransferCommand));
         }
     }
 }

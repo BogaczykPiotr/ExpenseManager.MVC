@@ -12,6 +12,13 @@ namespace ExpenseManager.Infrastructure.Repositories
         {
             _dbContext = dbContext;
         }
+
+        public async Task Create(Transfer transfer)
+        {
+            _dbContext.Add(transfer);
+            await _dbContext.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<Transfer>> GetAllTransfers()
             => await _dbContext.Transfers.ToListAsync();
     }

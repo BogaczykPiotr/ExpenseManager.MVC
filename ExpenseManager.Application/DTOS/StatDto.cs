@@ -14,7 +14,6 @@ namespace ExpenseManager.Application.DTOS
         public float Left { get; set; }
         public int UserForeignKey { get; set; }
         public int SavingGoalForeignKey { get; set; }
-        public User User { get; set; }
         public SavingGoal SavingGoal { get; set; }
     }
 }

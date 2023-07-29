@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ExpenseManager.Application.Commands.CreateTransfer;
 using ExpenseManager.Application.DTOS;
 using ExpenseManager.Domain.Entities;
 using System;
@@ -16,7 +17,7 @@ namespace ExpenseManager.Application.Mappings
             CreateMap<SavingGoal, SavingGoalDto>();
             CreateMap<Stat, StatDto>();
             CreateMap<Transfer, TransferDto>();
-            CreateMap<User, UserDto>();
+            CreateMap<TransferDto, Transfer>();
 
         }
     }

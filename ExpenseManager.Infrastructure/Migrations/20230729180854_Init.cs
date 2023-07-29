@@ -26,18 +26,19 @@ namespace ExpenseManager.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Users",
+                name: "Transfers",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Value = table.Column<float>(type: "real", nullable: false),
+                    Category = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.PrimaryKey("PK_Transfers", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -51,7 +52,6 @@ namespace ExpenseManager.Infrastructure.Migrations
                     Left = table.Column<float>(type: "real", nullable: false),
                     UserForeignKey = table.Column<int>(type: "int", nullable: false),
                     SavingGoalForeignKey = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
                     SavingGoalId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -63,51 +63,12 @@ namespace ExpenseManager.Infrastructure.Migrations
                         principalTable: "SavingGoals",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Stats_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Transfers",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Value = table.Column<float>(type: "real", nullable: false),
-                    Category = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Transfers", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Transfers_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Stats_SavingGoalId",
                 table: "Stats",
                 column: "SavingGoalId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Stats_UserId",
-                table: "Stats",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Transfers_UserId",
-                table: "Transfers",
-                column: "UserId");
         }
 
         /// <inheritdoc />
@@ -121,9 +82,6 @@ namespace ExpenseManager.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "SavingGoals");
-
-            migrationBuilder.DropTable(
-                name: "Users");
         }
     }
 }

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ExpenseManager.Infrastructure.Migrations
 {
     [DbContext(typeof(ExpenseDbContext))]
-    [Migration("20230728201744_Init")]
+    [Migration("20230729180854_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -70,14 +70,9 @@ namespace ExpenseManager.Infrastructure.Migrations
                     b.Property<int>("UserForeignKey")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("SavingGoalId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Stats");
                 });
@@ -98,45 +93,14 @@ namespace ExpenseManager.Infrastructure.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
 
                     b.Property<float>("Value")
                         .HasColumnType("real");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
-
                     b.ToTable("Transfers");
-                });
-
-            modelBuilder.Entity("ExpenseManager.Domain.Entities.User", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("ExpenseManager.Domain.Entities.Stat", b =>
@@ -147,26 +111,7 @@ namespace ExpenseManager.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ExpenseManager.Domain.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("SavingGoal");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("ExpenseManager.Domain.Entities.Transfer", b =>
-                {
-                    b.HasOne("ExpenseManager.Domain.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }
