@@ -5,11 +5,11 @@ VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenseManager.MVC", "ExpenseManager.MVC\ExpenseManager.MVC.csproj", "{90AF9C25-A9A0-4C22-9957-7D46546BEF55}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpenseManager.Domain", "ExpenseManager.Domain\ExpenseManager.Domain.csproj", "{789612CA-782B-4800-9159-92E4D1B9A126}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenseManager.Domain", "ExpenseManager.Domain\ExpenseManager.Domain.csproj", "{789612CA-782B-4800-9159-92E4D1B9A126}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpenseManager.Application", "ExpenseManager.Application\ExpenseManager.Application.csproj", "{6340433E-9FFE-4115-95B1-7CC13ABF8284}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenseManager.Application", "ExpenseManager.Application\ExpenseManager.Application.csproj", "{6340433E-9FFE-4115-95B1-7CC13ABF8284}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpenseManager.Infrastructure", "ExpenseManager.Infrastructure\ExpenseManager.Infrastructure.csproj", "{BBBF8EC7-405E-495B-84E4-E679DDD2A851}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenseManager.Infrastructure", "ExpenseManager.Infrastructure\ExpenseManager.Infrastructure.csproj", "{BBBF8EC7-405E-495B-84E4-E679DDD2A851}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

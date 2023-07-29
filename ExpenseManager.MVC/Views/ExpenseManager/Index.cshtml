@@ -1,8 +1,7 @@
-﻿
+﻿@model ExpenseManager.Application.Commands.CreateTransfer.CreateTransferCommand
 
 <link rel="stylesheet" href="@Url.Content("~/css/Site.css")">
 <script defer src="@Url.Content("~/js/site.js")"></script>
-
 
 <div class="left-rectangle">
     <img class="logo" src="@Url.Content("~/images/Logo.png")">
@@ -32,6 +31,7 @@
         <span class="text">Contact us</span>
     </a>
 </div>
+
 <div class="right-rectangle">
     <div class="right-content">
         <a href="#" class="right-links">
@@ -58,46 +58,20 @@
     </div>
 </div>
 <div class="main-rectangle">
-    <div class="stats">
-        <img src="@Url.Content("~/images/TotalAmount.png")">
-        <p class="values">$$$</p> <!-- for ASP edit-->
-        <p class="stat-text">Total Amount</p>
-    </div>
-    <div class="stats">
-        <img src="@Url.Content("~/images/Spent.png")">
-        <p class="values">$$$</p> <!-- for ASP edit-->
-        <p class="stat-text">Spent (Month)</p>
-    </div>
-    <div class="stats">
-        <img src="@Url.Content("~/images/Left.png")">
-        <p class="values">$$$</p> <!-- for ASP edit-->
-        <p class="stat-text">Left (Month)</p>
-    </div>
-    <div class="stats">
-        <img src="@Url.Content("~/images/SavingGoal.png")">
-        <p class="values">$$$</p> <!-- for ASP edit-->
-        <p class="stat-text">Saving Goal</p>
-    </div>
-    <select class="chart-selector">
-        <!-- for ASP edit-->
-        <option>Total Amount</option>
-        <option>Spent</option>
-        <option>Left</option>
-        <option>Saving Goal</option>
-    </select>
-    <select class="time-selector">
-        <!-- for ASP edit-->
-        <option>1 day</option>
-        <option>1 week</option>
-        <option>1 month</option>
-        <option>1 year</option>
-    </select>
-
-    <div class="chart">
-        <canvas class="dashboard-chart"></canvas> <!--for ASP edit-->
-    </div>
-
+    <p class="title">Create New Transfer</p>
+    <form action="Create" method="post">
+        <div class="input-box">
+            <span class="details">Value</span>
+            <input type="text" placeholder="Enter Value" required asp-for="Value">
+        </div>
+        <div class="input-box">
+            <span class="details">Category</span>
+            <input type="text" placeholder="Enter Category" required asp-for="Category">
+        </div>
+        <div class="input-box">
+            <span class="details">Details (optional)</span>
+            <input type="text" placeholder="Enter Details" asp-for="Description">
+        </div>
+        <button class="create-button" type="submit">Create </button>
+    </form>
 </div>
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
