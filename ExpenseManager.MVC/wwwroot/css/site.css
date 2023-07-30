@@ -200,12 +200,20 @@ body {
     margin-left: 1vw;
 }
 
-.stats img {
+.icon-img {
     width: 5vw;
     height: auto;
     margin-left: 1.5vw;
     margin-top: 2vw;
 }
+
+.more-img {
+    height: auto;
+    width: 0.8vw;
+    margin-top: -4vw;
+    margin-left: 10vw;
+}
+
 
 .chart-selector {
     font-size: 2vw;
