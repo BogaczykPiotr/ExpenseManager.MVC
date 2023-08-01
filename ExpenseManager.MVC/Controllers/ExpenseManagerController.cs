@@ -20,10 +20,20 @@ namespace ExpenseManager.MVC.Controllers
         }
 
 
+
+        public IActionResult Savings()
+        {
+            return View();
+        }
+
         public IActionResult Create()
         {
             return View();
         }
+
+
+
+
 
         [HttpPost]
         public async Task<IActionResult> Create(CreateTransferCommand command)
