@@ -1,5 +1,4 @@
-﻿
-let links = document.querySelectorAll('.link')
+﻿let links = document.querySelectorAll('.link')
 
 for (let i = 0; i < links.length; i++) {
 	if (links[i].href === window.location.href) {
@@ -104,14 +103,13 @@ if (window.location.pathname === '/') {
 			let dataLength = data.datasets[0].data.length
 			for (let i = dataLength; i < dataLabelsLength; i++) {
 				data.datasets[0].data.push(0)
-
 			}
-
 		}
 		chart.update()
 	})
 }
-if (window.location.pathname === '/Savings.html') {
+
+if (window.location.pathname === '/Savings') {
 	let canvas = document.querySelector('.progress-chart')
 
 	let value = document.querySelector('.saving-goal-value')
