@@ -109,7 +109,7 @@ if (window.location.pathname === '/') {
 	})
 }
 
-if (window.location.pathname === '/Savings') {
+if (window.location.pathname === '/ExpenseManager/Savings') {
 	let canvas = document.querySelector('.progress-chart')
 
 	let value = document.querySelector('.saving-goal-value')

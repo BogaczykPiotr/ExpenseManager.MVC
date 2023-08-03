@@ -4,15 +4,16 @@
     <meta charset="utf-8" />
     <title>@ViewBag.Title</title>
     @section styles {
-        <link rel="stylesheet" href="@Url.Content("~/css/Site.css")">
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     }
 </head>
 <body>
     @RenderBody()
 
-     <footer>
-        
+    <footer>
         @RenderSection("Scripts", required: false)
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
     </footer>
 </body>
 </html>
