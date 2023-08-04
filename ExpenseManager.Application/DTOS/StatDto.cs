@@ -13,5 +13,15 @@ namespace ExpenseManager.Application.DTOS
         public float Spent { get; set; }
         public float Left { get; set; }
         public SavingGoal SavingGoal { get; set; }
+
+        public void AddTotalAmountStat(IEnumerable<Transfer> transfers)
+        {
+            DateTime Month = DateTime.Now.AddDays(-30);
+            float TotalAmountStat = transfers
+                .Where(transfer => transfer.CreatedAt >= Month)
+                .Sum(transfer => transfer.Value);
+
+            TotalAmount = TotalAmountStat;
+        }
     }
 }

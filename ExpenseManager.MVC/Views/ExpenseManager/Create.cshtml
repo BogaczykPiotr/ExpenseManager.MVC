@@ -60,6 +60,10 @@
 <div class="main-rectangle">
     <p class="title">Create New Transfer</p>
     <form action="Create" method="post">
+        <div>
+            <input type="checkbox" id="switch" asp-for="Ingoing" /><label for="switch"></label>
+            <p class="switch-text">Ingoing</p>
+        </div>
         <div class="input-box">
             <span class="details">Value</span>
             <input type="text" placeholder="Enter Value" required asp-for="Value">

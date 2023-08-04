@@ -1,4 +1,5 @@
-﻿using ExpenseManager.Domain.Entities;
+﻿using ExpenseManager.Application.DTOS;
+using ExpenseManager.Domain.Entities;
 using ExpenseManager.Domain.Interfaces;
 using ExpenseManager.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
@@ -21,5 +22,6 @@ namespace ExpenseManager.Infrastructure.Repositories
 
         public async Task<IEnumerable<Transfer>> GetAllTransfers()
             => await _dbContext.Transfers.ToListAsync();
+
+        }
     }
-}

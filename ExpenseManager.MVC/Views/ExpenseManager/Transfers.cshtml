@@ -63,7 +63,7 @@
    
         @foreach(var transfer in Model)
         {
-        <div class="transfers-list">
+        <div class="transfers-list @(transfer.Ingoing ? "transfer-ingoing" : "transfer-outgoing")">
             <h1 class="transfers-money">@transfer.Value</h1>
             <p class="transfers-category">@transfer.Category</p>
             <p class="transfers-date">@transfer.CreatedAt</p>
