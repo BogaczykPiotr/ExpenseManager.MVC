@@ -181,7 +181,7 @@ if (window.location.pathname === '/ExpenseManager/Create') {
 		if (switchBtn.checked) {
 			switchText.innerText = 'Outgoing'
 		} else {
-			switchText.innerText = 'Outgoing'
+			switchText.innerText = 'Ingoing'
 
 		}
 	})

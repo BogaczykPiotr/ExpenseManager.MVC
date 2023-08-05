@@ -657,6 +657,7 @@ label {
     position: relative;
     left: 20vw;
     top: 1vw;
+    color: rgb(175, 175, 175);
 }
 
     label:after {
@@ -678,7 +679,7 @@ input:checked + label {
     }
 
 .switch-text {
-    color: white;
+    color: rgb(175, 175, 175);
     position: absolute;
     right: 28.5vw;
     font-size: 1.5vw;
