@@ -2,7 +2,7 @@
 
 <div class="left-rectangle">
     <img class="logo" src="@Url.Content("~/images/Logo.png")">
-    <a href="@Url.Action("Dashboard", "Home")" class="link first-group first-element">
+    <a href="@Url.Action("Dashboard", "ExpenseManager")" class="link first-group first-element">
         <img src="@Url.Content("~/images/Dashboard.png")">
         <span class="text">Dashboard</span>
     </a>
@@ -54,32 +54,32 @@
         </div>
     </div>
 </div>
-    <div class="savings-main-rectangle">
-        <p class="savings-saving-goal">Your Saving Goal</p>
-        <div class="add-remove-saving-goal">
+<div class="savings-main-rectangle">
+    <p class="savings-saving-goal">Your Saving Goal</p>
+    <div class="add-remove-saving-goal">
         <img class="remove-goal" src="@Url.Content("~/images/Minus.png")" alt="increase saving goal">
-            <p class="saving-goal-value">100</p> <!--for ASP edit-->
+        <p class="saving-goal-value">100</p> <!--for ASP edit-->
         <img class="add-goal" src="@Url.Content("~/images/Plus.png")" alt="increase saving goal">
-        </div>
-
-        <button class="confirm-saving-goal">Confirm</button>
-        <div class="failed summary">
-            <p class="monthly-goal ">Your Last Monthly Goal</p> <!--for ASP edit-->
-            <p class="last-goal ">300</p>
-            <span class="goal-text"></span>
-        </div>
-        <div class="progress-chart-container">
-            <p class="progress-text">Your Progress</p>
-            <canvas class="progress-chart"></canvas>
-        </div>
-        <div class="actual-goal">
-            <p class="actual-goal-text">Your Actual Goal</p>
-            <p class="actual-goal-value">123</p> <!--for ASP edit-->
-            <p class="already-saved">Already Saved</p>
-            <p class="already-saved-value">123 / 500</p> <!--for ASP edit-->
-        </div>
-
-
     </div>
+
+    <button class="confirm-saving-goal">Confirm</button>
+    <div class="failed summary">
+        <p class="monthly-goal ">Your Last Monthly Goal</p> <!--for ASP edit-->
+        <p class="last-goal ">300</p>
+        <span class="goal-text"></span>
+    </div>
+    <div class="progress-chart-container">
+        <p class="progress-text">Your Progress</p>
+        <canvas class="progress-chart"></canvas>
+    </div>
+    <div class="actual-goal">
+        <p class="actual-goal-text">Your Actual Goal</p>
+        <p class="actual-goal-value">123</p> <!--for ASP edit-->
+        <p class="already-saved">Already Saved</p>
+        <p class="already-saved-value">123 / 500</p> <!--for ASP edit-->
+    </div>
+
+
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" src="@Url.Content("~/js/site.js")"></script>

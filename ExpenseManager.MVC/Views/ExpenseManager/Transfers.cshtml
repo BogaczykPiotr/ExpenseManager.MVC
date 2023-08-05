@@ -5,7 +5,7 @@
 
 <div class="left-rectangle">
     <img class="logo" src="@Url.Content("~/images/Logo.png")">
-    <a href="@Url.Action("Dashboard", "Home")" class="link first-group first-element">
+    <a href="@Url.Action("Dashboard", "ExpenseManager")" class="link first-group first-element">
         <img src="@Url.Content("~/images/Dashboard.png")">
         <span class="text">Dashboard</span>
     </a>
@@ -60,9 +60,9 @@
 <a class="create-transfer" href="@Url.Action("Create", "ExpenseManager")">New Transfer</a> <!--for ASP edit-->
 <p class="last-transfers">Last Transfers</p>
 <div class="main-rectangle-transfers">
-   
-        @foreach(var transfer in Model)
-        {
+
+    @foreach (var transfer in Model)
+    {
         <div class="transfers-list @(transfer.Ingoing ? "transfer-ingoing" : "transfer-outgoing")">
             <h1 class="transfers-money">@transfer.Value</h1>
             <p class="transfers-category">@transfer.Category</p>
@@ -71,5 +71,5 @@
                 <span>Details</span>
             </a>
         </div>
-        }
+    }
 </div>
