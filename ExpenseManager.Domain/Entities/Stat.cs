@@ -6,8 +6,6 @@
         public float TotalAmount { get; set; }
         public float Spent { get; set; }
         public float Left { get; set; }
-        public int UserForeignKey { get; set; }
-        public int SavingGoalForeignKey { get; set; }
         public SavingGoal SavingGoal { get; set; }
 
     }

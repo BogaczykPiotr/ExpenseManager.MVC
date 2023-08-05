@@ -16,12 +16,21 @@ namespace ExpenseManager.Application.DTOS
 
         public void AddTotalAmountStat(IEnumerable<Transfer> transfers)
         {
-            DateTime Month = DateTime.Now.AddDays(-30);
-            float TotalAmountStat = transfers
-                .Where(transfer => transfer.CreatedAt >= Month)
-                .Sum(transfer => transfer.Value);
+            DateTime month = DateTime.Now.AddDays(-30);
+            float totalIngoingAmountStat = 0;
+            float totalOutgoingAmountStat = 0;
 
-            TotalAmount = TotalAmountStat;
+            foreach (var transfer in transfers.Where(t => t.CreatedAt >= month))
+            {
+                if (transfer.Ingoing)
+                    totalIngoingAmountStat += transfer.Value;
+                else
+                    totalOutgoingAmountStat += transfer.Value;
+            }
+
+            TotalAmount = (totalIngoingAmountStat - totalOutgoingAmountStat) * -1;
+            Spent = totalOutgoingAmountStat;
+            Left = (totalIngoingAmountStat - totalOutgoingAmountStat - 0) * -1; //0 - SavingGoal
         }
     }
 }
