@@ -1,5 +1,6 @@
 ﻿using ExpenseManager.Application.Commands.CreateTransfer;
 using ExpenseManager.Application.Queries.GetAllTransfers;
+using ExpenseManager.Application.Queries.GetStatValues;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,6 +12,15 @@ namespace ExpenseManager.MVC.Controllers
         public ExpenseManagerController(IMediator mediator)
         {
             _mediator = mediator;
+        }
+
+
+
+        public async Task<IActionResult> Dashboard()
+        {
+            var stats = await _mediator.Send(new GetStatValuesQuery());
+
+            return View(stats);
         }
 
         public async Task<IActionResult> Transfers()
@@ -39,8 +49,8 @@ namespace ExpenseManager.MVC.Controllers
         public async Task<IActionResult> Create(CreateTransferCommand command)
         {
             await _mediator.Send(command);
-            return RedirectToAction(nameof(Transfers));    
-            
+            return RedirectToAction(nameof(Transfers));
+
         }
     }
 }

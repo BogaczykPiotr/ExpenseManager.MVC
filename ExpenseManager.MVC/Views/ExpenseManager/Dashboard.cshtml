@@ -1,11 +1,11 @@
-﻿@model ExpenseManager.Application.DTOS.SavingGoalDto
+﻿@model ExpenseManager.Application.DTOS.StatDto
 
 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 
 
 <div class="left-rectangle">
     <img class="logo" src="@Url.Content("~/images/Logo.png")">
-    <a href="@Url.Action("Dashboard", "Home")" class="link first-group first-element">
+    <a href="@Url.Action("Dashboard", "ExpenseManager")" class="link first-group first-element">
         <img src="@Url.Content("~/images/Dashboard.png")">
         <span class="text">Dashboard</span>
     </a>
@@ -60,19 +60,19 @@
     <div class="stats">
         <img class="icon-img" src="@Url.Content("~/images/TotalAmount.png")" alt="TotalAmount">
         <img class="more-img" src="@Url.Content("~/Images/more.png")" alt="show more">
-        <p class="values">$$$</p> <!-- for ASP edit-->
+        <p class="values">@Model.TotalAmount</p> <!-- for ASP edit-->
         <p class="stat-text">Total Amount</p>
     </div>
     <div class="stats">
         <img class="icon-img" src="@Url.Content("~/images/Spent.png")">
         <img class="more-img" src="@Url.Content("~/Images/more.png")" alt="show more">
-        <p class="values">$$$</p> <!-- for ASP edit-->
+        <p class="values">@Model.Spent</p> <!-- for ASP edit-->
         <p class="stat-text">Spent (Month)</p>
     </div>
     <div class="stats">
         <img class="icon-img" src="@Url.Content("~/images/Left.png")">
         <img class="more-img" src="@Url.Content("~/Images/more.png")" alt="show more">
-        <p class="values">$$$</p> <!-- for ASP edit-->
+        <p class="values">@Model.Left</p> <!-- for ASP edit-->
         <p class="stat-text">Left (Month)</p>
     </div>
     <div class="stats">
@@ -101,6 +101,5 @@
     </div>
 
 </div>
-
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" src="@Url.Content("~/js/site.js")"></script>
