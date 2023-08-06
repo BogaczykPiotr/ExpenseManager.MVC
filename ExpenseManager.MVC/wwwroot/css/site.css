@@ -678,7 +678,7 @@ input:checked + label {
     }
 
 .switch-text {
-    color: rgb(175, 175, 175);
+    color: white;
     position: absolute;
     right: 28.5vw;
     font-size: 1.5vw;

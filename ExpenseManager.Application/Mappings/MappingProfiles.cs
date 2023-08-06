@@ -18,6 +18,7 @@ namespace ExpenseManager.Application.Mappings
             CreateMap<Stat, StatDto>();
             CreateMap<Transfer, TransferDto>();
             CreateMap<TransferDto, Transfer>();
+            CreateMap<SavingGoalDto, SavingGoal>();
 
         }
     }

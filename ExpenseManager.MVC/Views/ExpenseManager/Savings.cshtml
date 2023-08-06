@@ -56,17 +56,16 @@
     </div>
 </div>
 <div class="savings-main-rectangle">
-    <form action="Create" method="post">
+    <form action="Savings" method="post">
     <p class="savings-saving-goal">Your Saving Goal</p>
     <div class="add-remove-saving-goal">
         <img class="remove-goal" src="@Url.Content("~/images/Minus.png")" alt="increase saving goal">
-            <input class="saving-goal-value" readonly value="100"> <!--for ASP edit-->
+            <input asp-for="Goal" class="input-value" type="hidden" name="savingGoalInput" value="100" />
+        <p class="saving-goal-value"></p>
         <img class="add-goal" src="@Url.Content("~/images/Plus.png")" alt="increase saving goal">
     </div>
-    <button class="confirm-saving-goal">Confirm</button>
+    <button type="submit" class="confirm-saving-goal">Confirm</button>
     </form>
-
-
     <div class="failed summary">
         <p class="monthly-goal ">Your Last Monthly Goal</p> <!--for ASP edit-->
         <p class="last-goal ">300</p>

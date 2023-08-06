@@ -110,25 +110,28 @@ if (window.location.pathname === '/') {
 }
 
 if (window.location.pathname === '/ExpenseManager/Savings') {
-	let canvas = document.querySelector('.progress-chart')
+	const canvas = document.querySelector('.progress-chart')
 
-	let value = document.querySelector('.saving-goal-value')
-	let plus = document.querySelector('.add-goal')
-	let minus = document.querySelector('.remove-goal')
-	let summary = document.querySelector('.summary')
-	let lastGoal = document.querySelector('.last-goal')
-	let goalText = document.querySelector('.goal-text')
+	const value = document.querySelector('.saving-goal-value')
+	const plus = document.querySelector('.add-goal')
+	const minus = document.querySelector('.remove-goal')
+	const summary = document.querySelector('.summary')
+	const lastGoal = document.querySelector('.last-goal')
+	const goalText = document.querySelector('.goal-text')
+	const inputValue = document.querySelector('.input-value')
 	let newValue
 	plus.addEventListener('click', function () {
 		let currentValue = parseInt(value.textContent)
 		newValue = currentValue + 50
 		value.textContent = newValue
+		inputValue.value = newValue
 	})
 	minus.addEventListener('click', function () {
 		let currentValue = parseInt(value.textContent)
 		newValue = currentValue - 50
-		if (newValue > 0) {
+		if (newValue >= 0) {
 			value.textContent = newValue
+			inputValue.value = newValue
 		}
 	})
 	if (parseInt(lastGoal.textContent) < 300) {
@@ -141,6 +144,24 @@ if (window.location.pathname === '/ExpenseManager/Savings') {
 		summary.classList.remove('failed')
 		goalText.innerText = 'Congratulations'
 	}
+
+	function updateValues() {
+		let currentValue = parseInt(value.textContent)
+		let inputNumber = parseInt(inputValue.value)
+
+		if (!isNaN(inputNumber)) {
+			if (inputNumber >= 0) {
+				value.textContent = inputNumber
+			} else {
+				inputValue.value = currentValue
+			}
+		} else {
+			inputValue.value = currentValue
+		}
+	}
+	updateValues()
+
+	inputValue.addEventListener('input', updateValues)
 
 	let data = {
 		labels: ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'july', 'aug', 'sep', 'oct', 'nov', 'dec'],
