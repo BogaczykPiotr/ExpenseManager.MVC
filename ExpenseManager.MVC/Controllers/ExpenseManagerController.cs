@@ -1,4 +1,5 @@
-﻿using ExpenseManager.Application.Commands.CreateTransfer;
+﻿using ExpenseManager.Application.Commands.CreateSavingGoal;
+using ExpenseManager.Application.Commands.CreateTransfer;
 using ExpenseManager.Application.Queries.GetAllTransfers;
 using ExpenseManager.Application.Queries.GetStatValues;
 using MediatR;
@@ -35,6 +36,16 @@ namespace ExpenseManager.MVC.Controllers
         {
             return View();
         }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Savings(CreateSavingGoalCommand command)
+        {
+            await _mediator.Send(command);
+            return View();
+        }
+
+
 
         public IActionResult Create()
         {

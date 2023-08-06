@@ -11,6 +11,8 @@ namespace ExpenseManager.Domain.Interfaces
     {
         Task<IEnumerable<Domain.Entities.Transfer>> GetAllTransfers();
 
-        Task Create(Transfer transfer);
+        Task CreateTransfer(Transfer transfer);
+
+        Task CreateSavingGoal(SavingGoal goal);
     }
 }

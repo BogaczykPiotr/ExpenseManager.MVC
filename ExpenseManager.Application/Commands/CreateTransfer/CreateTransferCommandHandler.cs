@@ -21,7 +21,7 @@ namespace ExpenseManager.Application.Commands.CreateTransfer
         public async Task<Unit> Handle(CreateTransferCommand request, CancellationToken cancellationToken)
         {
             var transfer = _mapper.Map<Domain.Entities.Transfer>(request);
-            await _expenseManagerRepository.Create(transfer);
+            await _expenseManagerRepository.CreateTransfer(transfer);
 
             return Unit.Value;
         }

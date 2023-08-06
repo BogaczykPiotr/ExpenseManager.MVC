@@ -14,7 +14,13 @@ namespace ExpenseManager.Infrastructure.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task Create(Transfer transfer)
+        public async Task CreateSavingGoal(SavingGoal goal)
+        {
+            _dbContext.Add(goal);
+            await _dbContext.SaveChangesAsync();    
+        }
+
+        public async Task CreateTransfer(Transfer transfer)
         {
             _dbContext.Add(transfer);
             await _dbContext.SaveChangesAsync();
