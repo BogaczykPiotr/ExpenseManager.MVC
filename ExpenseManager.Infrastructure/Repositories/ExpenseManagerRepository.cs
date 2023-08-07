@@ -29,5 +29,7 @@ namespace ExpenseManager.Infrastructure.Repositories
         public async Task<IEnumerable<Transfer>> GetAllTransfers()
             => await _dbContext.Transfers.ToListAsync();
 
-        }
+        public async Task<SavingGoal> GetLastSavingGoal()
+            => await _dbContext.SavingGoals.FirstAsync();
+    }
     }

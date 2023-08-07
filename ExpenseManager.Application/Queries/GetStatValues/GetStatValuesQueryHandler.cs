@@ -16,9 +16,11 @@ namespace ExpenseManager.Application.Queries.GetStatValues
         public async Task<StatDto> Handle(GetStatValuesQuery request, CancellationToken cancellationToken)
         {
             var transfers = await _expenseManagerRepository.GetAllTransfers();
+            var savingGoal = await _expenseManagerRepository.GetLastSavingGoal();
 
             var statDto = new StatDto();
             statDto.AddTotalAmountStat(transfers);
+            statDto.SavingGoal = savingGoal;
 
             return statDto;
         }
