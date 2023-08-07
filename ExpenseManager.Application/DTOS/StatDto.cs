@@ -27,10 +27,9 @@ namespace ExpenseManager.Application.DTOS
                 else
                     totalOutgoingAmountStat += transfer.Value;
             }
-
             TotalAmount = (totalIngoingAmountStat - totalOutgoingAmountStat) * -1;
             Spent = totalOutgoingAmountStat;
-            Left = (totalIngoingAmountStat - totalOutgoingAmountStat - 0) * -1; //0 - SavingGoal
+            Left = (totalIngoingAmountStat - totalOutgoingAmountStat - SavingGoal.Goal) * -1; //0 - SavingGoal
         }
     }
 }
