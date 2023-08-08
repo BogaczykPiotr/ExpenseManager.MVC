@@ -17,7 +17,7 @@ namespace ExpenseManager.Infrastructure.Repositories
         public async Task CreateSavingGoal(SavingGoal goal)
         {
             _dbContext.Add(goal);
-            await _dbContext.SaveChangesAsync();    
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task CreateTransfer(Transfer transfer)
@@ -30,6 +30,6 @@ namespace ExpenseManager.Infrastructure.Repositories
             => await _dbContext.Transfers.ToListAsync();
 
         public async Task<SavingGoal> GetLastSavingGoal()
-            => await _dbContext.SavingGoals.FirstAsync();
+            => await _dbContext.SavingGoals.OrderByDescending(sg => sg.Id).FirstOrDefaultAsync();
     }
-    }
+}

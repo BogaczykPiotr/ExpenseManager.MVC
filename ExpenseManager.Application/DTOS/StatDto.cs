@@ -14,7 +14,7 @@ namespace ExpenseManager.Application.DTOS
         public float Left { get; set; }
         public SavingGoal SavingGoal { get; set; }
 
-        public void AddTotalAmountStat(IEnumerable<Transfer> transfers)
+        public async void AddTotalAmountStat(IEnumerable<Transfer> transfers)
         {
             DateTime month = DateTime.Now.AddDays(-30);
             float totalIngoingAmountStat = 0;
@@ -31,6 +31,7 @@ namespace ExpenseManager.Application.DTOS
             TotalAmount = (totalIngoingAmountStat - totalOutgoingAmountStat) * -1;
             Spent = totalOutgoingAmountStat;
             Left = (totalIngoingAmountStat - totalOutgoingAmountStat - 0) * -1; //To fix
+            
         }
     }
 }

@@ -25,7 +25,7 @@ namespace ExpenseManager.Infrastructure.Seeders
                     var savingGoal = new Domain.Entities.SavingGoal()
                     { 
                         CreatedAt = DateTime.Now,
-                        Goal = 0
+                        Goal = 100
                     };
 
                     _dbContext.SavingGoals.Add(savingGoal);
