@@ -20,6 +20,7 @@ namespace ExpenseManager.Application.DTOS
             float totalIngoingAmountStat = 0;
             float totalOutgoingAmountStat = 0;
 
+
             foreach (var transfer in transfers.Where(t => t.CreatedAt >= month))
             {
                 if (transfer.Ingoing)
@@ -29,7 +30,7 @@ namespace ExpenseManager.Application.DTOS
             }
             TotalAmount = (totalIngoingAmountStat - totalOutgoingAmountStat) * -1;
             Spent = totalOutgoingAmountStat;
-            Left = (totalIngoingAmountStat - totalOutgoingAmountStat - SavingGoal.Goal) * -1; //0 - SavingGoal
+            Left = (totalIngoingAmountStat - totalOutgoingAmountStat - 0) * -1; //To fix
         }
     }
 }
