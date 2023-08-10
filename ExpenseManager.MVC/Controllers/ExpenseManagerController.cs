@@ -1,6 +1,7 @@
 ﻿using ExpenseManager.Application.Commands.CreateSavingGoal;
 using ExpenseManager.Application.Commands.CreateTransfer;
 using ExpenseManager.Application.Queries.GetAllTransfers;
+using ExpenseManager.Application.Queries.GetSavingGoalValues;
 using ExpenseManager.Application.Queries.GetStatValues;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -32,9 +33,15 @@ namespace ExpenseManager.MVC.Controllers
 
 
 
-        public IActionResult Savings()
+        public async Task<IActionResult> Savings()
         {
-            return View();
+            var lastSavingGoal = await _mediator.Send(new GetSavingGoalValuesQuery());
+
+            var command = new CreateSavingGoalCommand
+            {
+                Goal = lastSavingGoal.Goal
+            };
+            return View(command);
         }
 
 
@@ -42,7 +49,12 @@ namespace ExpenseManager.MVC.Controllers
         public async Task<IActionResult> Savings(CreateSavingGoalCommand command)
         {
             await _mediator.Send(command);
-            return View();
+
+            var lastSavingGoal = await _mediator.Send(new GetSavingGoalValuesQuery());
+
+            command.Goal = lastSavingGoal.Goal;
+
+            return View(command);
         }
 
 
