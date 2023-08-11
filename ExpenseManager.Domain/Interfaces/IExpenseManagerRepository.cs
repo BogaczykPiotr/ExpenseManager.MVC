@@ -15,6 +15,8 @@ namespace ExpenseManager.Domain.Interfaces
 
         Task CreateSavingGoal(SavingGoal goal);
 
+        Task<IEnumerable<SavingGoal>> GetAllSavingGoals();
+
         Task<SavingGoal> GetLastSavingGoal();
     }
 }

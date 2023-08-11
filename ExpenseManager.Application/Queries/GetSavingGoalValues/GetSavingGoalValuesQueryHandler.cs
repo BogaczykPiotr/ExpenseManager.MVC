@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ExpenseManager.Application.Queries.GetSavingGoalValues
 {
-    public class GetSavingGoalValuesQueryHandler : IRequestHandler<GetSavingGoalValuesQuery, SavingGoalDto>
+    public class GetSavingGoalValuesQueryHandler : IRequestHandler<GetSavingGoalValuesQuery, IEnumerable<SavingGoalDto>>
     {
         private readonly IExpenseManagerRepository _expenseManagerRepository;
         private readonly IMapper _mapper;
@@ -19,10 +19,10 @@ namespace ExpenseManager.Application.Queries.GetSavingGoalValues
             _expenseManagerRepository = expenseManagerRepository;
             _mapper = mapper;
         }
-        public async Task<SavingGoalDto> Handle(GetSavingGoalValuesQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<SavingGoalDto>> Handle(GetSavingGoalValuesQuery request, CancellationToken cancellationToken)
         {
-            var lastSavingGoal = await _expenseManagerRepository.GetLastSavingGoal();
-            var dtos = _mapper.Map<SavingGoalDto>(lastSavingGoal);
+            var lastSavingGoal = await _expenseManagerRepository.GetAllSavingGoals();
+            var dtos = _mapper.Map<IEnumerable<SavingGoalDto>>(lastSavingGoal);
 
             return dtos;
         }

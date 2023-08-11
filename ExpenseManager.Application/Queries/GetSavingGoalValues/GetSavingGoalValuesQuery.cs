@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ExpenseManager.Application.Queries.GetSavingGoalValues
 {
-    public class GetSavingGoalValuesQuery : IRequest<SavingGoalDto>
+    public class GetSavingGoalValuesQuery : IRequest<IEnumerable<SavingGoalDto>>
     {
     }
 }
