@@ -1,5 +1,14 @@
-﻿@model ExpenseManager.Application.Commands.CreateSavingGoal.CreateSavingGoalCommand
+﻿@model ExpenseManager.MVC.Controllers.SavingViewModel
+
+@{
+    var latestGoal = Model.SavingGoalDtos.OrderByDescending(g => g.CreatedAt).FirstOrDefault();
+    var lastGoal = Model.SavingGoalDtos.Reverse().Skip(1).FirstOrDefault();
+}
+
+
+
 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
 
 <div class="left-rectangle">
     <img class="logo" src="@Url.Content("~/images/Logo.png")">
@@ -57,18 +66,18 @@
 </div>
 <div class="savings-main-rectangle">
     <form method="post">
-    <p class="savings-saving-goal">Your Saving Goal</p>
-    <div class="add-remove-saving-goal">
-        <img class="remove-goal" src="@Url.Content("~/images/Minus.png")" alt="increase saving goal">
-            <input class="input-value" type="hidden"  value="@Model.Goal" asp-for="Goal" /> <!--to fix-->
-        <p class="saving-goal-value"></p>
-        <img class="add-goal" src="@Url.Content("~/images/Plus.png")" alt="increase saving goal">
-    </div>
-    <button type="submit" class="confirm-saving-goal">Confirm</button>
+        <p class="savings-saving-goal">Your Saving Goal</p>
+        <div class="add-remove-saving-goal">
+            <img class="remove-goal" src="@Url.Content("~/images/Minus.png")" alt="increase saving goal">
+            <input class="input-value" type="hidden" value="@latestGoal.Goal" name="Goal" />
+            <p class="saving-goal-value"></p>
+            <img class="add-goal" src="@Url.Content("~/images/Plus.png")" alt="increase saving goal">
+        </div>
+        <button type="submit" class="confirm-saving-goal">Confirm</button>
     </form>
     <div class="failed summary">
-        <p class="monthly-goal ">Your Last Monthly Goal</p> <!--for ASP edit-->
-        <p class="last-goal ">300</p>
+        <p class="monthly-goal ">Your Last Monthly Goal</p>
+        <p class="last-goal ">@lastGoal.Goal</p>
         <span class="goal-text"></span>
     </div>
     <div class="progress-chart-container">
@@ -77,12 +86,15 @@
     </div>
     <div class="actual-goal">
         <p class="actual-goal-text">Your Actual Goal</p>
-        <p class="actual-goal-value">@Model.Goal</p> <!--for ASP edit-->
+        <p class="actual-goal-value">@latestGoal.Goal</p>
         <p class="already-saved">Already Saved</p>
-        <p class="already-saved-value">123 / @Model.Goal</p> <!--for ASP edit-->
+        <p class="already-saved-value">123 / @latestGoal.Goal</p> <!--for ASP edit-->
     </div>
 
 
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" src="@Url.Content("~/js/site.js")"></script>
+<script>
+    console.log(@latestGoal.Goal);
+</script>

@@ -1,5 +1,6 @@
 ﻿using ExpenseManager.Application.Commands.CreateSavingGoal;
 using ExpenseManager.Application.Commands.CreateTransfer;
+using ExpenseManager.Application.DTOS;
 using ExpenseManager.Application.Queries.GetAllTransfers;
 using ExpenseManager.Application.Queries.GetSavingGoalValues;
 using ExpenseManager.Application.Queries.GetStatValues;
@@ -15,8 +16,6 @@ namespace ExpenseManager.MVC.Controllers
         {
             _mediator = mediator;
         }
-
-
 
         public async Task<IActionResult> Dashboard()
         {
@@ -35,13 +34,10 @@ namespace ExpenseManager.MVC.Controllers
 
         public async Task<IActionResult> Savings()
         {
-            var lastSavingGoal = await _mediator.Send(new GetSavingGoalValuesQuery());
+            var viewModel = new SavingViewModel();
+            viewModel.SavingGoalDtos = await _mediator.Send(new GetSavingGoalValuesQuery());
 
-            var command = new CreateSavingGoalCommand
-            {
-                Goal = lastSavingGoal.Goal
-            };
-            return View(command);
+            return View(viewModel);
         }
 
 
@@ -49,12 +45,11 @@ namespace ExpenseManager.MVC.Controllers
         public async Task<IActionResult> Savings(CreateSavingGoalCommand command)
         {
             await _mediator.Send(command);
+            var viewModel = new SavingViewModel();
+            viewModel.CreateSavingGoalCommand = command;
+            viewModel.SavingGoalDtos = await _mediator.Send(new GetSavingGoalValuesQuery());
 
-            var lastSavingGoal = await _mediator.Send(new GetSavingGoalValuesQuery());
-
-            command.Goal = lastSavingGoal.Goal;
-
-            return View(command);
+            return View(viewModel);
         }
 
 
@@ -75,5 +70,14 @@ namespace ExpenseManager.MVC.Controllers
             return RedirectToAction(nameof(Transfers));
 
         }
+    }
+
+
+
+
+    public class SavingViewModel
+    {
+        public CreateSavingGoalCommand CreateSavingGoalCommand { get; set; }
+        public IEnumerable<SavingGoalDto> SavingGoalDtos { get; set; }
     }
 }
