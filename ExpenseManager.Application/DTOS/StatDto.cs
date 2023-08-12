@@ -30,7 +30,7 @@ namespace ExpenseManager.Application.DTOS
             }
             TotalAmount = totalIngoingAmountStat;
             Spent = totalOutgoingAmountStat;
-            Left = totalIngoingAmountStat - totalOutgoingAmountStat - lastSavingGoal.Goal; //To fix
+            Left = totalIngoingAmountStat - totalOutgoingAmountStat - lastSavingGoal.Goal;
             
         }
     }
