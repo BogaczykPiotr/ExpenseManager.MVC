@@ -14,7 +14,7 @@ namespace ExpenseManager.Application.DTOS
         public float Left { get; set; }
         public SavingGoal SavingGoal { get; set; }
 
-        public async void AddTotalAmountStat(IEnumerable<Transfer> transfers)
+        public async Task AddTotalAmountStat(IEnumerable<Transfer> transfers, SavingGoal lastSavingGoal)
         {
             DateTime month = DateTime.Now.AddDays(-30);
             float totalIngoingAmountStat = 0;
@@ -23,14 +23,14 @@ namespace ExpenseManager.Application.DTOS
 
             foreach (var transfer in transfers.Where(t => t.CreatedAt >= month))
             {
-                if (transfer.Ingoing)
+                if (!transfer.Ingoing)
                     totalIngoingAmountStat += transfer.Value;
                 else
                     totalOutgoingAmountStat += transfer.Value;
             }
-            TotalAmount = (totalIngoingAmountStat - totalOutgoingAmountStat) * -1;
+            TotalAmount = totalIngoingAmountStat;
             Spent = totalOutgoingAmountStat;
-            Left = (totalIngoingAmountStat - totalOutgoingAmountStat - 0) * -1; //To fix
+            Left = totalIngoingAmountStat - totalOutgoingAmountStat - lastSavingGoal.Goal; //To fix
             
         }
     }

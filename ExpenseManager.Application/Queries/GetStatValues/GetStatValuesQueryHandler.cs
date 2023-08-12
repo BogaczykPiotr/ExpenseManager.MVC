@@ -19,7 +19,7 @@ namespace ExpenseManager.Application.Queries.GetStatValues
             var savingGoal = await _expenseManagerRepository.GetLastSavingGoal();
 
             var statDto = new StatDto();
-            statDto.AddTotalAmountStat(transfers);
+            statDto.AddTotalAmountStat(transfers, savingGoal);
             statDto.SavingGoal = savingGoal;
 
             return statDto;
