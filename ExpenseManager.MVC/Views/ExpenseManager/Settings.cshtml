@@ -1,0 +1,76 @@
+﻿<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+<div class="left-rectangle">
+    <img class="logo" src="@Url.Content("~/images/Logo.png")">
+    <a href="@Url.Action("Dashboard", "ExpenseManager")" class="link first-group first-element">
+        <img src="@Url.Content("~/images/Dashboard.png")">
+        <span class="text">Dashboard</span>
+    </a>
+    <a href="@Url.Action("Transfers", "ExpenseManager")" class="link first-group">
+        <img src="@Url.Content("~/images/Transfers.png")">
+        <span class="text">Transfers</span>
+    </a>
+    <a href="@Url.Action("Savings", "ExpenseManager")" class="link first-group">
+        <img src="@Url.Content("~/images/Savings.png")">
+        <span class="text">Savings</span>
+    </a>
+    <a href="Achievements.html" class="link first-group">
+        <img src="@Url.Content("~/images/History.png")">
+        <span class="text">Achievements</span>
+    </a>
+    <hr class="line">
+    <a href="#" class="link second-group">
+        <img src="@Url.Content("~/images/Settings.png")">
+        <span class="text">Settings</span>
+    </a>
+    <a href="#" class="link second-group">
+        <img src="@Url.Content("~/images/ContactUs.png")">
+        <span class="text">Contact us</span>
+    </a>
+</div>
+
+<div class="right-rectangle">
+    <div class="right-content">
+        <a href="#" class="right-links">
+            <img class="right-link" src="@Url.Content("~/images/Stats.png")">
+        </a>
+        <a href="#" class="right-links">
+            <img class="right-link" src="@Url.Content("~/images/Alerts.png")">
+        </a>
+        <a href="#" class="right-links">
+            <img class="right-link" src="@Url.Content("~/images/Account.png")">
+        </a>
+    </div>
+    <div class="actions">
+        <div class="recent-actions">
+            <p>Recent Actions</p>
+            <!--database query-->
+            <a href="#"><img src="@Url.Content("~/images/More.png")"></a>
+        </div>
+        <div class="upcoming-actions">
+            <p>Upcoming Actions</p>
+            <!--database query-->
+            <a href="#"><img src="@Url.Content("~/images/More.png")"></a>
+        </div>
+    </div>
+</div>
+<div class="main-rectangle">
+    <h1 class="settings-title">Settings</h1>
+    <div class="settings-form">
+        <div class="form-select">
+            <p class="">Language</p>
+            <select class="form-select">
+                <option value="polish">Polish</option>
+                <option value="english">English</option>
+                <option value="english">Deutsch</option>
+            </select>
+            <p class="">Currency</p>
+            <select class="form-select">
+                <option value="polish">zł</option>
+                <option value="english">$</option>
+                <option value="english">£</option>
+                <option value="english">€</option>
+            </select>
+        </div>
+        <button class="confirm-settings" type="submit">confirm</button>
+    </div>
+</div>

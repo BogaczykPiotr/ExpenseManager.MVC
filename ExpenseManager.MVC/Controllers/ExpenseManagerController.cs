@@ -70,7 +70,25 @@ namespace ExpenseManager.MVC.Controllers
             return RedirectToAction(nameof(Transfers));
 
         }
+
+
+        public IActionResult Settings()
+        {
+            return View(); //TODO
+        }
+
+
+
+
+
+
+
+
+
     }
+
+
+
 
 
 
