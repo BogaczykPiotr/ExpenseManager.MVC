@@ -1,4 +1,6 @@
-﻿<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+﻿@model ExpenseManager.Application.Commands.CreateSettings.CreateSettingsCommand
+
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 <div class="left-rectangle">
     <img class="logo" src="@Url.Content("~/images/Logo.png")">
     <a href="@Url.Action("Dashboard", "ExpenseManager")" class="link first-group first-element">
@@ -55,22 +57,22 @@
 </div>
 <div class="main-rectangle">
     <h1 class="settings-title">Settings</h1>
-    <div class="settings-form">
+    <form class="settings-form" method="post">
         <div class="form-select">
-            <p class="">Language</p>
-            <select class="form-select">
+            <p>Language</p>
+            <select class="form-select" asp-for="Language">
                 <option value="polish">Polish</option>
                 <option value="english">English</option>
                 <option value="english">Deutsch</option>
             </select>
-            <p class="">Currency</p>
-            <select class="form-select">
-                <option value="polish">zł</option>
-                <option value="english">$</option>
-                <option value="english">£</option>
-                <option value="english">€</option>
+            <p>Currency</p>
+            <select class="form-select" asp-for="Currency">
+                <option value="zloty">zł</option>
+                <option value="dollar">$</option>
+                <option value="pound">£</option>
+                <option value="euro">€</option>
             </select>
         </div>
         <button class="confirm-settings" type="submit">confirm</button>
-    </div>
+    </form>
 </div>

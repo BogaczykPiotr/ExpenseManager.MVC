@@ -14,6 +14,7 @@ namespace ExpenseManager.Application.Mappings
     {
         public MappingProfiles()
         {
+            CreateMap<SettingDto, Setting>();
             CreateMap<SavingGoal, SavingGoalDto>();
             CreateMap<Stat, StatDto>();
             CreateMap<Transfer, TransferDto>();

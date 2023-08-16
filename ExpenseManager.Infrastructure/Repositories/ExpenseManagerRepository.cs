@@ -26,6 +26,12 @@ namespace ExpenseManager.Infrastructure.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
+        public async Task CreateSettings(Setting settings)
+        {
+            _dbContext.Add(settings);
+            await _dbContext.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<Transfer>> GetAllTransfers()
             => await _dbContext.Transfers.ToListAsync();
 
@@ -34,5 +40,7 @@ namespace ExpenseManager.Infrastructure.Repositories
 
         public async Task<SavingGoal> GetLastSavingGoal()
             => await _dbContext.SavingGoals.OrderByDescending(sg => sg.Id).FirstOrDefaultAsync();
+
+        
     }
 }

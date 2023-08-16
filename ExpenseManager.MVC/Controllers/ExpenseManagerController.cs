@@ -1,4 +1,5 @@
 ﻿using ExpenseManager.Application.Commands.CreateSavingGoal;
+using ExpenseManager.Application.Commands.CreateSettings;
 using ExpenseManager.Application.Commands.CreateTransfer;
 using ExpenseManager.Application.DTOS;
 using ExpenseManager.Application.Queries.GetAllTransfers;
@@ -77,13 +78,12 @@ namespace ExpenseManager.MVC.Controllers
             return View(); //TODO
         }
 
-
-
-
-
-
-
-
+        [HttpPost]
+        public async Task<IActionResult> Settings(CreateSettingsCommand command)
+        {
+            await _mediator.Send(command);
+            return View();
+        }
 
     }
 
