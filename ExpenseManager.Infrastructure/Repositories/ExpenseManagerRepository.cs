@@ -41,6 +41,8 @@ namespace ExpenseManager.Infrastructure.Repositories
         public async Task<SavingGoal> GetLastSavingGoal()
             => await _dbContext.SavingGoals.OrderByDescending(sg => sg.Id).FirstOrDefaultAsync();
 
-        
+        public async Task<Setting> GetSettings()
+            => await _dbContext.Settings.OrderByDescending(se => se.Id).FirstOrDefaultAsync();
+
     }
 }

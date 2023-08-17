@@ -1,4 +1,4 @@
-﻿@model ExpenseManager.Application.Commands.CreateSettings.CreateSettingsCommand
+﻿@model ExpenseManager.MVC.Controllers.SettingViewModel
 
 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 <div class="left-rectangle">
@@ -20,7 +20,7 @@
         <span class="text">Achievements</span>
     </a>
     <hr class="line">
-    <a href="#" class="link second-group">
+    <a href="@Url.Action("Settings", "ExpenseManager")" class="link second-group">
         <img src="@Url.Content("~/images/Settings.png")">
         <span class="text">Settings</span>
     </a>
@@ -59,20 +59,61 @@
     <h1 class="settings-title">Settings</h1>
     <form class="settings-form" method="post">
         <div class="form-select">
-            <p>Language</p>
-            <select class="form-select" asp-for="Language">
-                <option value="polish">Polish</option>
-                <option value="english">English</option>
-                <option value="english">Deutsch</option>
+            <p>Language: @Model.SettingsDto.Language</p>
+            <select class="form-select" name="Language">
+                @if(Model.SettingsDto.Language == "polish")
+                {
+                    <option value="" disabled selected>Polish</option>
+                    <option value="english">English</option>
+                    <option value="deutsch">Deutsch</option>
+                }
+                else if (Model.SettingsDto.Language == "english")
+                {
+                    <option value="" disabled selected>English</option>
+                    <option value="deutsch">Deutsch</option>
+                    <option value="polish">Polish</option>
+                }
+                else if (Model.SettingsDto.Language == "deutsch")
+                {
+                    <option value="" disabled selected>Deutsch</option>
+                    <option value="english">English</option>
+                    <option value="polish">Polish</option>
+                }
             </select>
-            <p>Currency</p>
-            <select class="form-select" asp-for="Currency">
-                <option value="zloty">zł</option>
-                <option value="dollar">$</option>
-                <option value="pound">£</option>
-                <option value="euro">€</option>
+            <p>Currency: @Model.SettingsDto.Currency</p>
+            <select class="form-select" name="Currency">
+                @if(Model.SettingsDto.Currency == "zloty")
+                {
+                    <option value="" disabled selected>zł</option>
+                    <option value="dollar">$</option>
+                    <option value="pound">£</option>
+                    <option value="euro">€</option>
+                }
+                else if (Model.SettingsDto.Currency == "dollar")
+                {
+                    <option value="" disabled selected>$</option>
+                    <option value="zloty">zł</option>
+                    <option value="pound">£</option>
+                    <option value="euro">€</option>
+                }
+                else if(Model.SettingsDto.Currency == "pound")
+                {
+                    <option value="" disabled selected>£</option>
+                    <option value="dollar">$</option>
+                    <option value="zloty">zł</option>
+                    <option value="euro">€</option>
+                }
+                else if(Model.SettingsDto.Currency == "euro")
+                {
+                    <option value="" disabled selected>€</option>
+                    <option value="dollar">$</option>
+                    <option value="zloty">zł</option>
+                    <option value="pound">£</option>
+                }
+
+               
             </select>
         </div>
-        <button class="confirm-settings" type="submit">confirm</button>
+        <button onclick="refreshPage()" class="confirm-settings" type="submit">confirm</button>
     </form>
 </div>

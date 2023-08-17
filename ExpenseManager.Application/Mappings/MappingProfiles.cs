@@ -14,12 +14,13 @@ namespace ExpenseManager.Application.Mappings
     {
         public MappingProfiles()
         {
+            CreateMap<Setting, SettingDto>();
             CreateMap<SettingDto, Setting>();
             CreateMap<SavingGoal, SavingGoalDto>();
+            CreateMap<SavingGoalDto, SavingGoal>();
             CreateMap<Stat, StatDto>();
             CreateMap<Transfer, TransferDto>();
             CreateMap<TransferDto, Transfer>();
-            CreateMap<SavingGoalDto, SavingGoal>();
 
         }
     }

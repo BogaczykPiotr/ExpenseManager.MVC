@@ -20,5 +20,7 @@ namespace ExpenseManager.Domain.Interfaces
         Task<SavingGoal> GetLastSavingGoal();
 
         Task CreateSettings(Setting settings);
+
+        Task<Setting> GetSettings();
     }
 }

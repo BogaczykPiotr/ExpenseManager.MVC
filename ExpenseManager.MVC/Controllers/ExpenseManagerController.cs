@@ -4,6 +4,7 @@ using ExpenseManager.Application.Commands.CreateTransfer;
 using ExpenseManager.Application.DTOS;
 using ExpenseManager.Application.Queries.GetAllTransfers;
 using ExpenseManager.Application.Queries.GetSavingGoalValues;
+using ExpenseManager.Application.Queries.GetSettingValues;
 using ExpenseManager.Application.Queries.GetStatValues;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -72,18 +73,42 @@ namespace ExpenseManager.MVC.Controllers
 
         }
 
-
-        public IActionResult Settings()
+        public async Task<IActionResult> Settings()
         {
-            return View(); //TODO
+            var viewModel = new SettingViewModel();
+            viewModel.SettingsDto = await _mediator.Send(new GetSettingValuesQuery());
+            return View(viewModel);
         }
+
 
         [HttpPost]
         public async Task<IActionResult> Settings(CreateSettingsCommand command)
         {
-            await _mediator.Send(command);
-            return View();
+            var currentSettings = await _mediator.Send(new GetSettingValuesQuery());
+
+            if (string.IsNullOrEmpty(command.Currency))
+                command.Currency = currentSettings.Currency;
+
+            if (string.IsNullOrEmpty(command.Language))
+                command.Language = currentSettings.Language;
+
+
+            if (ModelState.IsValid)
+            {
+                await _mediator.Send(command);
+            }
+
+            var viewModel = new SettingViewModel();
+            viewModel.CreateSavingGoalCommand = command;
+            viewModel.SettingsDto = currentSettings;
+            return View(viewModel);
+
+            //To fix
+
         }
+
+
+        
 
     }
 
@@ -98,4 +123,11 @@ namespace ExpenseManager.MVC.Controllers
         public CreateSavingGoalCommand CreateSavingGoalCommand { get; set; }
         public IEnumerable<SavingGoalDto> SavingGoalDtos { get; set; }
     }
+    
+    public class SettingViewModel
+    {
+        public CreateSettingsCommand CreateSavingGoalCommand { get; set; }
+        public SettingDto SettingsDto { get; set; }
+    }
+    
 }
