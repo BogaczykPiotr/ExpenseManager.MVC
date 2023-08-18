@@ -101,7 +101,7 @@ namespace ExpenseManager.MVC.Controllers
             var viewModel = new SettingViewModel();
             viewModel.CreateSavingGoalCommand = command;
             viewModel.SettingsDto = currentSettings;
-            return View(viewModel);
+            return RedirectToAction(nameof(Settings));
 
             //To fix
 
