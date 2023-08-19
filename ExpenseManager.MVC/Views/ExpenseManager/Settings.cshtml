@@ -1,119 +1,318 @@
 ﻿@model ExpenseManager.MVC.Controllers.SettingViewModel
-
 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-<div class="left-rectangle">
-    <img class="logo" src="@Url.Content("~/images/Logo.png")">
-    <a href="@Url.Action("Dashboard", "ExpenseManager")" class="link first-group first-element">
-        <img src="@Url.Content("~/images/Dashboard.png")">
-        <span class="text">Dashboard</span>
-    </a>
-    <a href="@Url.Action("Transfers", "ExpenseManager")" class="link first-group">
-        <img src="@Url.Content("~/images/Transfers.png")">
-        <span class="text">Transfers</span>
-    </a>
-    <a href="@Url.Action("Savings", "ExpenseManager")" class="link first-group">
-        <img src="@Url.Content("~/images/Savings.png")">
-        <span class="text">Savings</span>
-    </a>
-    <a href="Achievements.html" class="link first-group">
-        <img src="@Url.Content("~/images/History.png")">
-        <span class="text">Achievements</span>
-    </a>
-    <hr class="line">
-    <a href="@Url.Action("Settings", "ExpenseManager")" class="link second-group">
-        <img src="@Url.Content("~/images/Settings.png")">
-        <span class="text">Settings</span>
-    </a>
-    <a href="#" class="link second-group">
-        <img src="@Url.Content("~/images/ContactUs.png")">
-        <span class="text">Contact us</span>
-    </a>
-</div>
 
-<div class="right-rectangle">
-    <div class="right-content">
-        <a href="#" class="right-links">
-            <img class="right-link" src="@Url.Content("~/images/Stats.png")">
+
+@if(Model.SettingsDto.Language == "english")
+{
+    <div class="left-rectangle">
+        <img class="logo" src="@Url.Content("~/images/Logo.png")">
+        <a href="@Url.Action("Dashboard", "ExpenseManager")" class="link first-group first-element">
+            <img src="@Url.Content("~/images/Dashboard.png")">
+            <span class="text">Dashboard</span>
         </a>
-        <a href="#" class="right-links">
-            <img class="right-link" src="@Url.Content("~/images/Alerts.png")">
+        <a href="@Url.Action("Transfers", "ExpenseManager")" class="link first-group">
+            <img src="@Url.Content("~/images/Transfers.png")">
+            <span class="text">Transfers</span>
         </a>
-        <a href="#" class="right-links">
-            <img class="right-link" src="@Url.Content("~/images/Account.png")">
+        <a href="@Url.Action("Savings", "ExpenseManager")" class="link first-group">
+            <img src="@Url.Content("~/images/Savings.png")">
+            <span class="text">Savings</span>
+        </a>
+        <a href="Achievements.html" class="link first-group">
+            <img src="@Url.Content("~/images/History.png")">
+            <span class="text">Achievements</span>
+        </a>
+        <hr class="line">
+        <a href="@Url.Action("Settings", "ExpenseManager")" class="link second-group">
+            <img src="@Url.Content("~/images/Settings.png")">
+            <span class="text">Settings</span>
+        </a>
+        <a href="#" class="link second-group">
+            <img src="@Url.Content("~/images/ContactUs.png")">
+            <span class="text">Contact us</span>
         </a>
     </div>
-    <div class="actions">
-        <div class="recent-actions">
-            <p>Recent Actions</p>
-            <!--database query-->
-            <a href="#"><img src="@Url.Content("~/images/More.png")"></a>
+
+    <div class="right-rectangle">
+        <div class="right-content">
+            <a href="#" class="right-links">
+                <img class="right-link" src="@Url.Content("~/images/Stats.png")">
+            </a>
+            <a href="#" class="right-links">
+                <img class="right-link" src="@Url.Content("~/images/Alerts.png")">
+            </a>
+            <a href="#" class="right-links">
+                <img class="right-link" src="@Url.Content("~/images/Account.png")">
+            </a>
         </div>
-        <div class="upcoming-actions">
-            <p>Upcoming Actions</p>
-            <!--database query-->
-            <a href="#"><img src="@Url.Content("~/images/More.png")"></a>
+        <div class="actions">
+            <div class="recent-actions">
+                <p>Recent Actions</p>
+                <!--database query-->
+                <a href="#"><img src="@Url.Content("~/images/More.png")"></a>
+            </div>
+            <div class="upcoming-actions">
+                <p>Upcoming Actions</p>
+                <!--database query-->
+                <a href="#"><img src="@Url.Content("~/images/More.png")"></a>
+            </div>
         </div>
     </div>
-</div>
-<div class="main-rectangle">
-    <h1 class="settings-title">Settings</h1>
-    <form class="settings-form" method="post">
-        <div class="form-select">
-            <p>Language: @Model.SettingsDto.Language</p>
-            <select class="form-select" name="Language">
-                @if(Model.SettingsDto.Language == "polish")
-                {
-                    <option value="" disabled selected>Polish</option>
-                    <option value="english">English</option>
-                    <option value="deutsch">Deutsch</option>
-                }
-                else if (Model.SettingsDto.Language == "english")
-                {
-                    <option value="" disabled selected>English</option>
-                    <option value="deutsch">Deutsch</option>
-                    <option value="polish">Polish</option>
-                }
-                else if (Model.SettingsDto.Language == "deutsch")
-                {
-                    <option value="deutsch" disabled selected>Deutsch</option>
-                    <option value="english">English</option>
-                    <option value="polish">Polish</option>
-                }
-            </select>
-            <p>Currency: @Model.SettingsDto.Currency</p>
-            <select class="form-select" name="Currency">
-                @if(Model.SettingsDto.Currency == "zloty")
-                {
-                    <option value="" disabled selected>zł</option>
-                    <option value="dollar">$</option>
-                    <option value="pound">£</option>
-                    <option value="euro">€</option>
-                }
-                else if (Model.SettingsDto.Currency == "dollar")
-                {
-                    <option value="" disabled selected>$</option>
-                    <option value="zloty">zł</option>
-                    <option value="pound">£</option>
-                    <option value="euro">€</option>
-                }
-                else if(Model.SettingsDto.Currency == "pound")
-                {
-                    <option value="" disabled selected>£</option>
-                    <option value="dollar">$</option>
-                    <option value="zloty">zł</option>
-                    <option value="euro">€</option>
-                }
-                else if(Model.SettingsDto.Currency == "euro")
-                {
-                    <option value="" disabled selected>€</option>
-                    <option value="dollar">$</option>
-                    <option value="zloty">zł</option>
-                    <option value="pound">£</option>
-                }
+    <div class="main-rectangle">
+        <h1 class="settings-title">Settings</h1>
+        <form class="settings-form" method="post">
+            <div class="form-select">
+                <p>Language: @Model.SettingsDto.Language</p>
+                <select class="form-select" name="Language">
+                        <option value="" disabled selected>English</option>
+                        <option value="deutsch">Deutsch</option>
+                        <option value="polski">Polski</option>
+                </select>
+                <p>Currency: @Model.SettingsDto.Currency</p>
+                <select class="form-select" name="Currency">
+                    @if (Model.SettingsDto.Currency == "zloty")
+                    {
+                        <option value="" disabled selected>zł</option>
+                        <option value="dollar">$</option>
+                        <option value="pound">£</option>
+                        <option value="euro">€</option>
+                    }
+                    else if (Model.SettingsDto.Currency == "dollar")
+                    {
+                        <option value="" disabled selected>$</option>
+                        <option value="zloty">zł</option>
+                        <option value="pound">£</option>
+                        <option value="euro">€</option>
+                    }
+                    else if (Model.SettingsDto.Currency == "pound")
+                    {
+                        <option value="" disabled selected>£</option>
+                        <option value="dollar">$</option>
+                        <option value="zloty">zł</option>
+                        <option value="euro">€</option>
+                    }
+                    else if (Model.SettingsDto.Currency == "euro")
+                    {
+                        <option value="" disabled selected>€</option>
+                        <option value="dollar">$</option>
+                        <option value="zloty">zł</option>
+                        <option value="pound">£</option>
+                    }
 
-               
-            </select>
+
+                </select>
+            </div>
+            <button class="confirm-settings" type="submit">confirm</button>
+        </form>
+    </div>
+}
+else if(Model.SettingsDto.Language == "polski")
+{
+    <div class="left-rectangle">
+        <img class="logo" src="@Url.Content("~/images/Logo.png")">
+        <a href="@Url.Action("Dashboard", "ExpenseManager")" class="link first-group first-element">
+            <img src="@Url.Content("~/images/Dashboard.png")">
+            <span class="text">Strona główna</span>
+        </a>
+        <a href="@Url.Action("Transfers", "ExpenseManager")" class="link first-group">
+            <img src="@Url.Content("~/images/Transfers.png")">
+            <span class="text">Transfery</span>
+        </a>
+        <a href="@Url.Action("Savings", "ExpenseManager")" class="link first-group">
+            <img src="@Url.Content("~/images/Savings.png")">
+            <span class="text">Oszczędności</span>
+        </a>
+        <a href="Achievements.html" class="link first-group">
+            <img src="@Url.Content("~/images/History.png")">
+            <span class="text">Osiągnięcia</span>
+        </a>
+        <hr class="line">
+        <a href="@Url.Action("Settings", "ExpenseManager")" class="link second-group">
+            <img src="@Url.Content("~/images/Settings.png")">
+            <span class="text">Ustawienia</span>
+        </a>
+        <a href="#" class="link second-group">
+            <img src="@Url.Content("~/images/ContactUs.png")">
+            <span class="text">Kontakt</span>
+        </a>
+    </div>
+
+    <div class="right-rectangle">
+        <div class="right-content">
+            <a href="#" class="right-links">
+                <img class="right-link" src="@Url.Content("~/images/Stats.png")">
+            </a>
+            <a href="#" class="right-links">
+                <img class="right-link" src="@Url.Content("~/images/Alerts.png")">
+            </a>
+            <a href="#" class="right-links">
+                <img class="right-link" src="@Url.Content("~/images/Account.png")">
+            </a>
         </div>
-        <button class="confirm-settings" type="submit">confirm</button>
-    </form>
-</div>
+        <div class="actions">
+            <div class="recent-actions">
+                <p>Ostatnie Akcje</p>
+                <!--database query-->
+                <a href="#"><img src="@Url.Content("~/images/More.png")"></a>
+            </div>
+            <div class="upcoming-actions">
+                <p>Nadchodzące Akcje</p>
+                <!--database query-->
+                <a href="#"><img src="@Url.Content("~/images/More.png")"></a>
+            </div>
+        </div>
+    </div>
+    <div class="main-rectangle">
+        <h1 class="settings-title">Ustawienia</h1>
+        <form class="settings-form" method="post">
+            <div class="form-select">
+                <p>Język: @Model.SettingsDto.Language</p>
+                <select class="form-select" name="Language">
+                        <option value="" disabled selected>Polski</option>
+                        <option value="english">English</option>
+                        <option value="deutsch">Deutsch</option>
+                </select>
+                <p>Waluta: @Model.SettingsDto.Currency</p>
+                <select class="form-select" name="Currency">
+                    @if (Model.SettingsDto.Currency == "zloty")
+                    {
+                        <option value="" disabled selected>zł</option>
+                        <option value="dollar">$</option>
+                        <option value="pound">£</option>
+                        <option value="euro">€</option>
+                    }
+                    else if (Model.SettingsDto.Currency == "dollar")
+                    {
+                        <option value="" disabled selected>$</option>
+                        <option value="zloty">zł</option>
+                        <option value="pound">£</option>
+                        <option value="euro">€</option>
+                    }
+                    else if (Model.SettingsDto.Currency == "pound")
+                    {
+                        <option value="" disabled selected>£</option>
+                        <option value="dollar">$</option>
+                        <option value="zloty">zł</option>
+                        <option value="euro">€</option>
+                    }
+                    else if (Model.SettingsDto.Currency == "euro")
+                    {
+                        <option value="" disabled selected>€</option>
+                        <option value="dollar">$</option>
+                        <option value="zloty">zł</option>
+                        <option value="pound">£</option>
+                    }
+
+
+                </select>
+            </div>
+            <button class="confirm-settings" type="submit">Zatwierdź</button>
+        </form>
+    </div>
+}
+else if(Model.SettingsDto.Language == "deutsch")
+{
+    <div class="left-rectangle">
+        <img class="logo" src="@Url.Content("~/images/Logo.png")">
+        <a href="@Url.Action("Dashboard", "ExpenseManager")" class="link first-group first-element">
+            <img src="@Url.Content("~/images/Dashboard.png")">
+            <span class="text">Hauptseite</span>
+        </a>
+        <a href="@Url.Action("Transfers", "ExpenseManager")" class="link first-group">
+            <img src="@Url.Content("~/images/Transfers.png")">
+            <span class="text">Überweisungen</span>
+        </a>
+        <a href="@Url.Action("Savings", "ExpenseManager")" class="link first-group">
+            <img src="@Url.Content("~/images/Savings.png")">
+            <span class="text">Ersparnisse</span>
+        </a>
+        <a href="Achievements.html" class="link first-group">
+            <img src="@Url.Content("~/images/History.png")">
+            <span class="text">Erfolge</span>
+        </a>
+        <hr class="line">
+        <a href="@Url.Action("Settings", "ExpenseManager")" class="link second-group">
+            <img src="@Url.Content("~/images/Settings.png")">
+            <span class="text">Einstellungen</span>
+        </a>
+        <a href="#" class="link second-group">
+            <img src="@Url.Content("~/images/ContactUs.png")">
+            <span class="text">Kontakt</span>
+        </a>
+    </div>
+
+    <div class="right-rectangle">
+        <div class="right-content">
+            <a href="#" class="right-links">
+                <img class="right-link" src="@Url.Content("~/images/Stats.png")">
+            </a>
+            <a href="#" class="right-links">
+                <img class="right-link" src="@Url.Content("~/images/Alerts.png")">
+            </a>
+            <a href="#" class="right-links">
+                <img class="right-link" src="@Url.Content("~/images/Account.png")">
+            </a>
+        </div>
+        <div class="actions">
+            <div class="recent-actions">
+                <p>Aktuelle Aktionen</p>
+                <!--database query-->
+                <a href="#"><img src="@Url.Content("~/images/More.png")"></a>
+            </div>
+            <div class="upcoming-actions">
+                <p>Bevorstehende Aktionen</p>
+                <!--database query-->
+                <a href="#"><img src="@Url.Content("~/images/More.png")"></a>
+            </div>
+        </div>
+    </div>
+    <div class="main-rectangle">
+        <h1 class="settings-title">Einstellungen</h1>
+        <form class="settings-form" method="post">
+            <div class="form-select">
+                <p>Sprache: @Model.SettingsDto.Language</p>
+                <select class="form-select" name="Language">
+                        <option value="deutsch" disabled selected>Deutsch</option>
+                        <option value="english">English</option>
+                        <option value="polski">Polski</option>
+                </select>
+                <p>Währung: @Model.SettingsDto.Currency</p>
+                <select class="form-select" name="Currency">
+                    @if (Model.SettingsDto.Currency == "zloty")
+                    {
+                        <option value="" disabled selected>zł</option>
+                        <option value="dollar">$</option>
+                        <option value="pound">£</option>
+                        <option value="euro">€</option>
+                    }
+                    else if (Model.SettingsDto.Currency == "dollar")
+                    {
+                        <option value="" disabled selected>$</option>
+                        <option value="zloty">zł</option>
+                        <option value="pound">£</option>
+                        <option value="euro">€</option>
+                    }
+                    else if (Model.SettingsDto.Currency == "pound")
+                    {
+                        <option value="" disabled selected>£</option>
+                        <option value="dollar">$</option>
+                        <option value="zloty">zł</option>
+                        <option value="euro">€</option>
+                    }
+                    else if (Model.SettingsDto.Currency == "euro")
+                    {
+                        <option value="" disabled selected>€</option>
+                        <option value="dollar">$</option>
+                        <option value="zloty">zł</option>
+                        <option value="pound">£</option>
+                    }
+
+
+                </select>
+            </div>
+            <button class="confirm-settings" type="submit">Bestätigen</button>
+        </form>
+    </div>
+}
+
+

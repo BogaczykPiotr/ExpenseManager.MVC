@@ -8,6 +8,7 @@ using ExpenseManager.Application.Queries.GetSettingValues;
 using ExpenseManager.Application.Queries.GetStatValues;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
 
 namespace ExpenseManager.MVC.Controllers
 {
@@ -86,24 +87,25 @@ namespace ExpenseManager.MVC.Controllers
         {
             var currentSettings = await _mediator.Send(new GetSettingValuesQuery());
 
+
+            
+
             if (string.IsNullOrEmpty(command.Currency))
                 command.Currency = currentSettings.Currency;
 
             if (string.IsNullOrEmpty(command.Language))
                 command.Language = currentSettings.Language;
 
-
             if (ModelState.IsValid)
             {
                 await _mediator.Send(command);
             }
 
+
             var viewModel = new SettingViewModel();
             viewModel.CreateSavingGoalCommand = command;
             viewModel.SettingsDto = currentSettings;
             return RedirectToAction(nameof(Settings));
-
-            //To fix
 
         }
 
