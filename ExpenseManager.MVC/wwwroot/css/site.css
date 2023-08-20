@@ -141,17 +141,16 @@ body {
     margin-left: 1vw;
 }
 
-    .actions img {
-        position: absolute;
-        width: 0.8vw;
-        height: auto;
-        right: 1vw;
-        margin-top: 1.5vw;
-    }
+.actions-show-more {
+    position: absolute;
+    width: 0.8vw;
+    height: auto;
+    right: 1vw;
+    margin-top: 1.5vw;
+}
 
 .recent-actions {
     display: flex;
-    margin-bottom: 17vw;
 }
 
 .upcoming-actions {
@@ -714,4 +713,44 @@ input:checked + label {
     cursor: pointer;
     position: absolute;
     margin-top: 5vw;
+}
+
+.actions-query {
+    display: flex;
+    margin-left: 2vw;
+}
+
+.actions-query-category {
+    position: absolute;
+    width: 2vw;
+    height: 2vw;
+    left: 1vw;
+    margin-top: 1.5vw;
+}
+
+.actions-query-description {
+    margin-left: 1vw;
+    font-weight: 900;
+    font-size: 1.2vw;
+}
+
+.actions-query-date {
+    margin-top: 3vw;
+    margin-left: -5vw;
+    font-weight: 300;
+    font-size: 1.2vw;
+}
+
+.actions-query-value {
+    margin-left: 4vw;
+    font-size: 1.5vw;
+    font-weight: 900;
+}
+
+.ingoing-value {
+    color: rgb(83, 221, 83);
+}
+
+.outgoing-value {
+    color: rgb(252, 52, 52);
 }
