@@ -23,7 +23,7 @@ namespace ExpenseManager.Application.DTOS
 
             foreach (var transfer in transfers.Where(t => t.CreatedAt >= month))
             {
-                if (!transfer.Ingoing)
+                if (transfer.Ingoing)
                     totalIngoingAmountStat += transfer.Value;
                 else
                     totalOutgoingAmountStat += transfer.Value;

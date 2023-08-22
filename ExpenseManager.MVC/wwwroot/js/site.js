@@ -202,9 +202,9 @@ if (window.location.pathname === '/ExpenseManager/Create') {
 
 	switchBtn.addEventListener('change', function () {
 		if (switchBtn.checked) {
-			switchText.innerText = 'Outgoing'
-		} else {
 			switchText.innerText = 'Ingoing'
+		} else {
+			switchText.innerText = 'Outgoing'
 
 		}
 	})

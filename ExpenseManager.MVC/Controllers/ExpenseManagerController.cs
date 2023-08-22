@@ -108,10 +108,6 @@ namespace ExpenseManager.MVC.Controllers
             return RedirectToAction(nameof(Settings));
 
         }
-
-
-        
-
     }
 
 
