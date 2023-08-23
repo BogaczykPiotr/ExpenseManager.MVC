@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿<!--Add languages and actions model-->
+
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -8,7 +11,295 @@
     }
 </head>
 <body>
-    @RenderBody()
+   @if (Model.Language == "english") 
+{
+    <div class="left-rectangle">
+        <img class="logo" src="@Url.Content("~/images/Logo.png")">
+        <a href="@Url.Action("Dashboard", "ExpenseManager")" class="link first-group first-element">
+            <img src="@Url.Content("~/images/Dashboard.png")">
+            <span class="text">Dashboard</span>
+        </a>
+        <a href="@Url.Action("Transfers", "ExpenseManager")" class="link first-group">
+            <img src="@Url.Content("~/images/Transfers.png")">
+            <span class="text">Transfers</span>
+        </a>
+        <a href="@Url.Action("Savings", "ExpenseManager")" class="link first-group">
+            <img src="@Url.Content("~/images/Savings.png")">
+            <span class="text">Savings</span>
+        </a>
+        <a href="Achievements.html" class="link first-group">
+            <img src="@Url.Content("~/images/History.png")">
+            <span class="text">Achievements</span>
+        </a>
+        <hr class="line">
+        <a href="@Url.Action("Settings", "ExpenseManager")" class="link second-group">
+            <img src="@Url.Content("~/images/Settings.png")">
+            <span class="text">Settings</span>
+        </a>
+        <a href="#" class="link second-group">
+            <img src="@Url.Content("~/images/ContactUs.png")">
+            <span class="text">Contact us</span>
+        </a>
+    </div>
+
+    <div class="right-rectangle">
+        <div class="right-content">
+            <a href="#" class="right-links">
+                <img class="right-link" src="@Url.Content("~/images/Stats.png")">
+            </a>
+            <a href="#" class="right-links">
+                <img class="right-link" src="@Url.Content("~/images/Alerts.png")">
+            </a>
+            <a href="#" class="right-links">
+                <img class="right-link" src="@Url.Content("~/images/Account.png")">
+            </a>
+        </div>
+        <div class="actions">
+            <div class="recent-actions">
+                <p>Recent Actions</p>
+                <a href="#"><img class="actions-show-more" src="@Url.Content("~/images/More.png")" alt="show more"></a>
+            </div>
+            <div class="actions-query">
+                <!--database query-->
+                <img class="actions-query-category" src="" alt="">
+                <p class="actions-query-description">Description</p>
+                <p class="actions-query-date">date</p>
+                <p class="actions-query-value ingoing-value">value</p>
+                <!--database query-->
+            </div>
+            <div class="upcoming-actions">
+                <p>Upcoming Actions</p>
+
+                <a href="#"><img class="actions-show-more" src="@Url.Content("~/images/More.png")" alt="show more"></a>
+            </div>
+            <div class="actions-query">
+                <!--database query-->
+                <img class="actions-query-category" src="" alt="">
+                <p class="actions-query-description">Description</p>
+                <p class="actions-query-date">date</p>
+                <p class="actions-query-value ingoing-value">value</p>
+                <!--database query-->
+            </div>
+        </div>
+    </div>
+}
+else if (Model.Language == "polski")
+{
+    <div class="left-rectangle">
+        <img class="logo" src="@Url.Content("~/images/Logo.png")">
+        <a href="@Url.Action("Dashboard", "ExpenseManager")" class="link first-group first-element">
+            <img src="@Url.Content("~/images/Dashboard.png")">
+            <span class="text">Strona główna</span>
+        </a>
+        <a href="@Url.Action("Transfers", "ExpenseManager")" class="link first-group">
+            <img src="@Url.Content("~/images/Transfers.png")">
+            <span class="text">Transfery</span>
+        </a>
+        <a href="@Url.Action("Savings", "ExpenseManager")" class="link first-group">
+            <img src="@Url.Content("~/images/Savings.png")">
+            <span class="text">Oszczędności</span>
+        </a>
+        <a href="Achievements.html" class="link first-group">
+            <img src="@Url.Content("~/images/History.png")">
+            <span class="text">Osiągnięcia</span>
+        </a>
+        <hr class="line">
+        <a href="@Url.Action("Settings", "ExpenseManager")" class="link second-group">
+            <img src="@Url.Content("~/images/Settings.png")">
+            <span class="text">Ustawienia</span>
+        </a>
+        <a href="#" class="link second-group">
+            <img src="@Url.Content("~/images/ContactUs.png")">
+            <span class="text">Kontakt</span>
+        </a>
+    </div>
+
+    <div class="right-rectangle">
+        <div class="right-content">
+            <a href="#" class="right-links">
+                <img class="right-link" src="@Url.Content("~/images/Stats.png")">
+            </a>
+            <a href="#" class="right-links">
+                <img class="right-link" src="@Url.Content("~/images/Alerts.png")">
+            </a>
+            <a href="#" class="right-links">
+                <img class="right-link" src="@Url.Content("~/images/Account.png")">
+            </a>
+        </div>
+        <div class="actions">
+            <div class="recent-actions">
+                <p>Recent Actions</p>
+                <a href="#"><img class="actions-show-more" src="@Url.Content("~/images/More.png")" alt="show more"></a>
+            </div>
+            <div class="actions-query">
+                <!--database query-->
+                <img class="actions-query-category" src="" alt="">
+                <p class="actions-query-description">Description</p>
+                <p class="actions-query-date">date</p>
+                <p class="actions-query-value ingoing-value">value</p>
+                <!--database query-->
+            </div>
+            <div class="upcoming-actions">
+                <p>Upcoming Actions</p>
+
+                <a href="#"><img class="actions-show-more" src="@Url.Content("~/images/More.png")" alt="show more"></a>
+            </div>
+            <div class="actions-query">
+                <!--database query-->
+                <img class="actions-query-category" src="" alt="">
+                <p class="actions-query-description">Description</p>
+                <p class="actions-query-date">date</p>
+                <p class="actions-query-value ingoing-value">value</p>
+                <!--database query-->
+            </div>
+        </div>
+    </div>
+}
+else if (Model.Language == "deutsch")
+{
+    <div class="left-rectangle">
+        <img class="logo" src="@Url.Content("~/images/Logo.png")">
+        <a href="@Url.Action("Dashboard", "ExpenseManager")" class="link first-group first-element">
+            <img src="@Url.Content("~/images/Dashboard.png")">
+            <span class="text">Dashboard</span>
+        </a>
+        <a href="@Url.Action("Transfers", "ExpenseManager")" class="link first-group">
+            <img src="@Url.Content("~/images/Transfers.png")">
+            <span class="text">Transfers</span>
+        </a>
+        <a href="@Url.Action("Savings", "ExpenseManager")" class="link first-group">
+            <img src="@Url.Content("~/images/Savings.png")">
+            <span class="text">Savings</span>
+        </a>
+        <a href="Achievements.html" class="link first-group">
+            <img src="@Url.Content("~/images/History.png")">
+            <span class="text">Achievements</span>
+        </a>
+        <hr class="line">
+        <a href="@Url.Action("Settings", "ExpenseManager")" class="link second-group">
+            <img src="@Url.Content("~/images/Settings.png")">
+            <span class="text">Settings</span>
+        </a>
+        <a href="#" class="link second-group">
+            <img src="@Url.Content("~/images/ContactUs.png")">
+            <span class="text">Contact us</span>
+        </a>
+    </div>
+
+    <div class="right-rectangle">
+        <div class="right-content">
+            <a href="#" class="right-links">
+                <img class="right-link" src="@Url.Content("~/images/Stats.png")">
+            </a>
+            <a href="#" class="right-links">
+                <img class="right-link" src="@Url.Content("~/images/Alerts.png")">
+            </a>
+            <a href="#" class="right-links">
+                <img class="right-link" src="@Url.Content("~/images/Account.png")">
+            </a>
+        </div>
+        <div class="actions">
+            <div class="recent-actions">
+                <p>Recent Actions</p>
+                <a href="#"><img class="actions-show-more" src="@Url.Content("~/images/More.png")" alt="show more"></a>
+            </div>
+            <div class="actions-query">
+                <!--database query-->
+                <img class="actions-query-category" src="" alt="">
+                <p class="actions-query-description">Description</p>
+                <p class="actions-query-date">date</p>
+                <p class="actions-query-value ingoing-value">value</p>
+                <!--database query-->
+            </div>
+            <div class="upcoming-actions">
+                <p>Upcoming Actions</p>
+
+                <a href="#"><img class="actions-show-more" src="@Url.Content("~/images/More.png")" alt="show more"></a>
+            </div>
+            <div class="actions-query">
+                <!--database query-->
+                <img class="actions-query-category" src="" alt="">
+                <p class="actions-query-description">Description</p>
+                <p class="actions-query-date">date</p>
+                <p class="actions-query-value ingoing-value">value</p>
+                <!--database query-->
+            </div>
+        </div>
+    </div>
+}
+else if (Model.Language == "deutsch")
+{
+    <div class="left-rectangle">
+        <img class="logo" src="@Url.Content("~/images/Logo.png")">
+        <a href="@Url.Action("Dashboard", "ExpenseManager")" class="link first-group first-element">
+            <img src="@Url.Content("~/images/Dashboard.png")">
+            <span class="text">Hauptseite</span>
+        </a>
+        <a href="@Url.Action("Transfers", "ExpenseManager")" class="link first-group">
+            <img src="@Url.Content("~/images/Transfers.png")">
+            <span class="text">Überweisungen</span>
+        </a>
+        <a href="@Url.Action("Savings", "ExpenseManager")" class="link first-group">
+            <img src="@Url.Content("~/images/Savings.png")">
+            <span class="text">Ersparnisse</span>
+        </a>
+        <a href="Achievements.html" class="link first-group">
+            <img src="@Url.Content("~/images/History.png")">
+            <span class="text">Erfolge</span>
+        </a>
+        <hr class="line">
+        <a href="@Url.Action("Settings", "ExpenseManager")" class="link second-group">
+            <img src="@Url.Content("~/images/Settings.png")">
+            <span class="text">Einstellungen</span>
+        </a>
+        <a href="#" class="link second-group">
+            <img src="@Url.Content("~/images/ContactUs.png")">
+            <span class="text">Kontakt</span>
+        </a>
+    </div>
+
+    <div class="right-rectangle">
+        <div class="right-content">
+            <a href="#" class="right-links">
+                <img class="right-link" src="@Url.Content("~/images/Stats.png")">
+            </a>
+            <a href="#" class="right-links">
+                <img class="right-link" src="@Url.Content("~/images/Alerts.png")">
+            </a>
+            <a href="#" class="right-links">
+                <img class="right-link" src="@Url.Content("~/images/Account.png")">
+            </a>
+        </div>
+        <div class="actions">
+            <div class="recent-actions">
+                <p>Recent Actions</p>
+                <a href="#"><img class="actions-show-more" src="@Url.Content("~/images/More.png")" alt="show more"></a>
+            </div>
+            <div class="actions-query">
+                <!--database query-->
+                <img class="actions-query-category" src="" alt="">
+                <p class="actions-query-description">Description</p>
+                <p class="actions-query-date">date</p>
+                <p class="actions-query-value ingoing-value">value</p>
+                <!--database query-->
+            </div>
+            <div class="upcoming-actions">
+                <p>Upcoming Actions</p>
+
+                <a href="#"><img class="actions-show-more" src="@Url.Content("~/images/More.png")" alt="show more"></a>
+            </div>
+            <div class="actions-query">
+                <!--database query-->
+                <img class="actions-query-category" src="" alt="">
+                <p class="actions-query-description">Description</p>
+                <p class="actions-query-date">date</p>
+                <p class="actions-query-value ingoing-value">value</p>
+                <!--database query-->
+            </div>
+        </div>
+    </div>
+   }
+@RenderBody()
 
     <footer>
         @RenderSection("Scripts", required: false)
