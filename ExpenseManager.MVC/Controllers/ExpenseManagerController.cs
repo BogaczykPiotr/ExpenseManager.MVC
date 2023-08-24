@@ -63,9 +63,6 @@ namespace ExpenseManager.MVC.Controllers
         }
 
 
-
-
-
         [HttpPost]
         public async Task<IActionResult> Create(CreateTransferCommand command)
         {
@@ -73,6 +70,13 @@ namespace ExpenseManager.MVC.Controllers
             return RedirectToAction(nameof(Transfers));
 
         }
+
+        public IActionResult Actions()
+        {
+            return View();
+        }
+
+
 
         public async Task<IActionResult> Settings()
         {
