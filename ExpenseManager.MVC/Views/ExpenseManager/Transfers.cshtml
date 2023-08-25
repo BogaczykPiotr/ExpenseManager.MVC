@@ -6,7 +6,7 @@
 
 <a class="create-transfer" href="@Url.Action("Create", "ExpenseManager")">New Transfer</a> <!--for ASP edit-->
 <p class="last-transfers">Last Transfers</p>
-<div class="main-rectangle-transfers">
+<div class="main-rectangle-grid">
 
     @foreach (var transfer in Model.Where(t => t.Upcoming == false))
     {
