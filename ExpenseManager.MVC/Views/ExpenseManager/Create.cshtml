@@ -1,4 +1,4 @@
-﻿@model ExpenseManager.Application.Commands.CreateTransfer.CreateTransferCommand
+﻿@model ExpenseManager.MVC.Controllers.CreateViewModel
 
 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 <script defer src="@Url.Content("~/js/site.js")"></script>
@@ -7,23 +7,26 @@
     <p class="title">Create New Transfer</p>
     <form method="post">
         <div>
-            <input type="checkbox" id="switch" asp-for="Ingoing" /><label for="switch"></label>
+            <input type="checkbox" id="switch" name="Ingoing" /><label for="switch"></label>
             <p class="switch-text">Outgoing</p>
         </div>
         <div class="input-box">
             <span class="details">Value</span>
-            <input type="text" placeholder="Enter Value" required asp-for="Value">
-        </div>
-        <div class="input-box">
-            <span class="details">Category</span>
-            <select class="category-input">
-                <option value="other">Other</option>
-                <!--To Add Categories Model-->
-            </select>
+            <input type="text" placeholder="Enter Value" required name="Value">
         </div>
         <div class="input-box">
             <span class="details">Details (optional)</span>
-            <input type="text" placeholder="Enter Details" asp-for="Description">
+            <input type="text" placeholder="Enter Details" name="Description">
+        </div>
+        <div class="input-box">
+            <span class="details">Category</span>
+            <select class="category-input" name="Category">
+                <option value="other">other</option>
+                @foreach (var transfer in Model.TransferDto.Where(transfer => transfer.Category != "other"))
+                {
+                    <option value="@transfer.Category">@transfer.Category</option>
+                }
+            </select>
         </div>
         <button class="create-button" type="submit">Create </button>
     </form>

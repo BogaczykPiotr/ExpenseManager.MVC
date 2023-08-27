@@ -57,9 +57,11 @@ namespace ExpenseManager.MVC.Controllers
 
 
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            var viewModel = new CreateViewModel();
+            viewModel.TransferDto = await _mediator.Send(new GetAllTransfersQuery());
+            return View(viewModel);
         }
 
 
@@ -67,6 +69,9 @@ namespace ExpenseManager.MVC.Controllers
         public async Task<IActionResult> Create(CreateTransferCommand command)
         {
             await _mediator.Send(command);
+            var viewModel = new CreateViewModel();
+            viewModel.CreateTransferCommand = command;
+            viewModel.TransferDto = await _mediator.Send(new GetAllTransfersQuery());
             return RedirectToAction(nameof(Transfers));
 
         }
@@ -114,7 +119,7 @@ namespace ExpenseManager.MVC.Controllers
         }
 
 
-        
+
 
     }
 
@@ -123,7 +128,11 @@ namespace ExpenseManager.MVC.Controllers
 
 
 
-
+    public class CreateViewModel
+    {
+        public CreateTransferCommand CreateTransferCommand { get; set; }
+        public IEnumerable<TransferDto> TransferDto { get; set; }
+    }
     public class SavingViewModel
     {
         public CreateSavingGoalCommand CreateSavingGoalCommand { get; set; }
