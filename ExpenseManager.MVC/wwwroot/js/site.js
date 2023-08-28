@@ -199,13 +199,19 @@ if (window.location.pathname === '/ExpenseManager/Savings') {
 if (window.location.pathname === '/ExpenseManager/Create') {
 	let switchBtn = document.querySelector('#switch')
 	let switchText = document.querySelector('.switch-text')
+	
+
+	function createCategory() {
+		window.location.href = "/ExpenseManager/CreateCategory"
+	}
+
+
 
 	switchBtn.addEventListener('change', function () {
 		if (switchBtn.checked) {
 			switchText.innerText = 'Ingoing'
 		} else {
 			switchText.innerText = 'Outgoing'
-
 		}
 	})
 }
