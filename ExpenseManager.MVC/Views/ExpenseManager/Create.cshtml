@@ -3,6 +3,12 @@
 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 <script defer src="@Url.Content("~/js/site.js")"></script>
 
+@{
+    var uniqueCategories = Model.TransferDto
+        .Select(t => t.Category)
+        .Distinct();
+}
+
 <div class="main-rectangle">
     <p class="title">Create New Transfer</p>
     <form method="post">
@@ -20,13 +26,12 @@
         </div>
         <div class="input-box">
             <span class="details">Category</span>
+            <a href="#" class="create-category">Create New</a>
             <select class="category-input" name="Category">
-                @foreach (var transfer in Model.TransferDto.Where(transfer => transfer.Category != "other"))
+                @foreach (var categories in uniqueCategories)
                 {
-                    <option value="@transfer.Category">@transfer.Category</option>
+                    <option value="@categories">@categories</option>
                 }
-                <option value="other">other</option>
-                <option id="createcategory" onchange="createCategory()">Create new category</option>
             </select>
         </div>
         <button class="create-button" type="submit">Create </button>
