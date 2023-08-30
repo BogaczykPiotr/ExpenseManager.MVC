@@ -68,6 +68,10 @@ namespace ExpenseManager.MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateTransferCommand command)
         {
+            if(!ModelState.IsValid)
+            {
+                return View(command);
+            }
             await _mediator.Send(command);
             var viewModel = new CreateViewModel();
             viewModel.CreateTransferCommand = command;
