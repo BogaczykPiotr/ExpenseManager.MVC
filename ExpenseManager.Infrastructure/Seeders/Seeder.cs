@@ -1,4 +1,5 @@
 ﻿using ExpenseManager.Domain.Entities;
+using ExpenseManager.Domain.Interfaces;
 using ExpenseManager.Infrastructure.Persistence;
 using System;
 using System.Collections.Generic;
@@ -8,10 +9,11 @@ using System.Threading.Tasks;
 
 namespace ExpenseManager.Infrastructure.Seeders
 {
-    public class SavingGoalSeeder
+    public class Seeder
     {
         private readonly ExpenseDbContext _dbContext;
-        public SavingGoalSeeder(ExpenseDbContext dbContext)
+
+        public Seeder(ExpenseDbContext dbContext)
         {
             _dbContext = dbContext;
         }
@@ -20,10 +22,25 @@ namespace ExpenseManager.Infrastructure.Seeders
         {
             if(await _dbContext.Database.CanConnectAsync())
             {
-                if(! _dbContext.SavingGoals.Any())
+                if(! _dbContext.Settings.Any())
                 {
-                    var savingGoal = new Domain.Entities.SavingGoal()
-                    { 
+                    var settings = new Setting()
+                    {
+                        Language = "english",
+                        Currency = "dollar"
+                    };
+
+                    _dbContext.Add(settings);
+                    await _dbContext.SaveChangesAsync();
+
+                }
+            }
+            if (await _dbContext.Database.CanConnectAsync())
+            {
+                if (!_dbContext.SavingGoals.Any())
+                {
+                    var savingGoal = new SavingGoal()
+                    {
                         CreatedAt = DateTime.Now,
                         Goal = 100
                     };

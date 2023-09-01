@@ -14,7 +14,7 @@ namespace ExpenseManager.Infrastructure.Extensions
             services.AddDbContext<Persistence.ExpenseDbContext>(options
                 => options.UseSqlServer(configuration.GetConnectionString("Database")));
 
-            services.AddScoped<SavingGoalSeeder>();
+            services.AddScoped<Seeder>();
 
             services.AddScoped<IExpenseManagerRepository, ExpenseManagerRepository>();
 

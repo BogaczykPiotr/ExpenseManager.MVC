@@ -17,7 +17,7 @@ var app = builder.Build();
 
 var scope = app.Services.CreateScope();
 
-var seeder = scope.ServiceProvider.GetRequiredService<ExpenseManager.Infrastructure.Seeders.SavingGoalSeeder>();
+var seeder = scope.ServiceProvider.GetRequiredService<ExpenseManager.Infrastructure.Seeders.Seeder>();
 
 await seeder.Seed();
 
