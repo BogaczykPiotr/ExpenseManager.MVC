@@ -24,7 +24,16 @@ namespace ExpenseManager.MVC.Controllers
         {
             var stats = await _mediator.Send(new GetStatValuesQuery());
 
-            return View(stats);
+            var viewModel = new LeftAndRightRectangleViewModel
+            {
+                TransferDtos = await _mediator.Send(new GetAllTransfersQuery()),
+                SettingDto = await _mediator.Send(new GetSettingValuesQuery())
+
+            };
+
+            ViewBag.Stats = stats;
+
+            return View(viewModel);
         }
 
         public async Task<IActionResult> Transfers()
@@ -130,7 +139,11 @@ namespace ExpenseManager.MVC.Controllers
 
 
 
-
+    public class LeftAndRightRectangleViewModel
+    {
+        public IEnumerable<TransferDto> TransferDtos { get; set; }
+        public SettingDto SettingDto { get; set; }
+    }
 
     public class CreateViewModel
     {

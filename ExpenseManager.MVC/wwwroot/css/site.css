@@ -1463,10 +1463,6 @@ input:checked + label {
     color: rgb(252, 52, 52);
 }
 
-.outgoing-value {
-    color: rgb(252, 52, 52);
-}
-
 .actions-title {
     color: rgb(175, 175, 175);
     font-size: 1.6vw;
