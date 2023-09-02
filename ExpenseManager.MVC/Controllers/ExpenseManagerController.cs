@@ -46,8 +46,12 @@ namespace ExpenseManager.MVC.Controllers
 
         public async Task<IActionResult> Savings()
         {
+            var stats = await _mediator.Send(new GetStatValuesQuery());
+
             var viewModel = new SavingViewModel();
             viewModel.SavingGoalDtos = await _mediator.Send(new GetSavingGoalValuesQuery());
+
+            ViewBag.Stats = stats;  
 
             return View(viewModel);
         }
@@ -57,10 +61,11 @@ namespace ExpenseManager.MVC.Controllers
         public async Task<IActionResult> Savings(CreateSavingGoalCommand command)
         {
             await _mediator.Send(command);
-            var viewModel = new SavingViewModel();
-            viewModel.CreateSavingGoalCommand = command;
-            viewModel.SavingGoalDtos = await _mediator.Send(new GetSavingGoalValuesQuery());
-
+            var viewModel = new SavingViewModel()
+            {
+                CreateSavingGoalCommand = command,
+                SavingGoalDtos = await _mediator.Send(new GetSavingGoalValuesQuery())
+            };
             return View(viewModel);
         }
 

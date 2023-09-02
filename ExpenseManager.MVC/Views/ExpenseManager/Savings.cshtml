@@ -22,7 +22,7 @@
     </form>
     <div class="failed summary">
         <p class="monthly-goal ">Your Last Monthly Goal</p>
-        <p class="last-goal ">@lastGoal.Goal</p>
+        <p class="last-goal ">@(lastGoal?.Goal ?? 0)</p>
         <span class="goal-text"></span>
     </div>
     <div class="progress-chart-container">
@@ -33,7 +33,7 @@
         <p class="actual-goal-text">Your Actual Goal</p>
         <p class="actual-goal-value">@latestGoal.Goal</p>
         <p class="already-saved">Already Saved</p>
-        <p class="already-saved-value">123 / @latestGoal.Goal</p> <!--for ASP edit-->
+        <p class="already-saved-value">@ViewBag.Stats.Left / @latestGoal.Goal</p>
     </div>
 
 

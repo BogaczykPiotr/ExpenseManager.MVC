@@ -42,7 +42,7 @@ namespace ExpenseManager.Infrastructure.Seeders
                     var savingGoal = new SavingGoal()
                     {
                         CreatedAt = DateTime.Now,
-                        Goal = 100
+                        Goal = 0
                     };
 
                     _dbContext.SavingGoals.Add(savingGoal);
