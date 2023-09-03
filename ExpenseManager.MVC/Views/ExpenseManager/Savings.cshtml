@@ -4,9 +4,6 @@
     var latestGoal = Model.SavingGoalDtos.OrderByDescending(g => g.CreatedAt).FirstOrDefault();
     var lastGoal = Model.SavingGoalDtos.Reverse().Skip(1).FirstOrDefault();
 }
-
-
-
 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 
 <div class="savings-main-rectangle">

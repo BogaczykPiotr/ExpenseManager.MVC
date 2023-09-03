@@ -1,5 +1,7 @@
-﻿<!--Add languages and actions model-->
-
+﻿@{
+    var transferDtos = ViewData["TransferDtos"] as IEnumerable<ExpenseManager.Application.DTOS.TransferDto>;
+    var settingsDto = ViewData["SettingsDto"] as ExpenseManager.Application.DTOS.SettingDto;
+}
 
 <!DOCTYPE html>
 <html>
@@ -10,6 +12,8 @@
         <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     }
 </head>
+
+
 <body>
     <div class="left-rectangle">
         <img class="logo" src="@Url.Content("~/images/Logo.png")">
@@ -57,11 +61,30 @@
                 <p>Recent Actions</p>
                 <a href="#"><img class="actions-show-more" src="@Url.Content("~/images/More.png")" alt="show more"></a>
             </div>
-            <div class="upcoming-actions">
-                <p>Upcoming Actions</p>
+                @foreach (var action in transferDtos.Where(t => t.Upcoming == false).OrderByDescending(t => t.CreatedAt).Take(3))
+                {
 
-                <a href="#"><img class="actions-show-more" src="@Url.Content("~/images/More.png")" alt="show more"></a>
-            </div>
+                    <div class="actions-query">
+                        <img class="actions-query-category" src="" alt="">
+                        <p class="actions-query-description">@action.Description</p>
+                        <p class="actions-query-date">@action.CreatedAt.ToString("dd.MM.yyyy")</p>
+                        <p class="actions-query-value @(action.Ingoing ? "ingoing-value" : "outgoing-value")">@action.Value</p>
+                    </div>
+                }
+                <div class="upcoming-actions">
+                    <p>Upcoming Actions</p>
+
+                    <a href="#"><img class="actions-show-more" src="@Url.Content("~/images/More.png")" alt="show more"></a>
+                </div>
+                @foreach (var action in transferDtos.Where(t => t.Upcoming == true).OrderByDescending(t => t.CreatedAt).Take(3))
+                {
+                    <div class="actions-query">
+                        <img class="actions-query-category" src="" alt="">
+                        <p class="actions-query-description">@action.Description</p>
+                        <p class="actions-query-date">@action.CreatedAt</p>
+                        <p class="actions-query-value @(action.Ingoing ? "ingoing-value" : "outgoing-value")">@action.Value</p>
+                    </div>
+                }
         </div>
     </div>
             @RenderBody()

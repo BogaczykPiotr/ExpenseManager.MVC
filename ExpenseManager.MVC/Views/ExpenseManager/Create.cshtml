@@ -1,14 +1,13 @@
 ﻿@model ExpenseManager.MVC.Controllers.CreateViewModel
 
 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-<script defer src="@Url.Content("~/js/site.js")"></script>
+
 
 @{
     var uniqueCategories = Model.TransferDto
         .Select(t => t.Category)
         .Distinct();
 }
-
 <div class="main-rectangle">
     <p class="title">Create New Transfer</p>
     <form method="post">
@@ -33,6 +32,7 @@
                 {
                     <option value="@categories">@categories</option>
                 }
+                <option value="other">other</option>
             </select>
         </div>
         <button class="create-button" type="submit">Create </button>

@@ -20,9 +20,9 @@ namespace ExpenseManager.Infrastructure.Seeders
 
         public async Task Seed()
         {
-            if(await _dbContext.Database.CanConnectAsync())
+            if (await _dbContext.Database.CanConnectAsync())
             {
-                if(! _dbContext.Settings.Any())
+                if (!_dbContext.Settings.Any())
                 {
                     var settings = new Setting()
                     {
@@ -34,9 +34,6 @@ namespace ExpenseManager.Infrastructure.Seeders
                     await _dbContext.SaveChangesAsync();
 
                 }
-            }
-            if (await _dbContext.Database.CanConnectAsync())
-            {
                 if (!_dbContext.SavingGoals.Any())
                 {
                     var savingGoal = new SavingGoal()
@@ -47,7 +44,6 @@ namespace ExpenseManager.Infrastructure.Seeders
 
                     _dbContext.SavingGoals.Add(savingGoal);
                     await _dbContext.SaveChangesAsync();
-
                 }
             }
         }

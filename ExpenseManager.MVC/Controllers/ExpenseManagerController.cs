@@ -14,6 +14,7 @@ namespace ExpenseManager.MVC.Controllers
 {
     public class ExpenseManagerController : Controller
     {
+        
         private readonly IMediator _mediator;
         public ExpenseManagerController(IMediator mediator)
         {
@@ -22,22 +23,14 @@ namespace ExpenseManager.MVC.Controllers
 
         public async Task<IActionResult> Dashboard()
         {
+            await ViewLayoutData();
             var stats = await _mediator.Send(new GetStatValuesQuery());
-
-            var viewModel = new LeftAndRightRectangleViewModel
-            {
-                TransferDtos = await _mediator.Send(new GetAllTransfersQuery()),
-                SettingDto = await _mediator.Send(new GetSettingValuesQuery())
-
-            };
-
-            ViewBag.Stats = stats;
-
-            return View(viewModel);
+            return View(stats);
         }
 
         public async Task<IActionResult> Transfers()
         {
+            await ViewLayoutData();
             var Transfers = await _mediator.Send(new GetAllTransfersQuery());
             return View(Transfers);
         }
@@ -46,6 +39,7 @@ namespace ExpenseManager.MVC.Controllers
 
         public async Task<IActionResult> Savings()
         {
+            await ViewLayoutData();
             var stats = await _mediator.Send(new GetStatValuesQuery());
 
             var viewModel = new SavingViewModel();
@@ -73,6 +67,7 @@ namespace ExpenseManager.MVC.Controllers
 
         public async Task<IActionResult> Create()
         {
+            await ViewLayoutData();
             var viewModel = new CreateViewModel();
             viewModel.TransferDto = await _mediator.Send(new GetAllTransfersQuery());
             return View(viewModel);
@@ -101,6 +96,7 @@ namespace ExpenseManager.MVC.Controllers
 
         public async Task<IActionResult> Settings()
         {
+            await ViewLayoutData();
             var viewModel = new SettingViewModel();
             viewModel.SettingsDto = await _mediator.Send(new GetSettingValuesQuery());
             return View(viewModel);
@@ -135,18 +131,14 @@ namespace ExpenseManager.MVC.Controllers
         }
 
 
-
+        protected async Task ViewLayoutData()
+        {
+            ViewData["TransferDtos"] = await _mediator.Send(new GetAllTransfersQuery());
+            ViewData["SettingsDto"] = await _mediator.Send(new GetSettingValuesQuery());
+        }
 
     }
 
-
-
-
-    public class LeftAndRightRectangleViewModel
-    {
-        public IEnumerable<TransferDto> TransferDtos { get; set; }
-        public SettingDto SettingDto { get; set; }
-    }
 
     public class CreateViewModel
     {
@@ -164,5 +156,9 @@ namespace ExpenseManager.MVC.Controllers
         public CreateSettingsCommand CreateSavingGoalCommand { get; set; }
         public SettingDto SettingsDto { get; set; }
     }
+
+
     
+
+
 }

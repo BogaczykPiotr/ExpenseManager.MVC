@@ -1,103 +1,30 @@
-﻿@model ExpenseManager.MVC.Controllers.LeftAndRightRectangleViewModel
+﻿@model ExpenseManager.Application.DTOS.StatDto
 
 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 
-<div class="left-rectangle">
-    <img class="logo" src="@Url.Content("~/images/Logo.png")">
-    <a href="@Url.Action("Dashboard", "ExpenseManager")" class="link first-group first-element">
-        <img src="@Url.Content("~/images/Dashboard.png")">
-        <span class="text">Dashboard</span>
-    </a>
-    <a href="@Url.Action("Transfers", "ExpenseManager")" class="link first-group">
-        <img src="@Url.Content("~/images/Transfers.png")">
-        <span class="text">Transfers</span>
-    </a>
-    <a href="@Url.Action("Savings", "ExpenseManager")" class="link first-group">
-        <img src="@Url.Content("~/images/Savings.png")">
-        <span class="text">Savings</span>
-    </a>
-    <a href="@Url.Action("Actions", "ExpenseManager")" class="link first-group">
-        <img src="@Url.Content("~/images/History.png")">
-        <span class="text">Actions</span>
-    </a>
-    <hr class="line">
-    <a href="@Url.Action("Settings", "ExpenseManager")" class="link second-group">
-        <img src="@Url.Content("~/images/Settings.png")">
-        <span class="text">Settings</span>
-    </a>
-    <a href="#" class="link second-group">
-        <img src="@Url.Content("~/images/ContactUs.png")">
-        <span class="text">Contact us</span>
-    </a>
-</div>
-
-<div class="right-rectangle">
-    <div class="right-content">
-        <a href="#" class="right-links">
-            <img class="right-link" src="@Url.Content("~/images/Stats.png")">
-        </a>
-        <a href="#" class="right-links">
-            <img class="right-link" src="@Url.Content("~/images/Alerts.png")">
-        </a>
-        <a href="#" class="right-links">
-            <img class="right-link" src="@Url.Content("~/images/Account.png")">
-        </a>
-    </div>
-    <div class="actions">
-        <div class="recent-actions">
-            <p>Recent Actions</p>
-            <a href="#"><img class="actions-show-more" src="@Url.Content("~/images/More.png")" alt="show more"></a>
-        </div>
-        
-            @foreach (var action in Model.TransferDtos.Where(t => t.Upcoming == false).OrderByDescending(t => t.CreatedAt).Take(3))
-            {
-            <div class="actions-query">
-            <img class="actions-query-category" src="" alt="">
-            <p class="actions-query-description">@action.Description</p>
-            <p class="actions-query-date">@action.CreatedAt.ToString("dd.MM.yyyy")</p>
-                <p class="actions-query-value @(action.Ingoing ? "ingoing-value" : "outgoing-value")">@action.Value</p>
-            </div>
-            }
-        
-        <div class="upcoming-actions">
-            <p>Upcoming Actions</p>
-
-            <a href="#"><img class="actions-show-more" src="@Url.Content("~/images/More.png")" alt="show more"></a>
-        </div>
-        @foreach (var action in Model.TransferDtos.Where(t => t.Upcoming == true).OrderByDescending(t => t.CreatedAt).Take(3))
-        {
-            <div class="actions-query">
-                <img class="actions-query-category" src="" alt="">
-                <p class="actions-query-description">@action.Description</p>
-                <p class="actions-query-date">@action.CreatedAt</p>
-                <p class="actions-query-value @(action.Ingoing ? "ingoing-value" : "outgoing-value")">@action.Value</p>
-            </div>
-        }
-    </div>
-</div>
 <div class="main-rectangle">
     <div class="stats">
         <img class="icon-img" src="@Url.Content("~/images/TotalAmount.png")" alt="TotalAmount">
         <img class="more-img" src="@Url.Content("~/Images/more.png")" alt="show more">
-        <p class="values">@ViewBag.Stats.TotalAmount</p> <!-- for ASP edit-->
+        <p class="values">@Model.TotalAmount</p>
         <p class="stat-text">Total Amount</p>
     </div>
     <div class="stats">
         <img class="icon-img" src="@Url.Content("~/images/Spent.png")">
         <img class="more-img" src="@Url.Content("~/Images/more.png")" alt="show more">
-        <p class="values">@ViewBag.Stats.Spent</p> <!-- for ASP edit-->
+        <p class="values">@Model.Spent</p>
         <p class="stat-text">Spent (Month)</p>
     </div>
     <div class="stats">
         <img class="icon-img" src="@Url.Content("~/images/Left.png")">
         <img class="more-img" src="@Url.Content("~/Images/more.png")" alt="show more">
-        <p class="values">@ViewBag.Stats.Left</p> <!-- for ASP edit-->
+        <p class="values">@Model.Left</p>
         <p class="stat-text">Left (Month)</p>
     </div>
     <div class="stats">
         <img class="icon-img" src="@Url.Content("~/images/SavingGoal.png")">
         <img class="more-img" src="@Url.Content("~/Images/more.png")" alt="show more">
-        <p class="values">@ViewBag.Stats.SavingGoal.Goal</p> <!-- for ASP edit-->
+        <p class="values">@Model.SavingGoal.Goal</p>
         <p class="stat-text">Saving Goal</p>
     </div>
     <select class="chart-selector">
