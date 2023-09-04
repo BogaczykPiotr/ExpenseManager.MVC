@@ -7,10 +7,25 @@
             <div class="form-select">
                 <p>Language: @Model.SettingsDto.Language</p>
                 <select class="form-select" name="Language">
-                        <option value="" disabled selected>English</option>
-                        <option value="deutsch">Deutsch</option>
-                        <option value="polski">Polski</option>
-                </select>
+                    @if (Model.SettingsDto.Language == "english")
+                    {
+                    <option value="" disabled selected>English</option>
+                    <option value="deutsch">Deutsch</option>
+                    <option value="polski">Polski</option>
+                    }
+                    else if(Model.SettingsDto.Language == "deutsch")
+                    {
+                    <option value="" disabled selected>Deutsch</option>
+                    <option value="english">English</option>
+                    <option value="polski">Polski</option>
+                    }
+                    else if (Model.SettingsDto.Language == "polski")
+                    {
+                    <option value="" disabled selected>Polski</option>
+                    <option value="deutsch">English</option>
+                    <option value="deutsch">Deutsch</option>
+                    }
+            </select>
                 <p>Currency: @Model.SettingsDto.Currency</p>
                 <select class="form-select" name="Currency">
                     @if (Model.SettingsDto.Currency == "zloty")
