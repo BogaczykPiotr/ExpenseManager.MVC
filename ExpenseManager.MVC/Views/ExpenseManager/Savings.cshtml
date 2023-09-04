@@ -1,6 +1,9 @@
 ﻿@model ExpenseManager.MVC.Controllers.SavingViewModel
 
 @{
+    var settingsDto = ViewData["SettingsDto"] as ExpenseManager.Application.DTOS.SettingDto;
+
+
     var latestGoal = Model.SavingGoalDtos.OrderByDescending(g => g.CreatedAt).FirstOrDefault();
     var lastGoal = Model.SavingGoalDtos.Reverse().Skip(1).FirstOrDefault();
 }
@@ -19,7 +22,7 @@
     </form>
     <div class="failed summary">
         <p class="monthly-goal ">Your Last Monthly Goal</p>
-        <p class="last-goal ">@(lastGoal?.Goal ?? 0)</p>
+        <p class="last-goal ">@(lastGoal?.Goal ?? 0)@settingsDto.Currency</p>
         <span class="goal-text"></span>
     </div>
     <div class="progress-chart-container">
@@ -28,9 +31,9 @@
     </div>
     <div class="actual-goal">
         <p class="actual-goal-text">Your Actual Goal</p>
-        <p class="actual-goal-value">@latestGoal.Goal</p>
+        <p class="actual-goal-value">@latestGoal.Goal@settingsDto.Currency</p>
         <p class="already-saved">Already Saved</p>
-        <p class="already-saved-value">@ViewBag.Stats.Left / @latestGoal.Goal</p>
+        <p class="already-saved-value">@ViewBag.Stats.Left@settingsDto.Currency / @latestGoal.Goal@settingsDto.Currency</p>
     </div>
 
 

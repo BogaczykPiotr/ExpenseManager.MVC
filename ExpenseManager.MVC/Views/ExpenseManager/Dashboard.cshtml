@@ -1,30 +1,32 @@
 ﻿@model ExpenseManager.Application.DTOS.StatDto
-
+@{
+    var settingsDto = ViewData["SettingsDto"] as ExpenseManager.Application.DTOS.SettingDto;
+}
 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 
 <div class="main-rectangle">
     <div class="stats">
         <img class="icon-img" src="@Url.Content("~/images/TotalAmount.png")" alt="TotalAmount">
         <img class="more-img" src="@Url.Content("~/Images/more.png")" alt="show more">
-        <p class="values">@Model.TotalAmount</p>
+        <p class="values">@Model.TotalAmount@settingsDto.Currency</p>
         <p class="stat-text">Total Amount</p>
     </div>
     <div class="stats">
         <img class="icon-img" src="@Url.Content("~/images/Spent.png")">
         <img class="more-img" src="@Url.Content("~/Images/more.png")" alt="show more">
-        <p class="values">@Model.Spent</p>
+        <p class="values">@Model.Spent@settingsDto.Currency</p>
         <p class="stat-text">Spent (Month)</p>
     </div>
     <div class="stats">
         <img class="icon-img" src="@Url.Content("~/images/Left.png")">
         <img class="more-img" src="@Url.Content("~/Images/more.png")" alt="show more">
-        <p class="values">@Model.Left</p>
+        <p class="values">@Model.Left@settingsDto.Currency</p>
         <p class="stat-text">Left (Month)</p>
     </div>
     <div class="stats">
         <img class="icon-img" src="@Url.Content("~/images/SavingGoal.png")">
         <img class="more-img" src="@Url.Content("~/Images/more.png")" alt="show more">
-        <p class="values">@Model.SavingGoal.Goal</p>
+        <p class="values">@Model.SavingGoal.Goal@settingsDto.Currency</p>
         <p class="stat-text">Saving Goal</p>
     </div>
     <select class="chart-selector">

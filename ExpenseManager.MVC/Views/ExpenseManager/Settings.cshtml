@@ -28,33 +28,33 @@
             </select>
                 <p>Currency: @Model.SettingsDto.Currency</p>
                 <select class="form-select" name="Currency">
-                    @if (Model.SettingsDto.Currency == "zloty")
+                @if (Model.SettingsDto.Currency == "zł")
                     {
                         <option value="" disabled selected>zł</option>
-                        <option value="dollar">$</option>
-                        <option value="pound">£</option>
-                        <option value="euro">€</option>
+                        <option value="$">$</option>
+                        <option value="£">£</option>
+                        <option value="€">€</option>
                     }
-                    else if (Model.SettingsDto.Currency == "dollar")
+                else if (Model.SettingsDto.Currency == "$")
                     {
                         <option value="" disabled selected>$</option>
-                        <option value="zloty">zł</option>
-                        <option value="pound">£</option>
-                        <option value="euro">€</option>
+                        <option value="zł">zł</option>
+                        <option value="£">£</option>
+                        <option value="€">€</option>
                     }
-                    else if (Model.SettingsDto.Currency == "pound")
+                else if (Model.SettingsDto.Currency == "£")
                     {
                         <option value="" disabled selected>£</option>
-                        <option value="dollar">$</option>
-                        <option value="zloty">zł</option>
-                        <option value="euro">€</option>
+                        <option value="$">$</option>
+                        <option value="zł">zł</option>
+                        <option value="€">€</option>
                     }
-                    else if (Model.SettingsDto.Currency == "euro")
+                else if (Model.SettingsDto.Currency == "€")
                     {
                         <option value="" disabled selected>€</option>
-                        <option value="dollar">$</option>
-                        <option value="zloty">zł</option>
-                        <option value="pound">£</option>
+                        <option value="$">$</option>
+                        <option value="zł">zł</option>
+                        <option value="£">£</option>
                     }
 
 
