@@ -5,10 +5,33 @@
 }
 
 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-
+@if(settingsDto.Language == "english")
+{
 <a class="create-transfer" href="@Url.Action("Create", "ExpenseManager")">New Transfer</a>
 <p class="last-transfers">Last Transfers</p>
 <div class="main-rectangle-grid">
+    
+
+        @foreach (var transfer in Model.Where(t => t.Upcoming == false))
+        {
+            <div class="transfers-list @(transfer.Ingoing ? "transfer-ingoing" : "transfer-outgoing")">
+                <h1 class="transfers-money">@transfer.Value@settingsDto.Currency</h1>
+                <p class="transfers-category">@transfer.Category</p>
+                <p class="transfers-date">@transfer.CreatedAt</p>
+                <a href="#" class="show-details">
+                    <span>Details</span>
+                </a>
+            </div>
+        }
+
+</div>
+}
+else if(settingsDto.Language == "polski")
+{
+<a class="create-transfer" href="@Url.Action("Create", "ExpenseManager")">Nowy Transfer</a>
+<p class="last-transfers">Ostatnie Transfery</p>
+<div class="main-rectangle-grid">
+
 
     @foreach (var transfer in Model.Where(t => t.Upcoming == false))
     {
@@ -17,8 +40,31 @@
             <p class="transfers-category">@transfer.Category</p>
             <p class="transfers-date">@transfer.CreatedAt</p>
             <a href="#" class="show-details">
-                <span>Details</span>
+                <span>Więcej</span>
             </a>
         </div>
     }
+
 </div>
+}
+else if (settingsDto.Language == "deutsch")
+{
+    <a class="create-transfer" href="@Url.Action("Create", "ExpenseManager")">Neue Überweisungen</a>
+    <p class="last-transfers">letzte Überweisungen</p>
+    <div class="main-rectangle-grid">
+
+
+        @foreach (var transfer in Model.Where(t => t.Upcoming == false))
+        {
+            <div class="transfers-list @(transfer.Ingoing ? "transfer-ingoing" : "transfer-outgoing")">
+                <h1 class="transfers-money">@transfer.Value@settingsDto.Currency</h1>
+                <p class="transfers-category">@transfer.Category</p>
+                <p class="transfers-date">@transfer.CreatedAt</p>
+                <a href="#" class="show-details">
+                    <span>mehr</span>
+                </a>
+            </div>
+        }
+
+    </div>
+}

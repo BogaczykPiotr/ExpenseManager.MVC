@@ -27,7 +27,7 @@ namespace ExpenseManager.Infrastructure.Seeders
                     var settings = new Setting()
                     {
                         Language = "english",
-                        Currency = "dollar"
+                        Currency = "$"
                     };
 
                     _dbContext.Add(settings);
