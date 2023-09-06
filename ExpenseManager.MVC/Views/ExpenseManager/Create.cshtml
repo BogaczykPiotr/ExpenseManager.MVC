@@ -1,40 +1,109 @@
 ﻿@model ExpenseManager.MVC.Controllers.CreateViewModel
 
 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-
-
 @{
+    var settingsDto = ViewData["SettingsDto"] as ExpenseManager.Application.DTOS.SettingDto;
+
     var uniqueCategories = Model.TransferDto
         .Select(t => t.Category)
         .Distinct();
 }
+
+    
+
+
 <div class="main-rectangle">
-    <p class="title">Create New Transfer</p>
-    <form method="post">
-        <div>
-            <input type="checkbox" id="switch" name="Ingoing" />
-            <label for="switch"></label>
-            <p class="switch-text">Outgoing</p>
-        </div>
-        <div class="input-box">
-            <span class="details">Value</span>
-            <input type="text" placeholder="Enter Value" required name="Value">
-        </div>
-        <div class="input-box">
-            <span class="details">Details (optional)</span>
-            <input type="text" placeholder="Enter Details" name="Description">
-        </div>
-        <div class="input-box">
-            <span class="details">Category</span>
-            <a href="#" class="create-category">Create New</a>
-            <select class="category-input" name="Category">
-                @foreach (var categories in uniqueCategories)
-                {
-                    <option value="@categories">@categories</option>
-                }
-                <option value="other">other</option>
+    @if(settingsDto.Language == "english")
+    {
+        <p class="title">Create new transfer</p>
+        <form method="post">
+            <div>
+                <input type="checkbox" id="switch" name="Ingoing" />
+                <label for="switch"></label>
+                <p class="switch-text">Outgoing</p>
+            </div>
+            <div class="input-box">
+                <span class="details">Value</span>
+                <input type="text" placeholder="Enter Value" required name="Value">
+            </div>
+            <div class="input-box">
+                <span class="details">Details (optional)</span>
+                <input type="text" placeholder="Enter Details" name="Description">
+            </div>
+            <div class="input-box">
+                <span class="details">Category</span>
+                <a href="#" class="create-category">Create New</a>
+                <select class="category-input" name="Category">
+                    @foreach (var categories in uniqueCategories)
+                    {
+                        <option value="@categories">@categories</option>
+                    }
+                    <option value="other">other</option>
+                </select>
+            </div>
+            <button class="create-button" type="submit">Create </button>
+        </form>
+    }
+    else if (settingsDto.Language == "polski")
+    {
+        <p class="title">Stwórz nowy transfer</p>
+        <form method="post">
+            <div>
+                <input type="checkbox" id="switch" name="Ingoing" />
+                <label for="switch"></label>
+                <p class="switch-text">wychodzący</p>
+            </div>
+            <div class="input-box">
+                <span class="details">Wartość</span>
+                <input type="text" placeholder="Enter Value" required name="Value">
+            </div>
+            <div class="input-box">
+                <span class="details">Szczegóły (opcjonalnie)</span>
+                <input type="text" placeholder="Enter Details" name="Description">
+            </div>
+            <div class="input-box">
+                <span class="details">Kategorie</span>
+                <a href="#" class="create-category">Stwórz nową kategorię</a>
+                <select class="category-input" name="Category">
+                    @foreach (var categories in uniqueCategories)
+                    {
+                        <option value="@categories">@categories</option>
+                    }
+                    <option value="other">inne</option>
+                </select>
+            </div>
+            <button class="create-button" type="submit">Stwórz </button>
+        </form>
+    }
+    else if (settingsDto.Language == "deutsch")
+    {
+        <p class="title">Erstellen einer neuen Übertragung</p>
+        <form method="post">
+            <div>
+                <input type="checkbox" id="switch" name="Ingoing" />
+                <label for="switch"></label>
+                <p class="switch-text">ausgehende</p>
+            </div>
+            <div class="input-box">
+                <span class="details">Wert</span>
+                <input type="text" placeholder="Enter Value" required name="Value">
+            </div>
+            <div class="input-box">
+                <span class="details">Einzelheiten (wahlweise)</span>
+                <input type="text" placeholder="Enter Details" name="Description">
+            </div>
+            <div class="input-box">
+                <span class="details">Kategorie</span>
+                <a href="#" class="create-category">Neue Kategorie</a>
+                <select class="category-input" name="Category">
+                    @foreach (var categories in uniqueCategories)
+                    {
+                        <option value="@categories">@categories</option>
+                    }
+                    <option value="other">andere</option>
             </select>
         </div>
-        <button class="create-button" type="submit">Create </button>
+            <button class="create-button" type="submit">erstellen </button>
     </form>
+    }
 </div>

@@ -10,33 +10,100 @@
 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 
 <div class="savings-main-rectangle">
-    <form method="post">
-        <p class="savings-saving-goal">Your Saving Goal</p>
-        <div class="add-remove-saving-goal">
-            <img class="remove-goal" src="@Url.Content("~/images/Minus.png")" alt="increase saving goal">
-            <input class="input-value" type="hidden" value="@latestGoal.Goal" name="Goal" />
-            <p class="saving-goal-value"></p>
-            <img class="add-goal" src="@Url.Content("~/images/Plus.png")" alt="increase saving goal">
+    @if (settingsDto.Language == "english")
+    {
+        <form method="post">
+            <p class="savings-saving-goal">Your Saving Goal</p>
+            <div class="add-remove-saving-goal">
+                <img class="remove-goal" src="@Url.Content("~/images/Minus.png")" alt="increase saving goal">
+                <input class="input-value" type="hidden" value="@latestGoal.Goal" name="Goal" />
+                <p class="saving-goal-value"></p>
+                <img class="add-goal" src="@Url.Content("~/images/Plus.png")" alt="increase saving goal">
+            </div>
+            <button type="submit" class="confirm-saving-goal">Confirm</button>
+        </form>
+        <div class="failed summary">
+            <p class="monthly-goal ">Your Last Monthly Goal</p>
+            <p class="last-goal ">@(
+            lastGoal?.Goal ?? 0
+            )@settingsDto.Currency</p>
+            <span class="goal-text"></span>
         </div>
-        <button type="submit" class="confirm-saving-goal">Confirm</button>
-    </form>
-    <div class="failed summary">
-        <p class="monthly-goal ">Your Last Monthly Goal</p>
-        <p class="last-goal ">@(lastGoal?.Goal ?? 0)@settingsDto.Currency</p>
-        <span class="goal-text"></span>
-    </div>
-    <div class="progress-chart-container">
-        <p class="progress-text">Your Progress</p>
-        <canvas class="progress-chart"></canvas>
-    </div>
-    <div class="actual-goal">
-        <p class="actual-goal-text">Your Actual Goal</p>
+        <div class="progress-chart-container">
+            <p class="progress-text">Your Progress</p>
+            <canvas class="progress-chart"></canvas>
+        </div>
+        <div class="actual-goal">
+            <p class="actual-goal-text">Your Actual Goal</p>
         <p class="actual-goal-value">@latestGoal.Goal@settingsDto.Currency</p>
         <p class="already-saved">Already Saved</p>
         <p class="already-saved-value">@ViewBag.Stats.Left@settingsDto.Currency / @latestGoal.Goal@settingsDto.Currency</p>
-    </div>
-
-
+        </div>
+    }
+    else if(settingsDto.Language == "polski")
+    {
+        <form method="post">
+            <p class="savings-saving-goal">Twój cel Oszczędnościowy</p>
+            <div class="add-remove-saving-goal">
+                <img class="remove-goal" src="@Url.Content("~/images/Minus.png")" alt="increase saving goal">
+                <input class="input-value" type="hidden" value="@latestGoal.Goal" name="Goal" />
+                <p class="saving-goal-value"></p>
+                <img class="add-goal" src="@Url.Content("~/images/Plus.png")" alt="increase saving goal">
+            </div>
+            <button type="submit" class="confirm-saving-goal">Zatwierdź</button>
+        </form>
+        <div class="failed summary">
+            <p class="monthly-goal ">Your Last Monthly Goal</p>
+            <p class="last-goal ">
+                @(
+                    lastGoal?.Goal ?? 0
+                    )@settingsDto.Currency
+            </p>
+            <span class="goal-text"></span>
+        </div>
+        <div class="progress-chart-container">
+            <p class="progress-text">Twój Postęp</p>
+            <canvas class="progress-chart"></canvas>
+        </div>
+        <div class="actual-goal">
+            <p class="actual-goal-text">Twój Aktualny Cel</p>
+            <p class="actual-goal-value">@latestGoal.Goal@settingsDto.Currency</p>
+            <p class="already-saved">Zaoszczędzone</p>
+            <p class="already-saved-value">@ViewBag.Stats.Left@settingsDto.Currency / @latestGoal.Goal@settingsDto.Currency</p>
+        </div>
+    }
+    else if (settingsDto.Language == "deutsch")
+    {
+        <form method="post">
+            <p class="savings-saving-goal">Ihr Sparziel</p>
+            <div class="add-remove-saving-goal">
+                <img class="remove-goal" src="@Url.Content("~/images/Minus.png")" alt="increase saving goal">
+                <input class="input-value" type="hidden" value="@latestGoal.Goal" name="Goal" />
+                <p class="saving-goal-value"></p>
+                <img class="add-goal" src="@Url.Content("~/images/Plus.png")" alt="increase saving goal">
+            </div>
+            <button type="submit" class="confirm-saving-goal">Bestätigen Sie</button>
+        </form>
+        <div class="failed summary">
+            <p class="monthly-goal ">Your Last Monthly Goal</p>
+            <p class="last-goal ">
+                @(
+                    lastGoal?.Goal ?? 0
+                    )@settingsDto.Currency
+            </p>
+            <span class="goal-text"></span>
+        </div>
+        <div class="progress-chart-container">
+            <p class="progress-text">Ihr Fortschritt</p>
+            <canvas class="progress-chart"></canvas>
+        </div>
+        <div class="actual-goal">
+            <p class="actual-goal-text">Ihr aktuelles Sparziel</p>
+            <p class="actual-goal-value">@latestGoal.Goal@settingsDto.Currency</p>
+            <p class="already-saved">Derzeit gespeichert</p>
+            <p class="already-saved-value">@ViewBag.Stats.Left@settingsDto.Currency / @latestGoal.Goal@settingsDto.Currency</p>
+        </div>
+    }
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" src="@Url.Content("~/js/site.js")"></script>
