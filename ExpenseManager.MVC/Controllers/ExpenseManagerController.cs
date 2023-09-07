@@ -117,6 +117,11 @@ namespace ExpenseManager.MVC.Controllers
             if (string.IsNullOrEmpty(command.Language))
                 command.Language = currentSettings.Language;
 
+            if(command.NumberOfDisplayedActions == null)
+            {
+                command.NumberOfDisplayedActions = currentSettings.NumberOfDisplayedActions;
+            }
+
             if (ModelState.IsValid)
             {
                 await _mediator.Send(command);
