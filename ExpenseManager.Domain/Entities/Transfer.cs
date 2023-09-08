@@ -5,7 +5,7 @@ namespace ExpenseManager.Domain.Entities
     {
         public int Id { get; set; }
         public float Value { get; set; }
-        public string Category { get; set; }
+        public TransferCategories Category { get; set; }
         public string? Description { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public bool Ingoing { get; set; }

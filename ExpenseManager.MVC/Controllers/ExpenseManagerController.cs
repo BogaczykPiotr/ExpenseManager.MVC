@@ -87,8 +87,9 @@ namespace ExpenseManager.MVC.Controllers
 
         }
 
-        public IActionResult Actions()
+        public async Task<IActionResult> Actions()
         {
+            
             return View();
         }
 
@@ -144,6 +145,11 @@ namespace ExpenseManager.MVC.Controllers
 
     }
 
+    public class ActionsViewModel
+    {
+        public CreateTransferCommand CreateTransferCommand { get; set; }
+        public IEnumerable<TransferDto> transferDtos { get; set; }
+    }
 
     public class CreateViewModel
     {

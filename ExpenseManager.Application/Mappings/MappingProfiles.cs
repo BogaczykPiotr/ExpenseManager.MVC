@@ -2,6 +2,7 @@
 using ExpenseManager.Application.Commands.CreateTransfer;
 using ExpenseManager.Application.DTOS;
 using ExpenseManager.Domain.Entities;
+using Microsoft.AspNetCore.Routing.Constraints;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,8 +20,15 @@ namespace ExpenseManager.Application.Mappings
             CreateMap<SavingGoal, SavingGoalDto>();
             CreateMap<SavingGoalDto, SavingGoal>();
             CreateMap<Stat, StatDto>();
-            CreateMap<Transfer, TransferDto>();
-            CreateMap<TransferDto, Transfer>();
+
+
+            CreateMap<Transfer, TransferDto>()
+                .ForMember(t => t.Category, opt => opt.MapFrom(src => src.Category.Category));
+            CreateMap<TransferDto, Transfer>()
+                .ForMember(t => t.Category, opt => opt.MapFrom(src => new TransferCategories()
+                {
+                    Category = src.Category 
+                }));
 
         }
     }
