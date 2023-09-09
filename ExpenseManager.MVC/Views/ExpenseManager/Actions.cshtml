@@ -1,9 +1,23 @@
-﻿
+﻿@model IEnumerable<ExpenseManager.Application.DTOS.TransferDto>
 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+@{
+    var settingsDto = ViewData["SettingsDto"] as ExpenseManager.Application.DTOS.SettingDto;
 
-<p class="actions-title">Actions</p>
+    var uniqueCategories = Model
+        .Select(t => t.Category)
+        .Distinct();
+}
+<p class="actions-text">Your Categories</p>
+<a class="create-transfer" href="CreateTransfer.html">New Upcoming Action</a>
 
-<div class="main-rectangle-grid">
-    <p class="active-actions">Active Actions</p>
-    <p class="next-actions">Next Actions</p>
+<div class="main-rectangle-grid-actions">
+    @foreach (var categories in uniqueCategories)
+    {
+        <div class="categories-container">
+            <h1>@categories</h1>
+            <a href="#">edit</a>
+            <a href="#">delete</a>
+        </div>
+    }
 </div>
+<a class="create-transfer" href="CreateTransfer.html">Create category</a>

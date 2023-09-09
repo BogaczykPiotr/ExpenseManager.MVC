@@ -14,6 +14,7 @@ namespace ExpenseManager.Domain.Interfaces
         Task CreateTransfer(Transfer transfer);
 
         Task CreateSavingGoal(SavingGoal goal);
+        Task CreateCategory(TransferCategories category);
 
         Task<IEnumerable<SavingGoal>> GetAllSavingGoals();
 

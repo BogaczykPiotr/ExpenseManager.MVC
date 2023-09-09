@@ -31,6 +31,11 @@ namespace ExpenseManager.Infrastructure.Repositories
             _dbContext.Add(settings);
             await _dbContext.SaveChangesAsync();
         }
+        public async Task CreateCategory(TransferCategories category)
+        {
+            _dbContext.Add(category);
+            await _dbContext.SaveChangesAsync();
+        }
 
         public async Task<IEnumerable<Transfer>> GetAllTransfers()
             => await _dbContext.Transfers.ToListAsync();

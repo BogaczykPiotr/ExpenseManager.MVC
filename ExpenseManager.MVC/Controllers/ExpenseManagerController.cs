@@ -89,8 +89,9 @@ namespace ExpenseManager.MVC.Controllers
 
         public async Task<IActionResult> Actions()
         {
-            
-            return View();
+            await ViewLayoutData();
+            var categories = await _mediator.Send(new GetAllTransfersQuery());
+            return View(categories);
         }
 
 
