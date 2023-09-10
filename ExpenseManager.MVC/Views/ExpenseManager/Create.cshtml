@@ -1,10 +1,11 @@
-﻿@model ExpenseManager.MVC.Controllers.CreateViewModel
+﻿@model ExpenseManager.Application.Commands.CreateTransfer.CreateTransferCommand
 
 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 @{
     var settingsDto = ViewData["SettingsDto"] as ExpenseManager.Application.DTOS.SettingDto;
+    var transferDtos = ViewData["TransferDtos"] as IEnumerable<ExpenseManager.Application.DTOS.TransferDto>;
 
-    var uniqueCategories = Model.TransferDto
+    var uniqueCategories = transferDtos
         .Select(t => t.Category)
         .Distinct();
 }
@@ -100,7 +101,6 @@
                     {
                         <option value="@categories">@categories</option>
                     }
-                    <option value="other">andere</option>
             </select>
         </div>
             <button class="create-button" type="submit">erstellen </button>

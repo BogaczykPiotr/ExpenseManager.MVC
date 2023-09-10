@@ -85,7 +85,7 @@
                     <div class="actions-query">
                         <img class="actions-query-category" src="" alt="">
                         <p class="actions-query-description">@action.Description</p>
-                        <p class="actions-query-date">@action.CreatedAt</p>
+                        <p class="actions-query-date">@action.CreatedAt.ToString("dd.MM.yyyy")</p>
                         <p class="actions-query-value @(action.Ingoing ? "ingoing-value" : "outgoing-value")">@action.Value@settingsDto.Currency</p>
                     </div>
                 }
@@ -160,7 +160,7 @@
                     <div class="actions-query">
                         <img class="actions-query-category" src="" alt="">
                         <p class="actions-query-description">@action.Description</p>
-                        <p class="actions-query-date">@action.CreatedAt</p>
+                        <p class="actions-query-date">@action.CreatedAt.ToString("dd.MM.yyyy")</p>
                         <p class="actions-query-value @(action.Ingoing ? "ingoing-value" : "outgoing-value")">@action.Value</p>
                     </div>
                 }
@@ -235,7 +235,7 @@
                     <div class="actions-query">
                         <img class="actions-query-category" src="" alt="">
                         <p class="actions-query-description">@action.Description</p>
-                        <p class="actions-query-date">@action.CreatedAt</p>
+                        <p class="actions-query-date">@action.CreatedAt.ToString("dd.MM.yyyy")</p>
                         <p class="actions-query-value @(action.Ingoing ? "ingoing-value" : "outgoing-value")">@action.Value</p>
                     </div>
                 }

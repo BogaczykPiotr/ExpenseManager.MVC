@@ -1,0 +1,53 @@
+﻿
+@model ExpenseManager.Application.Commands.CreateTransfer.CreateTransferCommand
+
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+@{
+    var settingsDto = ViewData["SettingsDto"] as ExpenseManager.Application.DTOS.SettingDto;
+    var transferDtos = ViewData["TransferDtos"] as IEnumerable<ExpenseManager.Application.DTOS.TransferDto>;
+
+    var uniqueCategories = transferDtos
+        .Select(t => t.Category)
+        .Distinct();
+}
+
+
+
+
+<div class="main-rectangle">
+    @if (settingsDto.Language == "english")
+    {
+        <p class="title">Create new Action</p>
+        <form method="post">
+            <div>
+                <input type="checkbox" id="switch" name="Ingoing" />
+                <label for="switch"></label>
+                <p class="switch-text">Outgoing</p>
+            </div>
+            <div class="input-box">
+                <span class="details">Value</span>
+                <input type="text" placeholder="Enter Value" required name="Value">
+            </div>
+            <div class="input-box">
+                <span class="details">Details (optional)</span>
+                <input type="text" placeholder="Enter Details" name="Description">
+            </div>
+            <div class="input-box">
+                <span class="details">Date</span>
+                <input type="text" placeholder="DD-MM-YYYY" name="CreatedAt">
+            </div>
+            <div class="input-box">
+                <span class="details">Category</span>
+                <a href="#" class="create-category">Create New</a>
+                <select class="category-input" name="Category">
+                    @foreach (var categories in uniqueCategories)
+                    {
+                        <option value="@categories">@categories</option>
+                    }
+                </select>
+            </div>
+                <input value="true" name="Upcoming" type="hidden">
+            <button class="create-button" type="submit">Create </button>
+        </form>
+    }
+</div>

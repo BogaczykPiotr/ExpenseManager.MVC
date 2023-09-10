@@ -68,21 +68,14 @@ namespace ExpenseManager.MVC.Controllers
         public async Task<IActionResult> Create()
         {
             await ViewLayoutData();
-            var viewModel = new CreateViewModel();
-            viewModel.TransferDto = await _mediator.Send(new GetAllTransfersQuery());
-            return View(viewModel);
+            return View();
         }
 
 
         [HttpPost]
         public async Task<IActionResult> Create(CreateTransferCommand command)
         {
-            
             await _mediator.Send(command);
-            var viewModel = new CreateViewModel();
-
-            viewModel.CreateTransferCommand = command;
-            viewModel.TransferDto = await _mediator.Send(new GetAllTransfersQuery());
             return RedirectToAction(nameof(Transfers));
 
         }
@@ -92,6 +85,19 @@ namespace ExpenseManager.MVC.Controllers
             await ViewLayoutData();
             var categories = await _mediator.Send(new GetAllTransfersQuery());
             return View(categories);
+        }
+
+        public async Task<IActionResult> CreateUpcomingAction()
+        {
+            await ViewLayoutData();
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateUpcomingAction(CreateTransferCommand command)
+        {
+            await _mediator.Send(command);
+            return RedirectToAction(nameof(Actions));
         }
 
 
@@ -144,18 +150,6 @@ namespace ExpenseManager.MVC.Controllers
             ViewData["SettingsDto"] = await _mediator.Send(new GetSettingValuesQuery());
         }
 
-    }
-
-    public class ActionsViewModel
-    {
-        public CreateTransferCommand CreateTransferCommand { get; set; }
-        public IEnumerable<TransferDto> transferDtos { get; set; }
-    }
-
-    public class CreateViewModel
-    {
-        public CreateTransferCommand CreateTransferCommand { get; set; }
-        public IEnumerable<TransferDto> TransferDto { get; set; }
     }
     public class SavingViewModel
     {
