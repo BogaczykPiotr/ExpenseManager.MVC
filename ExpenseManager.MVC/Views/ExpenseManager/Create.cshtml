@@ -3,15 +3,13 @@
 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 @{
     var settingsDto = ViewData["SettingsDto"] as ExpenseManager.Application.DTOS.SettingDto;
-    var transferDtos = ViewData["TransferDtos"] as IEnumerable<ExpenseManager.Application.DTOS.TransferDto>;
+    var categoryDtos = ViewData["CategoryDtos"] as IEnumerable<ExpenseManager.Application.DTOS.CategoryDto>;
 
-    var uniqueCategories = transferDtos
-        .Select(t => t.Category)
+    var uniqueCategories = categoryDtos
+        .Select(c => c.Name)
         .Distinct();
 }
-
-    
-
+<!--To fix-->
 
 <div class="main-rectangle">
     @if(settingsDto.Language == "english")
@@ -35,11 +33,10 @@
                 <span class="details">Category</span>
                 <a href="#" class="create-category">Create New</a>
                 <select class="category-input" name="Category">
-                    @foreach (var categories in uniqueCategories)
+                    @foreach (var category in uniqueCategories)
                     {
-                        <option value="@categories">@categories</option>
+                        <option value="@category">@category</option>
                     }
-                    <option value="other">other</option>
                 </select>
             </div>
             <button class="create-button" type="submit">Create </button>
@@ -66,11 +63,10 @@
                 <span class="details">Kategorie</span>
                 <a href="#" class="create-category">Stwórz nową kategorię</a>
                 <select class="category-input" name="Category">
-                    @foreach (var categories in uniqueCategories)
+                    @foreach (var category in uniqueCategories)
                     {
-                        <option value="@categories">@categories</option>
+                        <option value="@category">@category</option>
                     }
-                    <option value="other">inne</option>
                 </select>
             </div>
             <button class="create-button" type="submit">Stwórz </button>
@@ -97,9 +93,9 @@
                 <span class="details">Kategorie</span>
                 <a href="#" class="create-category">Neue Kategorie</a>
                 <select class="category-input" name="Category">
-                    @foreach (var categories in uniqueCategories)
+                    @foreach (var category in uniqueCategories)
                     {
-                        <option value="@categories">@categories</option>
+                        <option value="@category">@category</option>
                     }
             </select>
         </div>

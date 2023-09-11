@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExpenseManager.Application.Commands.CreateCategory
+namespace ExpenseManager.Application.Queries.GetCategories
 {
-    public class CreateCategoryCommand : CategoryDto, IRequest
+    public class GetCategoriesQuery : IRequest<IEnumerable<CategoryDto>>
     {
     }
 }

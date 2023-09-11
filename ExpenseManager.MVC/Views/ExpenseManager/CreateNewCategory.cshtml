@@ -1,0 +1,44 @@
+﻿@model ExpenseManager.Application.Commands.CreateCategory.CreateCategoryCommand
+@{
+    var settingsDto = ViewData["SettingsDto"] as ExpenseManager.Application.DTOS.SettingDto;
+
+}
+
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+
+<div class="main-rectangle">
+    @if (settingsDto.Language == "english")
+    {
+        <p class="title">Create New Category</p>
+        <form method="post">
+            <div class="input-box">
+                <span class="details">Category</span>
+                <input type="text" placeholder="Enter Category (max 10 characters)" name="Name">
+            </div>
+            <button class="create-button" type="submit">Create </button>
+        </form>
+    }
+    @if (settingsDto.Language == "polski")
+    {
+        <p class="title">Stwórz nową kategorię</p>
+        <form method="post">
+            <div class="input-box">
+                <span class="details">Kategoria</span>
+                <input type="text" placeholder="Wpisz nazwę kategorii (max 10 znaków)" name="Name">
+            </div>
+            <button class="create-button" type="submit">Stwórz </button>
+        </form>
+    }
+    @if (settingsDto.Language == "deutsch")
+    {
+        <p class="title">Erstelle eine neue Kategorie</p>
+        <form method="post">
+            <div class="input-box">
+                <span class="details">Kategorie</span>
+                <input type="text" placeholder="Geben Kategorie ein (max 10 Punkte)" name="Name">
+            </div>
+            <button class="create-button" type="submit">Erstelle </button>
+        </form>
+    }
+</div>

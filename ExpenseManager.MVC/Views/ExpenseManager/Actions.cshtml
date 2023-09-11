@@ -1,22 +1,72 @@
-﻿@model IEnumerable<ExpenseManager.Application.DTOS.TransferDto>
+﻿@model IEnumerable<ExpenseManager.Application.DTOS.CategoryDto>
 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 @{
     var settingsDto = ViewData["SettingsDto"] as ExpenseManager.Application.DTOS.SettingDto;
 
     var uniqueCategories = Model
-        .Select(t => t.Category)
+        .Select(c => c.Name)
         .Distinct();
 }
+@if (settingsDto.Language == "english")
+{
 <a class="create-transfer" href="CreateTransfer.html">New Upcoming Action</a>
 
-<div class="main-rectangle-grid-actions">
-    @foreach (var categories in uniqueCategories)
-    {
-        <div class="categories-container">
-            <h1>@categories</h1>
-            <a href="#">edit</a>
-            <a href="#">delete</a>
-        </div>
-    }
+
+    <div class="main-rectangle-grid-actions">
+
+
+        @foreach (var category in uniqueCategories)
+        {
+            <div class="categories-container">
+                <h1>@category</h1>
+                <a href="#">edit</a>
+                <a href="#">delete</a>
+            </div>
+        }
+
+    
 </div>
-<a class="create-transfer" href="CreateTransfer.html">Create category</a>
+<a class="create-new-category" href="CreateTransfer.html">Create New Category</a>
+}
+@if (settingsDto.Language == "polski")
+{
+    <a class="create-transfer" href="CreateTransfer.html">Nowa Nadchodząca Akcja</a>
+
+
+    <div class="main-rectangle-grid-actions">
+
+
+        @foreach (var category in uniqueCategories)
+        {
+            <div class="categories-container">
+                <h1>@category</h1>
+                <a href="#">edytuj</a>
+                <a href="#">usuń</a>
+            </div>
+        }
+
+
+    </div>
+    <a class="create-new-category" href="#">Stwórz Nową Kategorię</a>
+}
+@if (settingsDto.Language == "deutsch")
+{
+    <a class="create-transfer" href="CreateTransfer.html">Neue bevorstehende Aktion</a>
+
+
+    <div class="main-rectangle-grid-actions">
+
+
+        @foreach (var category in uniqueCategories)
+        {
+            <div class="categories-container">
+                <h1>@category</h1>
+                <a href="#">bearbeiten</a>
+                <a href="#">löschen</a>
+            </div>
+        }
+
+
+    </div>
+    <a class="create-new-category" href="#">Erstelle eine neue Kategorie</a>
+}

@@ -1469,7 +1469,7 @@ input:checked + label {
     grid-template-columns: repeat(auto-fill, minmax(20vw, 1fr));
     grid-row-gap: 2vw;
     max-width: 62%;
-    margin-top: 6.5vw;
+    margin-top: 12vw;
     margin-left: 20vw;
 }
 
@@ -1498,3 +1498,17 @@ input:checked + label {
             margin-right: 0;
             color: rgb(255, 0, 0, 0.7);
         }
+
+.create-new-category {
+    color: rgb(175, 175, 175);
+    font-size: 1.6vw;
+    font-weight: bold;
+    position: absolute;
+    left: 20vw;
+    top: 5vw;
+    flex-shrink: 0;
+    text-decoration: none;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 2vw;
+    padding: 0.7vw 1.6vw;
+}

@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExpenseManager.Domain.Entities
+namespace ExpenseManager.Application.DTOS
 {
-    public class TransferCategories
+    public class CategoryDto
     {
-        public string? Category { get; set; }
+        public string Name { get; set; }
     }
 }

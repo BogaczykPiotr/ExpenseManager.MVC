@@ -14,12 +14,7 @@ namespace ExpenseManager.Infrastructure.Persistence
         public DbSet<Stat> Stats { get; set; }
         public DbSet<Transfer> Transfers { get; set; }
         public DbSet<Setting> Settings { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Transfer>()
-                .OwnsOne(t => t.Category);
-        }
     }
 }
