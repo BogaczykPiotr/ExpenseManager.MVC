@@ -38,7 +38,7 @@
             </div>
             <div class="input-box">
                 <span class="details">Category</span>
-                <a href="#" class="create-category">Create New</a>
+                <a href="@Url.Action("CreateNewCategory", "ExpenseManager")" class="create-category">Create New</a>
                 <select class="category-input" name="Category">
                     @foreach (var categories in uniqueCategories)
                     {

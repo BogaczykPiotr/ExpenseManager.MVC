@@ -9,7 +9,7 @@
 }
 @if (settingsDto.Language == "english")
 {
-<a class="create-transfer" href="CreateTransfer.html">New Upcoming Action</a>
+    <a class="create-transfer" href="@Url.Action("CreateUpcomingAction", "ExpenseManager")">New Upcoming Action</a>
 
 
     <div class="main-rectangle-grid-actions">
@@ -26,11 +26,11 @@
 
     
 </div>
-<a class="create-new-category" href="CreateTransfer.html">Create New Category</a>
+    <a class="create-new-category" href="@Url.Action("CreateNewCategory", "ExpenseManager")">Create New Category</a>
 }
 @if (settingsDto.Language == "polski")
 {
-    <a class="create-transfer" href="CreateTransfer.html">Nowa Nadchodząca Akcja</a>
+    <a class="create-transfer" href="@Url.Action("CreateUpcomingAction", "ExpenseManager")">Nowa Nadchodząca Akcja</a>
 
 
     <div class="main-rectangle-grid-actions">
@@ -47,11 +47,11 @@
 
 
     </div>
-    <a class="create-new-category" href="#">Stwórz Nową Kategorię</a>
+    <a class="create-new-category" href="@Url.Action("CreateNewCategory", "ExpenseManager")">Stwórz Nową Kategorię</a>
 }
 @if (settingsDto.Language == "deutsch")
 {
-    <a class="create-transfer" href="CreateTransfer.html">Neue bevorstehende Aktion</a>
+    <a class="create-transfer" href="@Url.Action("CreateUpcomingAction", "ExpenseManager")">Neue bevorstehende Aktion</a>
 
 
     <div class="main-rectangle-grid-actions">
@@ -68,5 +68,5 @@
 
 
     </div>
-    <a class="create-new-category" href="#">Erstelle eine neue Kategorie</a>
+    <a class="create-new-category" href="@Url.Action("CreateNewCategory", "ExpenseManager")">Erstelle eine neue Kategorie</a>
 }

@@ -31,7 +31,7 @@
             </div>
             <div class="input-box">
                 <span class="details">Category</span>
-                <a href="#" class="create-category">Create New</a>
+                <a href="@Url.Action("CreateNewCategory", "ExpenseManager")" class="create-category">Create New</a>
                 <select class="category-input" name="Category">
                     @foreach (var category in uniqueCategories)
                     {
@@ -61,7 +61,7 @@
             </div>
             <div class="input-box">
                 <span class="details">Kategorie</span>
-                <a href="#" class="create-category">Stwórz nową kategorię</a>
+                <a href="@Url.Action("CreateNewCategory", "ExpenseManager")" class="create-category">Stwórz nową kategorię</a>
                 <select class="category-input" name="Category">
                     @foreach (var category in uniqueCategories)
                     {
@@ -91,7 +91,7 @@
             </div>
             <div class="input-box">
                 <span class="details">Kategorie</span>
-                <a href="#" class="create-category">Neue Kategorie</a>
+                <a href="@Url.Action("CreateNewCategory", "ExpenseManager")" class="create-category">Neue Kategorie</a>
                 <select class="category-input" name="Category">
                     @foreach (var category in uniqueCategories)
                     {
