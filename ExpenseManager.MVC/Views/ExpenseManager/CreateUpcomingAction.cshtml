@@ -50,4 +50,74 @@
             <button class="create-button" type="submit">Create </button>
         </form>
     }
+    else if (settingsDto.Language == "polski")
+    {
+        <p class="title">Stwórz nową akcję</p>
+        <form method="post">
+            <div>
+                <input type="checkbox" id="switch" name="Ingoing" />
+                <label for="switch"></label>
+                <p class="switch-text">Outgoing</p>
+            </div>
+            <div class="input-box">
+                <span class="details">Wartość</span>
+                <input type="text" placeholder="Podaj Wartość" required name="Value">
+            </div>
+            <div class="input-box">
+                <span class="details">Szczegóły (opcjonalne)</span>
+                <input type="text" placeholder="Enter Details" name="Description">
+            </div>
+            <div class="input-box">
+                <span class="details">Data</span>
+                <input type="text" placeholder="DD-MM-RRRR" name="CreatedAt">
+            </div>
+            <div class="input-box">
+                <span class="details">Kategoria</span>
+                <a href="@Url.Action("CreateNewCategory", "ExpenseManager")" class="create-category">stwórz nową</a>
+                <select class="category-input" name="Category">
+                    @foreach (var categories in uniqueCategories)
+                    {
+                        <option value="@categories">@categories</option>
+                    }
+                </select>
+            </div>
+            <input value="true" name="Upcoming" type="hidden">
+            <button class="create-button" type="submit">Stwórz </button>
+        </form>
+    }
+    else if (settingsDto.Language == "deutsch")
+    {
+        <p class="title">Neue Kategorie erstellen</p>
+        <form method="post">
+            <div>
+                <input type="checkbox" id="switch" name="Ingoing" />
+                <label for="switch"></label>
+                <p class="switch-text">Outgoing</p>
+            </div>
+            <div class="input-box">
+                <span class="details">Wert</span>
+                <input type="text" placeholder="Wert angeben" required name="Value">
+            </div>
+            <div class="input-box">
+                <span class="details">Einzelheiten (wahlweise)</span>
+                <input type="text" placeholder="Einzelheiten eingeben" name="Description">
+            </div>
+            <div class="input-box">
+                <span class="details">Data</span>
+                <input type="text" placeholder="DD-MM-YYYY" name="CreatedAt">
+            </div>
+            <div class="input-box">
+                <span class="details">Kategorie</span>
+                <a href="@Url.Action("CreateNewCategory", "ExpenseManager")" class="create-category">Erstelle eine neue Kategorie</a>
+                <select class="category-input" name="Category">
+                    @foreach (var categories in uniqueCategories)
+                    {
+                        <option value="@categories">@categories</option>
+                    }
+                </select>
+            </div>
+            <input value="true" name="Upcoming" type="hidden">
+            <button class="create-button" type="submit">Erstelle </button>
+        </form>
+    }
 </div>
