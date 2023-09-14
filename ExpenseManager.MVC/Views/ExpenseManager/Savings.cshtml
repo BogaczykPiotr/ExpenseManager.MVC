@@ -8,10 +8,7 @@
     var lastGoal = Model.SavingGoalDtos.Reverse().Skip(1).FirstOrDefault();
 }
 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-@{Console.WriteLine(settingsDto.Language);
 
-    Console.WriteLine(settingsDto.Currency);
-}
 <div class="savings-main-rectangle">
     @if (settingsDto.Language == "english")
     {

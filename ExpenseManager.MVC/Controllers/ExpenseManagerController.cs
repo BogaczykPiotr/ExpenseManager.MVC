@@ -157,6 +157,14 @@ namespace ExpenseManager.MVC.Controllers
         }
 
 
+        public async Task<IActionResult> Contact()
+        {
+            await ViewLayoutData();
+            return View();
+        }
+
+
+
         protected async Task ViewLayoutData()
         {
             ViewData["TransferDtos"] = await _mediator.Send(new GetAllTransfersQuery());
