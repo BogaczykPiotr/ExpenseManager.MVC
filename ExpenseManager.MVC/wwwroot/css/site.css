@@ -1512,3 +1512,19 @@ input:checked + label {
     border-radius: 2vw;
     padding: 0.7vw 1.6vw;
 }
+
+/*Contact view*/
+.contact-title {
+    color: rgb(175, 175, 175);
+    display: block;
+}
+.contact-links {
+    margin-left: 22vw;
+    margin-top: 5vw;
+    
+}
+.contact-link {
+    text-decoration: none;
+    color: rgb(175, 175, 175);
+    font-size: 1.8vw;
+}
