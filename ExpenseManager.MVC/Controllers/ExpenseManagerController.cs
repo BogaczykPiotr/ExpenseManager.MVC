@@ -5,9 +5,11 @@ using ExpenseManager.Application.Commands.CreateTransfer;
 using ExpenseManager.Application.DTOS;
 using ExpenseManager.Application.Queries.GetAllTransfers;
 using ExpenseManager.Application.Queries.GetCategories;
+using ExpenseManager.Application.Queries.GetCategoryByName;
 using ExpenseManager.Application.Queries.GetSavingGoalValues;
 using ExpenseManager.Application.Queries.GetSettingValues;
 using ExpenseManager.Application.Queries.GetStatValues;
+using ExpenseManager.Application.Queries.GetTransferById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
@@ -89,6 +91,15 @@ namespace ExpenseManager.MVC.Controllers
             var categories = await _mediator.Send(new GetCategoriesQuery());  // for category table update
             return View(categories);
         }
+
+        [Route("ExpenseManager/{Id}/Edit")]
+        public async Task<IActionResult> Details(int id)
+        {
+            await ViewLayoutData();
+            var dto = await _mediator.Send(new GetTransferByIdQuery(id));
+            return View(dto);
+        }
+
 
         public async Task<IActionResult> CreateNewCategory()
         {
