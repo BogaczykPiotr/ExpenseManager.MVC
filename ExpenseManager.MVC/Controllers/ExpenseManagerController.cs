@@ -5,7 +5,6 @@ using ExpenseManager.Application.Commands.CreateTransfer;
 using ExpenseManager.Application.DTOS;
 using ExpenseManager.Application.Queries.GetAllTransfers;
 using ExpenseManager.Application.Queries.GetCategories;
-using ExpenseManager.Application.Queries.GetCategoryByName;
 using ExpenseManager.Application.Queries.GetSavingGoalValues;
 using ExpenseManager.Application.Queries.GetSettingValues;
 using ExpenseManager.Application.Queries.GetStatValues;
@@ -92,7 +91,7 @@ namespace ExpenseManager.MVC.Controllers
             return View(categories);
         }
 
-        [Route("ExpenseManager/{Id}/Edit")]
+        [Route("ExpenseManager/{Id}/Details")]
         public async Task<IActionResult> Details(int id)
         {
             await ViewLayoutData();

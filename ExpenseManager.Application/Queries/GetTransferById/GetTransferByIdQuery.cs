@@ -6,12 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExpenseManager.Application.Queries.GetCategoryByName
+namespace ExpenseManager.Application.Queries.GetTransferById
 {
     public class GetTransferByIdQuery : IRequest<TransferDto>
     {
-        public string Id { get; set; }
-        public GetTransferByIdQuery(string id)
+        public int Id { get; set; }
+        public GetTransferByIdQuery(int id)
         {
             Id = id;
         }
