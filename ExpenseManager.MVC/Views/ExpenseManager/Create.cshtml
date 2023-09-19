@@ -32,7 +32,7 @@
             <div class="input-box">
                 <span class="details">Category</span>
                 <a href="@Url.Action("CreateNewCategory", "ExpenseManager")" class="create-category">Create New</a>
-                <select class="category-input" name="Category">
+                <select class="category-input" asp-for="Category.Name">
                     @foreach (var category in uniqueCategories)
                     {
                         <option value="@category">@category</option>
@@ -62,7 +62,7 @@
             <div class="input-box">
                 <span class="details">Kategorie</span>
                 <a href="@Url.Action("CreateNewCategory", "ExpenseManager")" class="create-category">Stwórz nową kategorię</a>
-                <select class="category-input" name="Category">
+                <select class="category-input" asp-for="Category.Name">
                     @foreach (var category in uniqueCategories)
                     {
                         <option value="@category">@category</option>
@@ -92,7 +92,7 @@
             <div class="input-box">
                 <span class="details">Kategorie</span>
                 <a href="@Url.Action("CreateNewCategory", "ExpenseManager")" class="create-category">Neue Kategorie</a>
-                <select class="category-input" name="Category">
+                <select class="category-input" asp-for="Category.Name">
                     @foreach (var category in uniqueCategories)
                     {
                         <option value="@category">@category</option>

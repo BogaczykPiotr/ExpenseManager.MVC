@@ -25,6 +25,9 @@ namespace ExpenseManager.Application.Mappings
                 .ForMember(t => t.Category, opt => opt.MapFrom(src => src.Category.Name));
 
             CreateMap<Category, CategoryDto>();
+
+            CreateMap<CreateTransferCommand, Transfer>();
+            CreateMap<CategoryDto, Category>();
         }
     }
 }

@@ -51,7 +51,7 @@ namespace ExpenseManager.Infrastructure.Repositories
         public async Task<Setting> GetSettings()
             => await _dbContext.Settings.OrderByDescending(se => se.Id).FirstOrDefaultAsync();
 
-        public async Task<Category> GetByTransferId(int id)
-            => await _dbContext.Categories.FirstAsync(c => c.Id == id);
+        public async Task<Transfer> GetByTransferId(int id)
+            => await _dbContext.Transfers.FirstAsync(c => c.Id == id);
     }
 }

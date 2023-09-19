@@ -4,6 +4,7 @@ namespace ExpenseManager.Application.DTOS
 {
     public class TransferDto
     {
+        public int Id { get; set; }
         public float Value { get; set; }
         public Category Category { get; set; }
         public string Description { get; set; }

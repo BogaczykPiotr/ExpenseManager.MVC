@@ -1,14 +1,12 @@
-﻿@model IEnumerable<ExpenseManager.Application.DTOS.TransferDto>
+﻿@model ExpenseManager.Application.DTOS.TransferDto
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 
 <div>
-    @foreach (var item in Model)
-    {
         <div>
-            <h5>@item.Value</h5>
-            <h6>@item.Category</h6>
-            <p>@item.Description</p>
-            <p>@item.CreatedAt</p>
+            <h5>@Model.Value</h5>
+            <h6>@Model.Category</h6>
+            <p>@Model.Description</p>
+            <p>@Model.CreatedAt</p>
         </div>
-    }
 </div>
 
