@@ -1,12 +1,33 @@
 ﻿@model ExpenseManager.Application.DTOS.TransferDto
+
+@{
+    var settingsDto = ViewData["settingsDto"] as ExpenseManager.Application.DTOS.SettingDto;
+}
 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 
-<div>
+@if (settingsDto.Language == "english")
+{
+    <div class="main-rectangle">
         <div>
-            <h5>@Model.Value</h5>
-            <h6>@Model.Category</h6>
-            <p>@Model.Description</p>
-            <p>@Model.CreatedAt</p>
+            <h5>Value: @Model.Value</h5>
+            <h6>Category: @(Model.Category != null ? Model.Category : "empty")</h6>
+            <p>Description: @Model.Description</p>
+            <p>Created: @Model.CreatedAt</p>
+            <p>Type: @(Model.Ingoing ? "ingoing" : "outgoing")</p>
+
         </div>
-</div>
+    </div>
+}
+else if (settingsDto.Language == "polski")
+{
+    <div class="main-rectangle">
+        <div>
+            <h5>Wartość: @Model.Value</h5>
+            <h6>Kategoria: @(Model.Category != null ? Model.Category : "brak")</h6>
+            <p>Opis: @Model.Description</p>
+            <p>Data utworzenia: @Model.CreatedAt</p>
+            <p>Typ: @(Model.Ingoing ? "przychodzący" : "wychodzący")</p>
+        </div>
+    </div>
+}
 
