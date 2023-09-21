@@ -1,10 +1,14 @@
-﻿using ExpenseManager.Application.Commands.CreateCategory;
+﻿using AutoMapper;
+using ExpenseManager.Application.Commands.CreateCategory;
 using ExpenseManager.Application.Commands.CreateSavingGoal;
 using ExpenseManager.Application.Commands.CreateSettings;
 using ExpenseManager.Application.Commands.CreateTransfer;
+using ExpenseManager.Application.Commands.EditCategory;
 using ExpenseManager.Application.DTOS;
 using ExpenseManager.Application.Queries.GetAllTransfers;
 using ExpenseManager.Application.Queries.GetCategories;
+using ExpenseManager.Application.Queries.GetCategoryById;
+using ExpenseManager.Application.Queries.GetCategoryByName;
 using ExpenseManager.Application.Queries.GetSavingGoalValues;
 using ExpenseManager.Application.Queries.GetSettingValues;
 using ExpenseManager.Application.Queries.GetStatValues;
@@ -19,9 +23,11 @@ namespace ExpenseManager.MVC.Controllers
     {
 
         private readonly IMediator _mediator;
-        public ExpenseManagerController(IMediator mediator)
+        private readonly IMapper _mapper;
+        public ExpenseManagerController(IMediator mediator, IMapper mapper)
         {
             _mediator = mediator;
+            _mapper = mapper;
         }
 
         public async Task<IActionResult> Dashboard()
@@ -97,6 +103,17 @@ namespace ExpenseManager.MVC.Controllers
             await ViewLayoutData();
             var dto = await _mediator.Send(new GetTransferByIdQuery(id));
             return View(dto);
+        }
+
+        [Route("ExpenseManager/{Id}/Edit")]
+        public async Task<IActionResult> Edit(int id)
+        {
+            await ViewLayoutData();
+            var dto = await _mediator.Send(new GetCategoryByIdQuery(id));
+            EditCategoryCommand model = _mapper.Map<EditCategoryCommand>(dto);
+
+            return View(model);
+            
         }
 
 
