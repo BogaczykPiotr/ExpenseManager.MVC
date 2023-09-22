@@ -3,9 +3,6 @@
 @{
     var settingsDto = ViewData["SettingsDto"] as ExpenseManager.Application.DTOS.SettingDto;
 
-    var uniqueCategories = Model
-        .Select(c => c.Name)
-        .Distinct();
 }
 @if (settingsDto.Language == "english")
 {
@@ -15,11 +12,13 @@
     <div class="main-rectangle-grid-actions">
 
 
-        @foreach (var category in uniqueCategories)
+        @foreach (var category in Model.Distinct())
         {
             <div class="categories-container">
-                <h1>@category</h1>
-                <a href="#">edit</a>
+                <h1>@category.Name</h1>
+                <a asp-controller="ExpenseManager" asp-action="Edit" asp-route-Id="@category.Id" class="show-details">
+                    <span>edit</span>
+                </a>
                 <a href="#">delete</a>
             </div>
         }
@@ -36,11 +35,13 @@
     <div class="main-rectangle-grid-actions">
 
 
-        @foreach (var category in uniqueCategories)
+        @foreach (var category in Model.Distinct())
         {
             <div class="categories-container">
                 <h1>@category</h1>
-                <a href="#">edytuj</a>
+                <a asp-controller="ExpenseManager" asp-action="Edit" asp-route-Id="@category.Id" class="show-details">
+                    <span>edytuj</span>
+                </a>
                 <a href="#">usuń</a>
             </div>
         }
@@ -57,11 +58,13 @@
     <div class="main-rectangle-grid-actions">
 
 
-        @foreach (var category in uniqueCategories)
+        @foreach (var category in Model.Distinct())
         {
             <div class="categories-container">
                 <h1>@category</h1>
-                <a href="#">bearbeiten</a>
+                <a asp-controller="ExpenseManager" asp-action="Edit" asp-route-Id="@category.Id" class="show-details">
+                    <span>bearbeiten</span>
+                </a>
                 <a href="#">löschen</a>
             </div>
         }

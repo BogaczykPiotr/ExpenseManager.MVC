@@ -15,11 +15,14 @@ namespace ExpenseManager.Application.Commands.EditCategory
         {
             _expenseManagerRepository = expenseManagerRepository;
         }
-        public Task<Unit> Handle(EditCategoryCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(EditCategoryCommand request, CancellationToken cancellationToken)
         {
-            var category = _expenseManagerRepository.GetByCategoryId(request.Id!);
+            var category = await _expenseManagerRepository.GetByCategoryId(request.Id!);
 
-            // to fix
+            category.Name = request.Name;
+
+            await _expenseManagerRepository.Commit();
+            return Unit.Value;
         }
     }
 }

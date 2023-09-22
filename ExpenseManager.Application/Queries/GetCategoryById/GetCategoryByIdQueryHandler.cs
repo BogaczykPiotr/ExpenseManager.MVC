@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace ExpenseManager.Application.Queries.GetCategoryByName
 {
-    public class GetCategoryByNameQueryHandler : IRequestHandler<GetCategoryByIdQuery, CategoryDto>
+    public class GetCategoryByIdQueryHandler : IRequestHandler<GetCategoryByIdQuery, CategoryDto>
     {
         private readonly IExpenseManagerRepository _expenseManagerRepository;
         private readonly IMapper _mapper;
-        public GetCategoryByNameQueryHandler(IExpenseManagerRepository expenseManagerRepository, IMapper mapper)
+        public GetCategoryByIdQueryHandler(IExpenseManagerRepository expenseManagerRepository, IMapper mapper)
         {
             _expenseManagerRepository = expenseManagerRepository;
             _mapper = mapper;

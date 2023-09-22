@@ -56,5 +56,8 @@ namespace ExpenseManager.Infrastructure.Repositories
 
         public async Task<Category> GetByCategoryId(int id)
             => await _dbContext.Categories.FirstAsync(t => t.Id == id);
+
+        public async Task Commit()
+            => _dbContext.SaveChangesAsync();
     }
 }

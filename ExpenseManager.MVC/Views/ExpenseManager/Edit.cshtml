@@ -1,0 +1,19 @@
+﻿@model ExpenseManager.Application.Commands.EditCategory.EditCategoryCommand
+@{
+    var settingsDto = ViewData["SettingsDto"] as ExpenseManager.Application.DTOS.SettingDto;
+
+}
+
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+
+<div class="main-rectangle">
+    <h1>Edit Category</h1>
+
+    <form asp-action="Edit">
+            <div class="input-box">
+                <span class="details">Name</span>
+                <input type="text" placeholder="Enter Name" required name="Name">
+        </div>
+    </form>
+</div>

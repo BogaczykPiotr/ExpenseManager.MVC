@@ -26,5 +26,6 @@ namespace ExpenseManager.Domain.Interfaces
         Task<Setting> GetSettings();
         Task<Transfer> GetByTransferId(int id);
         Task<Category> GetByCategoryId(int id);
+        Task Commit();
     }
 }
