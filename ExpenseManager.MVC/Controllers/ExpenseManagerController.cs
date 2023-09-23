@@ -115,6 +115,17 @@ namespace ExpenseManager.MVC.Controllers
             return View(model);
             
         }
+        [HttpPost]
+        [Route("ExpenseManager/{Id}/Edit")]
+        public async Task<IActionResult> Edit(EditCategoryCommand command)
+        {
+            await ViewLayoutData();
+
+
+            await _mediator.Send(command);
+            return RedirectToAction(nameof(Actions));
+
+        }
 
 
         public async Task<IActionResult> CreateNewCategory()

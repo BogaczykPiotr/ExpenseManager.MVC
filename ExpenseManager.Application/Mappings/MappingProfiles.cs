@@ -28,9 +28,8 @@ namespace ExpenseManager.Application.Mappings
             CreateMap<Category, CategoryDto>();
 
             CreateMap<CreateTransferCommand, Transfer>();
-            CreateMap<CategoryDto, Category>();
 
-            CreateMap<Category, EditCategoryCommand>();
+            CreateMap<CategoryDto, EditCategoryCommand>();
 
         }
     }
