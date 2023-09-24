@@ -704,6 +704,7 @@ input:checked + label {
 }
 
 .confirm-settings {
+    margin-left: 4.5vw;
     font-size: 2vw;
     background-color: #050d70;
     color: #fff;
@@ -711,8 +712,7 @@ input:checked + label {
     border-radius: 10vw;
     border: none;
     cursor: pointer;
-    position: absolute;
-    margin-top: 5vw;
+    margin-top: 2vw;
 }
 
 .actions-query {
@@ -1489,13 +1489,13 @@ input:checked + label {
 
     .categories-container a {
         font-size: 1.6vw;
-        margin-right: 1vw;
+        margin-right: 2vw;
         text-decoration: none;
         color: rgb(90, 180, 67, 0.7);
     }
 
         .categories-container a:last-child {
-            margin-right: 0;
+            margin-right: 1;
             color: rgb(255, 0, 0, 0.7);
         }
 
@@ -1527,3 +1527,19 @@ input:checked + label {
     color: rgb(175, 175, 175);
     font-size: 1.8vw;
 }
+/*Edit view*/
+.edit-box {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2vw;
+}
+    .edit-box span {
+        display: flex;
+        justify-content: center;
+        font-weight: bold;
+        margin-bottom: 1vw;
+        color: rgb(175, 175, 175);
+        font-size: 1.5vw;
+        
+    }
+
