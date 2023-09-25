@@ -30,4 +30,16 @@ else if (settingsDto.Language == "polski")
         </div>
     </div>
 }
+else if (settingsDto.Language == "deutsch")
+{
+    <div class="main-rectangle">
+        <div>
+            <h5>Wert: @Model.Value</h5>
+            <h6>Kategorie: @(Model.Category != null ? Model.Category : "null")</h6>
+            <p>Beschreibung: @Model.Description</p>
+            <p>Datum der Erstellung: @Model.CreatedAt</p>
+            <p>Typ: @(Model.Ingoing ? "eingehend" : "Ausgehend von")</p>
+        </div>
+    </div>
+}
 

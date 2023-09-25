@@ -6,7 +6,8 @@
 
 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 
-
+@if(settingsDto.Language == "english")
+{
 <div class="main-rectangle">
     <h1 class="title">Edit Category</h1>
 
@@ -18,4 +19,36 @@
         </div>
         <button class="confirm-settings" type="submit">confirm</button>
     </form>
-</div>
+    </div>
+}
+else if (settingsDto.Language == "polski")
+{
+    <div class="main-rectangle">
+        <h1 class="title">Edytuj kategorię</h1>
+
+        <form asp-action="Edit">
+            <div class="edit-box">
+                <span>Nazwa</span>
+                <input type="text" placeholder="Wpisz Nazwę" required name="Name">
+
+            </div>
+            <button class="confirm-settings" type="submit">Zatwierdź</button>
+        </form>
+    </div>
+}
+else if (settingsDto.Language == "deutsch")
+{
+    <div class="main-rectangle">
+        <h1 class="title">Kategorien bearbeiten</h1>
+
+        <form asp-action="Edit">
+            <div class="edit-box">
+                <span>Name</span>
+                <input type="text" placeholder="Name eingeben" required name="Name">
+
+            </div>
+            <button class="confirm-settings" type="submit">genehmigen</button>
+        </form>
+    </div>
+}
+
