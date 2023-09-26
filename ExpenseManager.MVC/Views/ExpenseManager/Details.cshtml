@@ -7,8 +7,10 @@
 
 @if (settingsDto.Language == "english")
 {
+    
     <div class="main-rectangle">
-        <div>
+        <h1 class="title">Transfer Details</h1>
+        <div class="values-container">
             <h5>Value: @Model.Value</h5>
             <h6>Category: @(Model.Category != null ? Model.Category : "empty")</h6>
             <p>Description: @Model.Description</p>
@@ -20,8 +22,9 @@
 }
 else if (settingsDto.Language == "polski")
 {
+    <h1 class="title">Szczegóły Transferu</h1>
     <div class="main-rectangle">
-        <div>
+        <div class="values-container">
             <h5>Wartość: @Model.Value</h5>
             <h6>Kategoria: @(Model.Category != null ? Model.Category : "brak")</h6>
             <p>Opis: @Model.Description</p>
@@ -32,8 +35,9 @@ else if (settingsDto.Language == "polski")
 }
 else if (settingsDto.Language == "deutsch")
 {
+    <h1 class="title">Einzelheiten der Übertragung</h1>
     <div class="main-rectangle">
-        <div>
+        <div class="values-container">
             <h5>Wert: @Model.Value</h5>
             <h6>Kategorie: @(Model.Category != null ? Model.Category : "null")</h6>
             <p>Beschreibung: @Model.Description</p>

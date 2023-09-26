@@ -1542,4 +1542,11 @@ input:checked + label {
         font-size: 1.5vw;
         
     }
-
+/*Details view*/
+.values-container {
+    font-weight: bold;
+    margin-bottom: 1vw;
+    color: rgb(175, 175, 175);
+    font-size: 1.5vw;
+    margin-top: 2vw;
+}
