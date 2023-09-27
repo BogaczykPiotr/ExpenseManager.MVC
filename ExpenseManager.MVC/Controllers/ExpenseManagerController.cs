@@ -4,6 +4,7 @@ using ExpenseManager.Application.Commands.CreateSavingGoal;
 using ExpenseManager.Application.Commands.CreateSettings;
 using ExpenseManager.Application.Commands.CreateTransfer;
 using ExpenseManager.Application.Commands.EditCategory;
+using ExpenseManager.Application.Commands.EditTransfer;
 using ExpenseManager.Application.DTOS;
 using ExpenseManager.Application.Queries.GetAllTransfers;
 using ExpenseManager.Application.Queries.GetCategories;
@@ -44,6 +45,26 @@ namespace ExpenseManager.MVC.Controllers
             return View(Transfers);
         }
 
+        [Route("ExpenseManager/{Id}/EditTransfer")]
+        public async Task<IActionResult> EditTransfer(int id)
+        {
+            await ViewLayoutData();
+            var dto = await _mediator.Send(new GetTransferByIdQuery(id));
+            return View(dto);
+        }
+
+
+        [HttpPost]
+        [Route("ExpenseManager/{Id}/EditTransfer")]
+        public async Task<IActionResult> EditTransfer(EditCategoryCommand command)
+        {
+            await ViewLayoutData();
+
+
+            await _mediator.Send(command);
+            return RedirectToAction(nameof(Transfers));
+
+        }
 
 
         public async Task<IActionResult> Savings()
@@ -105,7 +126,7 @@ namespace ExpenseManager.MVC.Controllers
             return View(dto);
         }
 
-        [Route("ExpenseManager/{Id}/Edit")]
+        [Route("ExpenseManager/{Id}/EditCategory")]
         public async Task<IActionResult> Edit(int id)
         {
             await ViewLayoutData();
@@ -116,8 +137,8 @@ namespace ExpenseManager.MVC.Controllers
             
         }
         [HttpPost]
-        [Route("ExpenseManager/{Id}/Edit")]
-        public async Task<IActionResult> Edit(EditCategoryCommand command)
+        [Route("ExpenseManager/{Id}/EditCategory")]
+        public async Task<IActionResult> Edit(EditCategoryCommand command, int id)
         {
             await ViewLayoutData();
 

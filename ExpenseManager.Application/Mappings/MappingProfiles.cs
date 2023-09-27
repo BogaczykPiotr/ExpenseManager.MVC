@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ExpenseManager.Application.Commands.CreateTransfer;
 using ExpenseManager.Application.Commands.EditCategory;
+using ExpenseManager.Application.Commands.EditTransfer;
 using ExpenseManager.Application.DTOS;
 using ExpenseManager.Domain.Entities;
 using Microsoft.AspNetCore.Routing.Constraints;
@@ -30,6 +31,7 @@ namespace ExpenseManager.Application.Mappings
             CreateMap<CreateTransferCommand, Transfer>();
 
             CreateMap<CategoryDto, EditCategoryCommand>();
+            CreateMap<TransferDto, EditTransferCommand>();
 
         }
     }
