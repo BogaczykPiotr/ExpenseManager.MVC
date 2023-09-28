@@ -45,26 +45,7 @@ namespace ExpenseManager.MVC.Controllers
             return View(Transfers);
         }
 
-        [Route("ExpenseManager/{Id}/EditTransfer")]
-        public async Task<IActionResult> EditTransfer(int id)
-        {
-            await ViewLayoutData();
-            var dto = await _mediator.Send(new GetTransferByIdQuery(id));
-            return View(dto);
-        }
-
-
-        [HttpPost]
-        [Route("ExpenseManager/{Id}/EditTransfer")]
-        public async Task<IActionResult> EditTransfer(EditCategoryCommand command)
-        {
-            await ViewLayoutData();
-
-
-            await _mediator.Send(command);
-            return RedirectToAction(nameof(Transfers));
-
-        }
+        
 
 
         public async Task<IActionResult> Savings()
@@ -126,6 +107,28 @@ namespace ExpenseManager.MVC.Controllers
             return View(dto);
         }
 
+        [Route("ExpenseManager/{Id}/EditTransfer")]
+        public async Task<IActionResult> EditTransfer(int id)
+        {
+            await ViewLayoutData();
+            var dto = await _mediator.Send(new GetTransferByIdQuery(id));
+
+            EditTransferCommand model = _mapper.Map<EditTransferCommand>(dto);
+            return View(model);
+        }
+
+
+        [HttpPost]
+        [Route("ExpenseManager/{Id}/EditTransfer")]
+        public async Task<IActionResult> EditTransfer(EditTransferCommand command, int id)
+        {
+            await ViewLayoutData();
+
+            await _mediator.Send(command);
+            return RedirectToAction(nameof(Transfers));
+
+        }
+
         [Route("ExpenseManager/{Id}/EditCategory")]
         public async Task<IActionResult> Edit(int id)
         {
@@ -147,6 +150,7 @@ namespace ExpenseManager.MVC.Controllers
             return RedirectToAction(nameof(Actions));
 
         }
+
 
 
         public async Task<IActionResult> CreateNewCategory()

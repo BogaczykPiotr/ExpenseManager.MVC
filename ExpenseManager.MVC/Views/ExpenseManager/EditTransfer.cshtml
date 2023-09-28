@@ -1,21 +1,26 @@
-﻿<p class="title">Create new transfer</p>
-<form method="post">
-    <div>
-        <input type="checkbox" id="switch" name="Ingoing" />
-        <label for="switch"></label>
-        <p class="switch-text">Outgoing</p>
-    </div>
-    <div class="input-box">
-        <span class="details">Value</span>
-        <input type="text" placeholder="Enter Value" required name="Value">
-    </div>
-    <div class="input-box">
-        <span class="details">Details (optional)</span>
-        <input type="text" placeholder="Enter Details" name="Description">
-    </div>
-    <div class="input-box">
-        <span class="details">Category</span>
-        <a href="@Url.Action("CreateNewCategory", "ExpenseManager")" class="create-category">Create New</a>
-    </div>
-    <button class="create-button" type="submit">Create </button>
-</form>
+﻿@model ExpenseManager.Application.Commands.EditTransfer.EditTransferCommand
+@{
+    var settingsDto = ViewData["SettingsDto"] as ExpenseManager.Application.DTOS.SettingDto;
+}
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+
+<div class="main-rectangle">
+        <p class="title">Create new transfer</p>
+        <form method="post">
+            <div>
+                <input type="checkbox" id="switch" name="Ingoing" />
+                <label for="switch"></label>
+                <p class="switch-text">Outgoing</p>
+            </div>
+            <div class="input-box">
+                <span class="details">Value</span>
+                <input type="text" placeholder="Enter Value" required name="Value">
+            </div>
+            <div class="input-box">
+                <span class="details">Details (optional)</span>
+                <input type="text" placeholder="Enter Details" name="Description">
+            </div>
+            <button class="create-button" type="submit">Create </button>
+        </form>
+</div>
