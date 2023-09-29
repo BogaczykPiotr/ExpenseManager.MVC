@@ -59,5 +59,8 @@ namespace ExpenseManager.Infrastructure.Repositories
 
         public async Task Commit()
             => _dbContext.SaveChangesAsync();
+
+        public async Task DeleteTransfer(Transfer transfer)
+            => _dbContext.Transfers.Remove(transfer);
     }
 }

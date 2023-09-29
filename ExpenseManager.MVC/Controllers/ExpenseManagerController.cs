@@ -3,6 +3,7 @@ using ExpenseManager.Application.Commands.CreateCategory;
 using ExpenseManager.Application.Commands.CreateSavingGoal;
 using ExpenseManager.Application.Commands.CreateSettings;
 using ExpenseManager.Application.Commands.CreateTransfer;
+using ExpenseManager.Application.Commands.DeleteTransfer;
 using ExpenseManager.Application.Commands.EditCategory;
 using ExpenseManager.Application.Commands.EditTransfer;
 using ExpenseManager.Application.DTOS;
@@ -176,6 +177,16 @@ namespace ExpenseManager.MVC.Controllers
         {
             await _mediator.Send(command);
             return RedirectToAction(nameof(Actions));
+        }
+
+        [HttpPost]
+        [Route("/ExpenseManager/Delete/{id}")]
+        public async Task<IActionResult> DeleteTransfer(int id)
+        {
+            var command = new DeleteTransferCommand { Id = id };
+            await _mediator.Send(command);
+
+            return RedirectToAction(nameof(Transfers));
         }
 
         public async Task<IActionResult> Settings()
