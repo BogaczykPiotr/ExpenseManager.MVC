@@ -22,7 +22,7 @@
                     <span>Details</span>
                 </a>
                     <form method="post" asp-controller="ExpenseManager" asp-action="Delete" asp-route-Id="@transfer.Id">
-                        <button type="submit" class="delete-transfer">Delete</button>
+                        <button type="submit" class="delete-transfer">X</button>
                     </form>
             </div>
         }
@@ -46,7 +46,7 @@ else if(settingsDto.Language == "polski")
                 <span>Więcej</span>
             </a>
                 <form method="post" asp-controller="ExpenseManager" asp-action="Delete" asp-route-Id="@transfer.Id">
-                    <button type="submit" class="delete-transfer">Delete</button>
+                    <button type="submit" class="delete-transfer">X</button>
                 </form>
         </div>
     }
@@ -70,7 +70,7 @@ else if (settingsDto.Language == "deutsch")
                     <span>mehr</span>
                 </a>
                 <form method="post" asp-controller="ExpenseManager" asp-action="Delete" asp-route-Id="@transfer.Id">
-                    <button type="submit" class="delete-transfer">Delete</button>
+                    <button type="submit" class="delete-transfer">X</button>
                 </form>
             </div>
         }

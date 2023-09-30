@@ -241,7 +241,7 @@ body {
     width: 40vw;
     max-height: 20vw;
 }
-/* Transfers.html*/
+/* Transfers view*/
 .main-rectangle-grid {
     display: grid;
     grid-template-columns: repeat(3, 0.1fr);
@@ -364,7 +364,18 @@ body {
     color: white;
     opacity: 0.8;
 }
+.delete-transfer {
+    position: absolute;
+    top: 1vw;
+    right: 1vw;
+    color: black;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2vw;
+}
 
+/*Savings view*/
 .savings-main-rectangle {
     display: flex;
     flex-direction: column;
@@ -536,6 +547,8 @@ body {
     line-height: 0;
     margin-top: 5%;
 }
+
+
 /* achievements */
 .main-rectangle-achievements {
     display: grid;
