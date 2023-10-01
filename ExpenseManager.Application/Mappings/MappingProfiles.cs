@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ExpenseManager.Application.Commands.CreateCategory;
 using ExpenseManager.Application.Commands.CreateTransfer;
 using ExpenseManager.Application.Commands.EditCategory;
 using ExpenseManager.Application.Commands.EditTransfer;
@@ -29,6 +30,8 @@ namespace ExpenseManager.Application.Mappings
             CreateMap<Category, CategoryDto>();
 
             CreateMap<CreateTransferCommand, Transfer>();
+            CreateMap<CreateCategoryCommand, Category>()
+            .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name)); 
 
             CreateMap<CategoryDto, EditCategoryCommand>();
             CreateMap<TransferDto, EditTransferCommand>();

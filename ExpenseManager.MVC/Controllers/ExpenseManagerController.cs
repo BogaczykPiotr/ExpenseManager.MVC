@@ -3,6 +3,7 @@ using ExpenseManager.Application.Commands.CreateCategory;
 using ExpenseManager.Application.Commands.CreateSavingGoal;
 using ExpenseManager.Application.Commands.CreateSettings;
 using ExpenseManager.Application.Commands.CreateTransfer;
+using ExpenseManager.Application.Commands.DeleteCategory;
 using ExpenseManager.Application.Commands.DeleteTransfer;
 using ExpenseManager.Application.Commands.EditCategory;
 using ExpenseManager.Application.Commands.EditTransfer;
@@ -163,7 +164,7 @@ namespace ExpenseManager.MVC.Controllers
         public async Task<IActionResult> CreateNewCategory(CreateCategoryCommand command)
         {
             await _mediator.Send(command);
-            return RedirectToAction();
+            return RedirectToAction(nameof(Actions));
         }
 
         public async Task<IActionResult> CreateUpcomingAction()
@@ -180,13 +181,23 @@ namespace ExpenseManager.MVC.Controllers
         }
 
         [HttpPost]
-        [Route("/ExpenseManager/Delete/{id}")]
+        [Route("/ExpenseManager/DeleteTransfer/{id}")]
         public async Task<IActionResult> DeleteTransfer(int id)
         {
             var command = new DeleteTransferCommand { Id = id };
             await _mediator.Send(command);
 
             return RedirectToAction(nameof(Transfers));
+        }
+
+        [HttpPost]
+        [Route("/ExpenseManager/DeleteCategory/{id}")]
+        public async Task<IActionResult> DeleteCategory(int id)
+        {
+            var command = new DeleteCategoryCommand { Id = id };
+            await _mediator.Send(command);
+
+            return RedirectToAction(nameof(Actions));
         }
 
         public async Task<IActionResult> Settings()

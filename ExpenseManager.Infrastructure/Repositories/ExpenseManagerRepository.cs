@@ -62,5 +62,7 @@ namespace ExpenseManager.Infrastructure.Repositories
 
         public async Task DeleteTransfer(Transfer transfer)
             => _dbContext.Transfers.Remove(transfer);
+        public async Task DeleteCategory(Category category)
+            => _dbContext.Categories.Remove(category);
     }
 }

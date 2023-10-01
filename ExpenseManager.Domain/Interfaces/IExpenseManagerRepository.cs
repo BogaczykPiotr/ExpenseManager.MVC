@@ -28,5 +28,6 @@ namespace ExpenseManager.Domain.Interfaces
         Task<Category> GetByCategoryId(int id);
         Task Commit();
         Task DeleteTransfer(Transfer transfer);
+        Task DeleteCategory(Category category);
     }
 }
