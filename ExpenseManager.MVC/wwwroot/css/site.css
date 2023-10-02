@@ -1526,6 +1526,16 @@ input:checked + label {
     padding: 0.7vw 1.6vw;
 }
 
+.delete-action {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: #ff0000;
+    font-size: 1.6vw;
+    margin-left: -1vw;
+}
+
 /*Contact view*/
 .contact-title {
     color: rgb(175, 175, 175);
