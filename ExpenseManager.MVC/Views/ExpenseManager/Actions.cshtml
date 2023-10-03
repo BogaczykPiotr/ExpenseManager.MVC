@@ -12,18 +12,25 @@
     <div class="main-rectangle-grid-actions">
 
 
-        @foreach (var category in Model)
+        @foreach (var category in Model.Distinct())
         {
             <div class="categories-container">
-                <h1>@category.Name</h1>
-                <a asp-controller="ExpenseManager" asp-action="Edit" asp-route-Id="@category.Id">
-                    <span>edit</span>
-                </a>
-                <form method="post" asp-controller="ExpenseManager" asp-action="DeleteCategory" asp-route-Id="@category.Id">
-                    <button type="submit" class="delete-action">delete</button>
-                </form>
+                <div class="title-container">
+                    <h1>@category.Name</h1>
+                </div>
+                <div class="actions-container">
+                    <a class="edit-action" asp-controller="ExpenseManager" asp-action="Edit" asp-route-Id="@category.Id">
+                        <span>Edit</span>
+                    </a>
+                    <form method="post" asp-controller="ExpenseManager" asp-action="DeleteCategory" asp-route-Id="@category.Id">
+                        <button type="submit" class="edit-action">Delete</button>
+                    </form>
+                </div>
             </div>
         }
+        
+
+
 
     
 </div>
@@ -40,15 +47,20 @@
         @foreach (var category in Model.Distinct())
         {
             <div class="categories-container">
-                <h1>@category</h1>
-                <a asp-controller="ExpenseManager" asp-action="Edit" asp-route-Id="@category.Id" class="show-details">
-                    <span>edytuj</span>
-                </a>
-                <form method="post" asp-controller="ExpenseManager" asp-action="DeleteCategory" asp-route-Id="@category.Id">
-                    <button type="submit" class="delete-transfer">usuń</button>
-                </form>
+                <div class="title-container">
+                    <h1>@category.Name</h1>
+                </div>
+                <div class="actions-container">
+                    <a class="edit-action" asp-controller="ExpenseManager" asp-action="Edit" asp-route-Id="@category.Id">
+                        <span>Edytuj</span>
+                    </a>
+                    <form method="post" asp-controller="ExpenseManager" asp-action="DeleteCategory" asp-route-Id="@category.Id">
+                        <button type="submit" class="edit-action">Usuń</button>
+                    </form>
+                </div>
             </div>
         }
+        
 
 
     </div>
@@ -65,13 +77,17 @@
         @foreach (var category in Model.Distinct())
         {
             <div class="categories-container">
-                <h1>@category</h1>
-                <a asp-controller="ExpenseManager" asp-action="Edit" asp-route-Id="@category.Id" class="show-details">
-                    <span>bearbeiten</span>
-                </a>
-                <form method="post" asp-controller="ExpenseManager" asp-action="DeleteCategory" asp-route-Id="@category.Id">
-                    <button type="submit" class="delete-transfer">löschen</button>
-                </form>
+                <div class="title-container">
+                    <h1>@category.Name</h1>
+                </div>
+                <div class="actions-container">
+                    <a class="edit-action" asp-controller="ExpenseManager" asp-action="Edit" asp-route-Id="@category.Id">
+                        <span>bearbeiten</span>
+                    </a>
+                    <form method="post" asp-controller="ExpenseManager" asp-action="DeleteCategory" asp-route-Id="@category.Id">
+                        <button type="submit" class="edit-action">löschen</button>
+                    </form>
+                </div>
             </div>
         }
 

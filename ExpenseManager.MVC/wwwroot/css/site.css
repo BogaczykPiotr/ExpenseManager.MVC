@@ -1488,29 +1488,49 @@ input:checked + label {
 
 .categories-container {
     display: flex;
-    align-items: center;
-    border: 0.3vw solid rgb(255, 165, 0, 0.5);
-    padding: 10px;
-    line-height: 0;
-    margin-right: 2vw;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-    .categories-container h1 {
-        color: rgb(175, 175, 175);
-        margin-right: 1vw;
+.title-container {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.categories-container h1 {
+    font-size: 24px;
+    color: rgb(175,175,175);
+}
+
+.actions-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.edit-action,
+.delete-action {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none;
+    font-size: 1.5vw;
+}
+
+    .edit-action:hover,
+    .delete-action:hover {
+        background-color: #0056b3;
     }
 
-    .categories-container a {
-        font-size: 1.6vw;
-        margin-right: 2vw;
-        text-decoration: none;
-        color: rgb(90, 180, 67, 0.7);
-    }
 
-        .categories-container a:last-child {
-            margin-right: 1;
-            color: rgb(255, 0, 0, 0.7);
-        }
+
 
 .create-new-category {
     color: rgb(175, 175, 175);
