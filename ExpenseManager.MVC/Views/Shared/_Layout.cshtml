@@ -20,7 +20,10 @@
     @if (settingsDto.Language == "english")
     {
         <div class="left-rectangle">
-            <img class="logo" src="@Url.Content("~/images/Logo.png")">
+            <a href="@Url.Action("Dashboard", "ExpenseManager")">
+                <img class="logo" src="@Url.Content("~/images/Logo.png")">
+            </a>
+            
             <a href="@Url.Action("Dashboard", "ExpenseManager")" class="link first-group first-element">
                 <img src="@Url.Content("~/images/Dashboard.png")">
                 <span class="text">Dashboard</span>
