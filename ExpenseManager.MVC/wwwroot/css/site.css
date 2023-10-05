@@ -1478,6 +1478,15 @@ input:checked + label {
 }
 
 /*actions view*/
+.actions-title {
+    position: absolute;
+    top: 5vw;
+    color: rgb(175, 175, 175);
+    font-size: 3vw;
+    left: 45vw;
+}
+
+
 .main-rectangle-grid-actions {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(20vw, 1fr));
