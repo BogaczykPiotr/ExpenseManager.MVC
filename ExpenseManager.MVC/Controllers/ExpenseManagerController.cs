@@ -153,7 +153,12 @@ namespace ExpenseManager.MVC.Controllers
 
         }
 
+        public async Task<IActionResult> Login()
+        {
+            await ViewLayoutData();
 
+            return View();
+        } // New controller in future
 
         public async Task<IActionResult> CreateNewCategory()
         {
