@@ -1,9 +1,10 @@
 ﻿using ExpenseManager.Domain.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace ExpenseManager.Infrastructure.Persistence
 {
-    public class ExpenseDbContext : DbContext 
+    public class ExpenseDbContext : IdentityDbContext 
     {
         public ExpenseDbContext(DbContextOptions<ExpenseDbContext> options) : base(options)
         {
@@ -15,6 +16,11 @@ namespace ExpenseManager.Infrastructure.Persistence
         public DbSet<Transfer> Transfers { get; set; }
         public DbSet<Setting> Settings { get; set; }
         public DbSet<Category> Categories { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
 
     }
 }
