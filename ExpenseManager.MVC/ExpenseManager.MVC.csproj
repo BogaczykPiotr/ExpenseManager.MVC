@@ -19,6 +19,7 @@
     <ProjectReference Include="..\ExpenseManager.Infrastructure\ExpenseManager.Infrastructure.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Views\Authorization\" />
     <Folder Include="Views\Home\" />
   </ItemGroup>
 
