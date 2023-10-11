@@ -17,11 +17,13 @@ using ExpenseManager.Application.Queries.GetSettingValues;
 using ExpenseManager.Application.Queries.GetStatValues;
 using ExpenseManager.Application.Queries.GetTransferById;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
 
 namespace ExpenseManager.MVC.Controllers
 {
+    [Authorize]
     public class ExpenseManagerController : Controller
     {
 
