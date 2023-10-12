@@ -23,7 +23,6 @@ using Microsoft.AspNetCore.Mvc.Formatters;
 
 namespace ExpenseManager.MVC.Controllers
 {
-    [Authorize]
     public class ExpenseManagerController : Controller
     {
 

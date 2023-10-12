@@ -22,8 +22,6 @@ namespace ExpenseManager.MVC.Controllers
             return View();
         }
         [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login([FromBody] LoginCommand command, string returnUrl = null)
         {
             if (ModelState.IsValid)

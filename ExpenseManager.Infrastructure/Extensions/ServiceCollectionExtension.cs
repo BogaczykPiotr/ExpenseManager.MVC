@@ -19,6 +19,7 @@ namespace ExpenseManager.Infrastructure.Extensions
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ExpenseDbContext>();
 
+
             services.AddScoped<Seeder>();
 
             services.AddScoped<IExpenseManagerRepository, ExpenseManagerRepository>();
