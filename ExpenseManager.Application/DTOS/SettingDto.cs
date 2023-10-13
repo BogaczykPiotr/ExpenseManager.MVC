@@ -10,6 +10,6 @@ namespace ExpenseManager.Application.DTOS
     {
         public string? Currency { get; set; }
         public string? Language { get; set; }
-        public int? NumberOfDisplayedActions { get; set; } 
+        public int NumberOfDisplayedActions { get; set; } 
     }
 }

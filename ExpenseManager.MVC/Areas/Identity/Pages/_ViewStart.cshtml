@@ -1,3 +1,6 @@
 ﻿@{
     Layout = "/Views/Shared/_Layout.cshtml";
+
+    var transferDtos = ViewData["TransferDtos"] as IEnumerable<ExpenseManager.Application.DTOS.TransferDto>;
+    var settingsDto = ViewData["SettingsDto"] as ExpenseManager.Application.DTOS.SettingDto;
 }

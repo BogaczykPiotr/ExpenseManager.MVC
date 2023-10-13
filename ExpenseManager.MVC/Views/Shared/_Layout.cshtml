@@ -1,8 +1,6 @@
 ﻿@{
     var transferDtos = ViewData["TransferDtos"] as IEnumerable<ExpenseManager.Application.DTOS.TransferDto>;
     var settingsDto = ViewData["SettingsDto"] as ExpenseManager.Application.DTOS.SettingDto;
-
-    var NumberOfDisplayedActions = Convert.ToInt32(settingsDto.NumberOfDisplayedActions);
 }
 
 <!DOCTYPE html>
@@ -48,8 +46,10 @@
                 <img src="@Url.Content("~/images/ContactUs.png")">
                 <span class="text">Contact us</span>
             </a>
-        </div>
 
+            <partial name="_LoginPartial" />
+        </div>
+        
         <div class="right-rectangle">
             <div class="right-content">
                 <a href="#" class="right-links">
@@ -67,7 +67,7 @@
                     <p>Recent Actions</p>
                     <a href="#"><img class="actions-show-more" src="@Url.Content("~/images/More.png")" alt="show more"></a>
                 </div>
-                @foreach (var action in transferDtos.Where(t => t.Upcoming == false).OrderByDescending(t => t.CreatedAt).Take(NumberOfDisplayedActions))
+                @foreach (var action in transferDtos.Where(t => t.Upcoming == false).OrderByDescending(t => t.CreatedAt).Take(settingsDto.NumberOfDisplayedActions))
                 {
 
                     <div class="actions-query">
@@ -142,7 +142,7 @@
                     <p>Aktuelle Aktionen</p>
                     <a href="#"><img class="actions-show-more" src="@Url.Content("~/images/More.png")" alt="show more"></a>
                 </div>
-                @foreach (var action in transferDtos.Where(t => t.Upcoming == false).OrderByDescending(t => t.CreatedAt).Take(NumberOfDisplayedActions))
+                @foreach (var action in transferDtos.Where(t => t.Upcoming == false).OrderByDescending(t => t.CreatedAt).Take(settingsDto.NumberOfDisplayedActions))
                 {
 
                     <div class="actions-query">
@@ -217,7 +217,7 @@
                     <p>Ostatnie Akcje</p>
                     <a href="#"><img class="actions-show-more" src="@Url.Content("~/images/More.png")" alt="show more"></a>
                 </div>
-                @foreach (var action in transferDtos.Where(t => t.Upcoming == false).OrderByDescending(t => t.CreatedAt).Take(NumberOfDisplayedActions))
+                @foreach (var action in transferDtos.Where(t => t.Upcoming == false).OrderByDescending(t => t.CreatedAt).Take(settingsDto.NumberOfDisplayedActions))
                 {
 
                     <div class="actions-query">

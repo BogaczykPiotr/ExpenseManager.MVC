@@ -5,7 +5,7 @@ namespace ExpenseManager.Domain.Entities
         public int Id { get; set; }
         public string? Currency { get; set; }
         public string? Language { get; set; }
-        public int? NumberOfDisplayedActions { get; set; }
+        public int NumberOfDisplayedActions { get; set; }
     }
 }
 
