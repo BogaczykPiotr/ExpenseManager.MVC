@@ -1,27 +1,19 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
-<ul>
+
+
     @if (SignInManager.IsSignedIn(User))
     {
-        <li>
             <a asp-area="Identity" asp-page="/Account/Manage/Dashboard" title="Manage">Hello @User.Identity</a>
-        </li>
-        <li>
             <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Dashboard", "ExpenseManager", new { area = ""})">
                 <button type="submit">Logout</button>
             </form>
-        </li>
     }
     else
     {
-        <li>
-            <a asp-area="Identity" asp-page="/Account/Register">Register</a>
-        </li>
-        <li>
-            <a asp-area="Identity" asp-page="/Account/Login">Login</a>
-        </li>
+        <a class="register-btn" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        <a class="login-btn" asp-area="Identity" asp-page="/Account/Login">Login</a>
     }
-</ul>
 
 
