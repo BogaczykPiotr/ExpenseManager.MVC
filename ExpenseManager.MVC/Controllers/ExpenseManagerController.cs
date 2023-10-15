@@ -68,6 +68,7 @@ namespace ExpenseManager.MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> Savings(CreateSavingGoalCommand command)
         {
+            await ViewLayoutData();
             await _mediator.Send(command);
             var viewModel = new SavingViewModel()
             {

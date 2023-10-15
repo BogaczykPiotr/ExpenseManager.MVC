@@ -3,7 +3,6 @@
 @{
     var settingsDto = ViewData["SettingsDto"] as ExpenseManager.Application.DTOS.SettingDto;
 
-
     var latestGoal = Model.SavingGoalDtos.OrderByDescending(g => g.CreatedAt).FirstOrDefault();
     var lastGoal = Model.SavingGoalDtos.Reverse().Skip(1).FirstOrDefault();
 }
@@ -36,8 +35,6 @@
         <div class="actual-goal">
             <p class="actual-goal-text">Your Actual Goal</p>
         <p class="actual-goal-value">@latestGoal.Goal@settingsDto.Currency</p>
-        <p class="already-saved">Already Saved</p>
-        <p class="already-saved-value">@ViewBag.Stats.Left@settingsDto.Currency / @latestGoal.Goal@settingsDto.Currency</p>
         </div>
     }
     else if(settingsDto.Language == "polski")
@@ -68,8 +65,6 @@
         <div class="actual-goal">
             <p class="actual-goal-text">Twój Aktualny Cel</p>
             <p class="actual-goal-value">@latestGoal.Goal@settingsDto.Currency</p>
-            <p class="already-saved">Zaoszczędzone</p>
-            <p class="already-saved-value">@ViewBag.Stats.Left@settingsDto.Currency / @latestGoal.Goal@settingsDto.Currency</p>
         </div>
     }
     else if (settingsDto.Language == "deutsch")
@@ -100,8 +95,6 @@
         <div class="actual-goal">
             <p class="actual-goal-text">Ihr aktuelles Sparziel</p>
             <p class="actual-goal-value">@latestGoal.Goal@settingsDto.Currency</p>
-            <p class="already-saved">Derzeit gespeichert</p>
-            <p class="already-saved-value">@ViewBag.Stats.Left@settingsDto.Currency / @latestGoal.Goal@settingsDto.Currency</p>
         </div>
     }
 </div>
