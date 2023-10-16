@@ -15,7 +15,7 @@
 
 
 <body>
-    @if (settingsDto.Language == "english")
+    @if (settingsDto?.Language == "english")
     {
         <div class="left-rectangle">
             <a href="@Url.Action("Dashboard", "ExpenseManager")">
@@ -94,7 +94,7 @@
             </div>
         </div>
     }
-    else if(settingsDto.Language == "deutsch")
+    else if(settingsDto?.Language == "deutsch")
     {
         <div class="left-rectangle">
             <img class="logo" src="@Url.Content("~/images/Logo.png")">
@@ -169,7 +169,7 @@
             </div>
         </div>
     }
-    else if (settingsDto.Language == "polski")
+    else if (settingsDto?.Language == "polski")
     {
         <div class="left-rectangle">
             <img class="logo" src="@Url.Content("~/images/Logo.png")">
