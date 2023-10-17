@@ -1,4 +1,6 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager
+@{
     var transferDtos = ViewData["TransferDtos"] as IEnumerable<ExpenseManager.Application.DTOS.TransferDto>;
     var settingsDto = ViewData["SettingsDto"] as ExpenseManager.Application.DTOS.SettingDto;
 }
@@ -17,38 +19,37 @@
 <body>
     @if (settingsDto?.Language == "english")
     {
-        <div class="left-rectangle">
-            <a href="@Url.Action("Dashboard", "ExpenseManager")">
-                <img class="logo" src="@Url.Content("~/images/Logo.png")">
-            </a>
-            <a href="@Url.Action("Dashboard", "ExpenseManager")" class="link first-group first-element">
-                <img src="@Url.Content("~/images/Dashboard.png")">
-                <span class="text">Dashboard</span>
-            </a>
-            <a href="@Url.Action("Transfers", "ExpenseManager")" class="link first-group">
-                <img src="@Url.Content("~/images/Transfers.png")">
-                <span class="text">Transfers</span>
-            </a>
-            <a href="@Url.Action("Savings", "ExpenseManager")" class="link first-group">
-                <img src="@Url.Content("~/images/Savings.png")">
-                <span class="text">Savings</span>
-            </a>
-            <a href="@Url.Action("Actions", "ExpenseManager")" class="link first-group">
-                <img src="@Url.Content("~/images/History.png")">
-                <span class="text">Actions</span>
-            </a>
-            <hr class="line">
-            <a href="@Url.Action("Settings", "ExpenseManager")" class="link second-group">
-                <img src="@Url.Content("~/images/Settings.png")">
-                <span class="text">Settings</span>
-            </a>
-            <a href="@Url.Action("Contact", "EXpenseManager")" class="link second-group">
-                <img src="@Url.Content("~/images/ContactUs.png")">
-                <span class="text">Contact us</span>
-            </a>
-
+            <div class="left-rectangle">
+                <a href="@Url.Action("Dashboard", "ExpenseManager")">
+                    <img class="logo" src="@Url.Content("~/images/Logo.png")">
+                </a>
+                <a href="@Url.Action("Dashboard", "ExpenseManager")" class="link first-group first-element">
+                    <img src="@Url.Content("~/images/Dashboard.png")">
+                    <span class="text">Dashboard</span>
+                </a>
+                <a href="@Url.Action("Transfers", "ExpenseManager")" class="link first-group">
+                    <img src="@Url.Content("~/images/Transfers.png")">
+                    <span class="text">Transfers</span>
+                </a>
+                <a href="@Url.Action("Savings", "ExpenseManager")" class="link first-group">
+                    <img src="@Url.Content("~/images/Savings.png")">
+                    <span class="text">Savings</span>
+                </a>
+                <a href="@Url.Action("Actions", "ExpenseManager")" class="link first-group">
+                    <img src="@Url.Content("~/images/History.png")">
+                    <span class="text">Actions</span>
+                </a>
+                <hr class="line">
+                <a href="@Url.Action("Settings", "ExpenseManager")" class="link second-group">
+                    <img src="@Url.Content("~/images/Settings.png")">
+                    <span class="text">Settings</span>
+                </a>
+                <a href="@Url.Action("Contact", "EXpenseManager")" class="link second-group">
+                    <img src="@Url.Content("~/images/ContactUs.png")">
+                    <span class="text">Contact us</span>
+                </a>
             <partial name="_LoginPartial" />
-        </div>
+            </div>
         
         <div class="right-rectangle">
             <div class="right-content">
@@ -123,6 +124,7 @@
                 <img src="@Url.Content("~/images/ContactUs.png")">
                 <span class="text">Kontakt</span>
             </a>
+            <partial name="_LoginPartial" />
         </div>
 
         <div class="right-rectangle">
@@ -198,6 +200,7 @@
                 <img src="@Url.Content("~/images/ContactUs.png")">
                 <span class="text">Kontakt</span>
             </a>
+            <partial name="_LoginPartial" />
         </div>
 
         <div class="right-rectangle">
@@ -244,7 +247,6 @@
             </div>
         </div>
     }
-    
     @RenderBody()
 
     <footer>
