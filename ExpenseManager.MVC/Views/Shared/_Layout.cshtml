@@ -1,4 +1,4 @@
-﻿@using Microsoft.AspNetCore.Identity;
+﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
 @{
     var transferDtos = ViewData["TransferDtos"] as IEnumerable<ExpenseManager.Application.DTOS.TransferDto>;
@@ -20,9 +20,11 @@
     @if (settingsDto?.Language == "english")
     {
             <div class="left-rectangle">
-                <a href="@Url.Action("Dashboard", "ExpenseManager")">
-                    <img class="logo" src="@Url.Content("~/images/Logo.png")">
-                </a>
+            <a href="@Url.Action("Dashboard", "ExpenseManager")">
+                <img class="logo" src="@Url.Content("~/images/Logo.png")">
+            </a>
+                @if(SignInManager.IsSignedIn(User))
+                {
                 <a href="@Url.Action("Dashboard", "ExpenseManager")" class="link first-group first-element">
                     <img src="@Url.Content("~/images/Dashboard.png")">
                     <span class="text">Dashboard</span>
@@ -48,57 +50,67 @@
                     <img src="@Url.Content("~/images/ContactUs.png")">
                     <span class="text">Contact us</span>
                 </a>
+                }
+                
+               
             <partial name="_LoginPartial" />
             </div>
-        
+
         <div class="right-rectangle">
-            <div class="right-content">
-                <a href="#" class="right-links">
-                    <img class="right-link" src="@Url.Content("~/images/Stats.png")">
-                </a>
-                <a href="#" class="right-links">
-                    <img class="right-link" src="@Url.Content("~/images/Alerts.png")">
-                </a>
-                <a href="@Url.Action("Settings", "ExpenseManager")" class="right-links">
-                    <img class="right-link" src="@Url.Content("~/images/Account.png")">
-                </a>
-            </div>
-            <div class="actions">
-                <div class="recent-actions">
-                    <p>Recent Actions</p>
-                    <a href="#"><img class="actions-show-more" src="@Url.Content("~/images/More.png")" alt="show more"></a>
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <div class="right-content">
+                    <a href="#" class="right-links">
+                        <img class="right-link" src="@Url.Content("~/images/Stats.png")">
+                    </a>
+                    <a href="#" class="right-links">
+                        <img class="right-link" src="@Url.Content("~/images/Alerts.png")">
+                    </a>
+                    <a href="@Url.Action("Settings", "ExpenseManager")" class="right-links">
+                        <img class="right-link" src="@Url.Content("~/images/Account.png")">
+                    </a>
                 </div>
-                @foreach (var action in transferDtos.Where(t => t.Upcoming == false).OrderByDescending(t => t.CreatedAt).Take(settingsDto.NumberOfDisplayedActions))
-                {
-
-                    <div class="actions-query">
-                        <img class="actions-query-category" src="" alt="">
-                        <p class="actions-query-description">@action.Description</p>
-                        <p class="actions-query-date">@action.CreatedAt.ToString("dd.MM.yyyy")</p>
-                        <p class="actions-query-value @(action.Ingoing ? "ingoing-value" : "outgoing-value")">@action.Value@settingsDto.Currency</p>
+                <div class="actions">
+                    <div class="recent-actions">
+                        <p>Recent Actions</p>
+                        <a href="#"><img class="actions-show-more" src="@Url.Content("~/images/More.png")" alt="show more"></a>
                     </div>
-                }
-                <div class="upcoming-actions">
-                    <p>Upcoming Actions</p>
+                    @foreach (var action in transferDtos.Where(t => t.Upcoming == false).OrderByDescending(t => t.CreatedAt).Take(settingsDto.NumberOfDisplayedActions))
+                    {
 
-                    <a href="#"><img class="actions-show-more" src="@Url.Content("~/images/More.png")" alt="show more"></a>
+                        <div class="actions-query">
+                            <img class="actions-query-category" src="" alt="">
+                            <p class="actions-query-description">@action.Description</p>
+                            <p class="actions-query-date">@action.CreatedAt.ToString("dd.MM.yyyy")</p>
+                            <p class="actions-query-value @(action.Ingoing ? "ingoing-value" : "outgoing-value")">@action.Value@settingsDto.Currency</p>
+                        </div>
+                    }
+                    <div class="upcoming-actions">
+                        <p>Upcoming Actions</p>
+
+                        <a href="#"><img class="actions-show-more" src="@Url.Content("~/images/More.png")" alt="show more"></a>
+                    </div>
+                    @foreach (var action in transferDtos.Where(t => t.Upcoming == true).OrderByDescending(t => t.CreatedAt).Take(1))
+                    {
+                        <div class="actions-query">
+                            <img class="actions-query-category" src="" alt="">
+                            <p class="actions-query-description">@action.Description</p>
+                            <p class="actions-query-date">@action.CreatedAt.ToString("dd.MM.yyyy")</p>
+                            <p class="actions-query-value @(action.Ingoing ? "ingoing-value" : "outgoing-value")">@action.Value@settingsDto.Currency</p>
+                        </div>
+                    }
                 </div>
-                @foreach (var action in transferDtos.Where(t => t.Upcoming == true).OrderByDescending(t => t.CreatedAt).Take(1))
-                {
-                    <div class="actions-query">
-                        <img class="actions-query-category" src="" alt="">
-                        <p class="actions-query-description">@action.Description</p>
-                        <p class="actions-query-date">@action.CreatedAt.ToString("dd.MM.yyyy")</p>
-                        <p class="actions-query-value @(action.Ingoing ? "ingoing-value" : "outgoing-value")">@action.Value@settingsDto.Currency</p>
-                    </div>
-                }
-            </div>
+            }
         </div>
     }
     else if(settingsDto?.Language == "deutsch")
     {
         <div class="left-rectangle">
-            <img class="logo" src="@Url.Content("~/images/Logo.png")">
+            <a href="@Url.Action("Dashboard", "ExpenseManager")">
+                <img class="logo" src="@Url.Content("~/images/Logo.png")">
+            </a>
+            @if (SignInManager.IsSignedIn(User))
+            {
             <a href="@Url.Action("Dashboard", "ExpenseManager")" class="link first-group first-element">
                 <img src="@Url.Content("~/images/Dashboard.png")">
                 <span class="text">Hauptseite</span>
@@ -124,127 +136,139 @@
                 <img src="@Url.Content("~/images/ContactUs.png")">
                 <span class="text">Kontakt</span>
             </a>
+            }
             <partial name="_LoginPartial" />
         </div>
 
         <div class="right-rectangle">
-            <div class="right-content">
-                <a href="#" class="right-links">
-                    <img class="right-link" src="@Url.Content("~/images/Stats.png")">
-                </a>
-                <a href="#" class="right-links">
-                    <img class="right-link" src="@Url.Content("~/images/Alerts.png")">
-                </a>
-                <a href="#" class="right-links">
-                    <img class="right-link" src="@Url.Content("~/images/Account.png")">
-                </a>
-            </div>
-            <div class="actions">
-                <div class="recent-actions">
-                    <p>Aktuelle Aktionen</p>
-                    <a href="#"><img class="actions-show-more" src="@Url.Content("~/images/More.png")" alt="show more"></a>
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <div class="right-content">
+                    <a href="#" class="right-links">
+                        <img class="right-link" src="@Url.Content("~/images/Stats.png")">
+                    </a>
+                    <a href="#" class="right-links">
+                        <img class="right-link" src="@Url.Content("~/images/Alerts.png")">
+                    </a>
+                    <a href="#" class="right-links">
+                        <img class="right-link" src="@Url.Content("~/images/Account.png")">
+                    </a>
                 </div>
-                @foreach (var action in transferDtos.Where(t => t.Upcoming == false).OrderByDescending(t => t.CreatedAt).Take(settingsDto.NumberOfDisplayedActions))
-                {
-
-                    <div class="actions-query">
-                        <img class="actions-query-category" src="" alt="">
-                        <p class="actions-query-description">@action.Description</p>
-                        <p class="actions-query-date">@action.CreatedAt.ToString("dd.MM.yyyy")</p>
-                        <p class="actions-query-value @(action.Ingoing ? "ingoing-value" : "outgoing-value")">@action.Value</p>
+                <div class="actions">
+                    <div class="recent-actions">
+                        <p>Aktuelle Aktionen</p>
+                        <a href="#"><img class="actions-show-more" src="@Url.Content("~/images/More.png")" alt="show more"></a>
                     </div>
-                }
-                <div class="upcoming-actions">
-                    <p>Bevorstehende Aktionen</p>
+                    @foreach (var action in transferDtos.Where(t => t.Upcoming == false).OrderByDescending(t => t.CreatedAt).Take(settingsDto.NumberOfDisplayedActions))
+                    {
 
-                    <a href="#"><img class="actions-show-more" src="@Url.Content("~/images/More.png")" alt="show more"></a>
+                        <div class="actions-query">
+                            <img class="actions-query-category" src="" alt="">
+                            <p class="actions-query-description">@action.Description</p>
+                            <p class="actions-query-date">@action.CreatedAt.ToString("dd.MM.yyyy")</p>
+                            <p class="actions-query-value @(action.Ingoing ? "ingoing-value" : "outgoing-value")">@action.Value</p>
+                        </div>
+                    }
+                    <div class="upcoming-actions">
+                        <p>Bevorstehende Aktionen</p>
+
+                        <a href="#"><img class="actions-show-more" src="@Url.Content("~/images/More.png")" alt="show more"></a>
+                    </div>
+                    @foreach (var action in transferDtos.Where(t => t.Upcoming == true).OrderByDescending(t => t.CreatedAt).Take(1))
+                    {
+                        <div class="actions-query">
+                            <img class="actions-query-category" src="" alt="">
+                            <p class="actions-query-description">@action.Description</p>
+                            <p class="actions-query-date">@action.CreatedAt.ToString("dd.MM.yyyy")</p>
+                            <p class="actions-query-value @(action.Ingoing ? "ingoing-value" : "outgoing-value")">@action.Value</p>
+                        </div>
+                    }
                 </div>
-                @foreach (var action in transferDtos.Where(t => t.Upcoming == true).OrderByDescending(t => t.CreatedAt).Take(1))
-                {
-                    <div class="actions-query">
-                        <img class="actions-query-category" src="" alt="">
-                        <p class="actions-query-description">@action.Description</p>
-                        <p class="actions-query-date">@action.CreatedAt.ToString("dd.MM.yyyy")</p>
-                        <p class="actions-query-value @(action.Ingoing ? "ingoing-value" : "outgoing-value")">@action.Value</p>
-                    </div>
-                }
-            </div>
+            }
         </div>
     }
     else if (settingsDto?.Language == "polski")
     {
         <div class="left-rectangle">
-            <img class="logo" src="@Url.Content("~/images/Logo.png")">
-            <a href="@Url.Action("Dashboard", "ExpenseManager")" class="link first-group first-element">
-                <img src="@Url.Content("~/images/Dashboard.png")">
-                <span class="text">Strona główna</span>
+            <a href="@Url.Action("Dashboard", "ExpenseManager")">
+                <img class="logo" src="@Url.Content("~/images/Logo.png")">
             </a>
-            <a href="@Url.Action("Transfers", "ExpenseManager")" class="link first-group">
-                <img src="@Url.Content("~/images/Transfers.png")">
-                <span class="text">Transfery</span>
-            </a>
-            <a href="@Url.Action("Savings", "ExpenseManager")" class="link first-group">
-                <img src="@Url.Content("~/images/Savings.png")">
-                <span class="text">Oszczędności</span>
-            </a>
-            <a href="@Url.Action("Actions", "ExpenseManager")" class="link first-group">
-                <img src="@Url.Content("~/images/History.png")">
-                <span class="text">Akcje</span>
-            </a>
-            <hr class="line">
-            <a href="@Url.Action("Settings", "ExpenseManager")" class="link second-group">
-                <img src="@Url.Content("~/images/Settings.png")">
-                <span class="text">Ustawienia</span>
-            </a>
-            <a href="@Url.Action("Settings", "ExpenseManager")" class="link second-group">
-                <img src="@Url.Content("~/images/ContactUs.png")">
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <a href="@Url.Action("Dashboard", "ExpenseManager")" class="link first-group first-element">
+                    <img src="@Url.Content("~/images/Dashboard.png")">
+                    <span class="text">Strona główna</span>
+                </a>
+                <a href="@Url.Action("Transfers", "ExpenseManager")" class="link first-group">
+                    <img src="@Url.Content("~/images/Transfers.png")">
+                    <span class="text">Transfery</span>
+                </a>
+                <a href="@Url.Action("Savings", "ExpenseManager")" class="link first-group">
+                    <img src="@Url.Content("~/images/Savings.png")">
+                    <span class="text">Oszczędności</span>
+                </a>
+                <a href="@Url.Action("Actions", "ExpenseManager")" class="link first-group">
+                    <img src="@Url.Content("~/images/History.png")">
+                    <span class="text">Akcje</span>
+                </a>
+                <hr class="line">
+                <a href="@Url.Action("Settings", "ExpenseManager")" class="link second-group">
+                    <img src="@Url.Content("~/images/Settings.png")">
+                    <span class="text">Ustawienia</span>
+                </a>
+                <a href="@Url.Action("Settings", "ExpenseManager")" class="link second-group">
+                    <img src="@Url.Content("~/images/ContactUs.png")">
                 <span class="text">Kontakt</span>
             </a>
+            }
             <partial name="_LoginPartial" />
         </div>
 
         <div class="right-rectangle">
-            <div class="right-content">
-                <a href="#" class="right-links">
-                    <img class="right-link" src="@Url.Content("~/images/Stats.png")">
-                </a>
-                <a href="#" class="right-links">
-                    <img class="right-link" src="@Url.Content("~/images/Alerts.png")">
-                </a>
-                <a href="#" class="right-links">
-                    <img class="right-link" src="@Url.Content("~/images/Account.png")">
-                </a>
-            </div>
-            <div class="actions">
-                <div class="recent-actions">
-                    <p>Ostatnie Akcje</p>
-                    <a href="#"><img class="actions-show-more" src="@Url.Content("~/images/More.png")" alt="show more"></a>
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <div class="right-content">
+                    <a href="#" class="right-links">
+                        <img class="right-link" src="@Url.Content("~/images/Stats.png")">
+                    </a>
+                    <a href="#" class="right-links">
+                        <img class="right-link" src="@Url.Content("~/images/Alerts.png")">
+                    </a>
+                    <a href="#" class="right-links">
+                        <img class="right-link" src="@Url.Content("~/images/Account.png")">
+                    </a>
                 </div>
-                @foreach (var action in transferDtos.Where(t => t.Upcoming == false).OrderByDescending(t => t.CreatedAt).Take(settingsDto.NumberOfDisplayedActions))
-                {
-
-                    <div class="actions-query">
-                        <img class="actions-query-category" src="" alt="">
-                        <p class="actions-query-description">@action.Description</p>
-                        <p class="actions-query-date">@action.CreatedAt.ToString("dd.MM.yyyy")</p>
-                        <p class="actions-query-value @(action.Ingoing ? "ingoing-value" : "outgoing-value")">@action.Value</p>
+                <div class="actions">
+                    <div class="recent-actions">
+                        <p>Ostatnie Akcje</p>
+                        <a href="#"><img class="actions-show-more" src="@Url.Content("~/images/More.png")" alt="show more"></a>
                     </div>
-                }
-                <div class="upcoming-actions">
-                    <p>Nadchodzące Akcje</p>
+                    @foreach (var action in transferDtos.Where(t => t.Upcoming == false).OrderByDescending(t => t.CreatedAt).Take(settingsDto.NumberOfDisplayedActions))
+                    {
 
-                    <a href="#"><img class="actions-show-more" src="@Url.Content("~/images/More.png")" alt="show more"></a>
+                        <div class="actions-query">
+                            <img class="actions-query-category" src="" alt="">
+                            <p class="actions-query-description">@action.Description</p>
+                            <p class="actions-query-date">@action.CreatedAt.ToString("dd.MM.yyyy")</p>
+                            <p class="actions-query-value @(action.Ingoing ? "ingoing-value" : "outgoing-value")">@action.Value</p>
+                        </div>
+                    }
+                    <div class="upcoming-actions">
+                        <p>Nadchodzące Akcje</p>
+
+                        <a href="#"><img class="actions-show-more" src="@Url.Content("~/images/More.png")" alt="show more"></a>
+                    </div>
+                    @foreach (var action in transferDtos.Where(t => t.Upcoming == true).OrderByDescending(t => t.CreatedAt).Take(1))
+                    {
+                        <div class="actions-query">
+                            <img class="actions-query-category" src="" alt="">
+                            <p class="actions-query-description">@action.Description</p>
+                            <p class="actions-query-date">@action.CreatedAt.ToString("dd.MM.yyyy")</p>
+                            <p class="actions-query-value @(action.Ingoing ? "ingoing-value" : "outgoing-value")">@action.Value</p>
+                        </div>
+                    }
                 </div>
-                @foreach (var action in transferDtos.Where(t => t.Upcoming == true).OrderByDescending(t => t.CreatedAt).Take(1))
-                {
-                    <div class="actions-query">
-                        <img class="actions-query-category" src="" alt="">
-                        <p class="actions-query-description">@action.Description</p>
-                        <p class="actions-query-date">@action.CreatedAt.ToString("dd.MM.yyyy")</p>
-                        <p class="actions-query-value @(action.Ingoing ? "ingoing-value" : "outgoing-value")">@action.Value</p>
-                    </div>
-                }
-            </div>
+            }
         </div>
     }
     @RenderBody()

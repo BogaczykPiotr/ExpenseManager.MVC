@@ -1605,6 +1605,9 @@ input:checked + label {
 }
 /*partial view*/
 .register-btn {
+    position: absolute;
+    top: 80vw;
+    left: 4vw;
     color: rgb(175, 175, 175);
     font-size: 1.6vw;
     font-weight: bold;
@@ -1614,6 +1617,9 @@ input:checked + label {
     text-decoration: none;
 }
 .login-btn {
+    position: absolute;
+    top: 80vw;
+    left: 4vw;
     color: rgb(175, 175, 175);
     font-size: 1.6vw;
     font-weight: bold;
