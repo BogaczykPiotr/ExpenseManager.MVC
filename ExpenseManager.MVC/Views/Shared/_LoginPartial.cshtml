@@ -12,8 +12,12 @@
     }
     else
     {
-        <a class="register-btn" asp-area="Identity" asp-page="/Account/Register">Register</a>
-        <a class="login-btn" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        <div class="landing-page">
+        <h1>Welcome in Expense Manager</h1>
+        <p>If you have an account <a asp-area="Identity" asp-page="/Account/Login">Login</a></p>
+        <p>Create an account <a asp-area="Identity" asp-page="/Account/Register">Register</a></p>
+        </div>
+        
     }
 
 

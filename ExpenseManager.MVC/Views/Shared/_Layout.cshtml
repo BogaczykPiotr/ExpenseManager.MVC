@@ -19,12 +19,13 @@
 <body>
     @if (settingsDto?.Language == "english")
     {
+        @if (SignInManager.IsSignedIn(User))
+        {
             <div class="left-rectangle">
-            <a href="@Url.Action("Dashboard", "ExpenseManager")">
+                <a href="@Url.Action("Dashboard", "ExpenseManager")">
                 <img class="logo" src="@Url.Content("~/images/Logo.png")">
             </a>
-                @if(SignInManager.IsSignedIn(User))
-                {
+                
                 <a href="@Url.Action("Dashboard", "ExpenseManager")" class="link first-group first-element">
                     <img src="@Url.Content("~/images/Dashboard.png")">
                     <span class="text">Dashboard</span>
@@ -50,15 +51,13 @@
                     <img src="@Url.Content("~/images/ContactUs.png")">
                     <span class="text">Contact us</span>
                 </a>
-                }
-                
-               
-            <partial name="_LoginPartial" />
+                <partial name="_LoginPartial" />
             </div>
+        }
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <div class="right-rectangle">
 
-        <div class="right-rectangle">
-            @if (SignInManager.IsSignedIn(User))
-            {
                 <div class="right-content">
                     <a href="#" class="right-links">
                         <img class="right-link" src="@Url.Content("~/images/Stats.png")">
@@ -100,17 +99,19 @@
                         </div>
                     }
                 </div>
-            }
+            
         </div>
+        }
     }
     else if(settingsDto?.Language == "deutsch")
     {
-        <div class="left-rectangle">
-            <a href="@Url.Action("Dashboard", "ExpenseManager")">
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <div class="left-rectangle">
+                <a href="@Url.Action("Dashboard", "ExpenseManager")">
                 <img class="logo" src="@Url.Content("~/images/Logo.png")">
             </a>
-            @if (SignInManager.IsSignedIn(User))
-            {
+            
             <a href="@Url.Action("Dashboard", "ExpenseManager")" class="link first-group first-element">
                 <img src="@Url.Content("~/images/Dashboard.png")">
                 <span class="text">Hauptseite</span>
@@ -136,13 +137,13 @@
                 <img src="@Url.Content("~/images/ContactUs.png")">
                 <span class="text">Kontakt</span>
             </a>
-            }
-            <partial name="_LoginPartial" />
+                <partial name="_LoginPartial" />
         </div>
+        }
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <div class="right-rectangle">
 
-        <div class="right-rectangle">
-            @if (SignInManager.IsSignedIn(User))
-            {
                 <div class="right-content">
                     <a href="#" class="right-links">
                         <img class="right-link" src="@Url.Content("~/images/Stats.png")">
@@ -184,17 +185,19 @@
                         </div>
                     }
                 </div>
-            }
+            
         </div>
+        }
     }
     else if (settingsDto?.Language == "polski")
     {
-        <div class="left-rectangle">
-            <a href="@Url.Action("Dashboard", "ExpenseManager")">
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <div class="left-rectangle">
+                <a href="@Url.Action("Dashboard", "ExpenseManager")">
                 <img class="logo" src="@Url.Content("~/images/Logo.png")">
             </a>
-            @if (SignInManager.IsSignedIn(User))
-            {
+            
                 <a href="@Url.Action("Dashboard", "ExpenseManager")" class="link first-group first-element">
                     <img src="@Url.Content("~/images/Dashboard.png")">
                     <span class="text">Strona główna</span>
@@ -220,13 +223,13 @@
                     <img src="@Url.Content("~/images/ContactUs.png")">
                 <span class="text">Kontakt</span>
             </a>
-            }
-            <partial name="_LoginPartial" />
+                <partial name="_LoginPartial" />
         </div>
+        }
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <div class="right-rectangle">
 
-        <div class="right-rectangle">
-            @if (SignInManager.IsSignedIn(User))
-            {
                 <div class="right-content">
                     <a href="#" class="right-links">
                         <img class="right-link" src="@Url.Content("~/images/Stats.png")">
@@ -268,9 +271,15 @@
                         </div>
                     }
                 </div>
-            }
+            
         </div>
+        }
     }
+    @if(!SignInManager.IsSignedIn(User))
+    {
+        <partial name="_LoginPartial" />
+    }
+    
     @RenderBody()
 
     <footer>

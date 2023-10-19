@@ -1604,27 +1604,11 @@ input:checked + label {
     margin-top: 2vw;
 }
 /*partial view*/
-.register-btn {
-    position: absolute;
-    top: 80vw;
-    left: 4vw;
-    color: rgb(175, 175, 175);
-    font-size: 1.6vw;
-    font-weight: bold;
-    position: relative;
-    margin-left: 10%;
-    flex-shrink: 0;
-    text-decoration: none;
+.landing-page {
+    text-align: center;
+    color: rgb(175,175,175);
+    margin-top: 10vw;
 }
-.login-btn {
-    position: absolute;
-    top: 80vw;
-    left: 4vw;
-    color: rgb(175, 175, 175);
-    font-size: 1.6vw;
-    font-weight: bold;
-    position: relative;
-    margin-left: 10%;
-    flex-shrink: 0;
+.landing-page p a {
     text-decoration: none;
 }
