@@ -1,4 +1,6 @@
-﻿namespace ExpenseManager.Domain.Entities
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace ExpenseManager.Domain.Entities
 {
     public class Stat
     {
@@ -7,6 +9,8 @@
         public float Spent { get; set; }
         public float Left { get; set; }
         public SavingGoal SavingGoal { get; set; }
+        public string? CreatedById { get; set; }
+        public IdentityUser? CreatedBy { get; set; }
 
     }
 }

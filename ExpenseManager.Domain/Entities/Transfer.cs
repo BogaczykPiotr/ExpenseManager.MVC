@@ -1,4 +1,6 @@
 ﻿
+using Microsoft.AspNetCore.Identity;
+
 namespace ExpenseManager.Domain.Entities
 {
     public class Transfer
@@ -10,5 +12,7 @@ namespace ExpenseManager.Domain.Entities
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public bool Ingoing { get; set; }
         public bool Upcoming { get; set; } = false;
+        public string? CreatedById { get; set; }
+        public IdentityUser? CreatedBy { get; set; }
     }
 }

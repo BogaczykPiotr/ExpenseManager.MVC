@@ -8,12 +8,10 @@ namespace ExpenseManager.Application.ApplicationUser
 {
     public class CurrentUser
     {
-        public CurrentUser(string id, string email)
+        public CurrentUser(string id)
         {
             id = Id;
-            email = Email;
         }
         public string Id { get; set; }
-        public string Email { get; set; }
     }
 }
