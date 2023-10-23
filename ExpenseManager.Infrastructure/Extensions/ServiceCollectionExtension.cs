@@ -16,7 +16,10 @@ namespace ExpenseManager.Infrastructure.Extensions
             services.AddDbContext<Persistence.ExpenseDbContext>(options
                 => options.UseSqlServer(configuration.GetConnectionString("Database")));
 
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddDefaultIdentity<IdentityUser>(options =>
+            {
+                options.Stores.MaxLengthForKeys = 450;
+            })
                 .AddEntityFrameworkStores<ExpenseDbContext>();
 
 
