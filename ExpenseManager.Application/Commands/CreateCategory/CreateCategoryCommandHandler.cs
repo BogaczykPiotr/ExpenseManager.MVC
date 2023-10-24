@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ExpenseManager.Application.ApplicationUser;
 using ExpenseManager.Application.DTOS;
 using ExpenseManager.Domain.Entities;
 using ExpenseManager.Domain.Interfaces;
@@ -15,14 +16,19 @@ namespace ExpenseManager.Application.Commands.CreateCategory
     { 
         private readonly IExpenseManagerRepository _expenseManagerRepository;
         private readonly IMapper _mapper;
-        public CreateCategoryCommandHandler(IExpenseManagerRepository expenseManagerRepository, IMapper mapper)
+        private readonly IUserContext _userContext;
+        public CreateCategoryCommandHandler(IExpenseManagerRepository expenseManagerRepository, IMapper mapper, IUserContext userContext)
         {
             _expenseManagerRepository = expenseManagerRepository;
             _mapper = mapper;
+            _userContext = userContext;
         }
         public async Task<Unit> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
         {
             var category = _mapper.Map<Category>(request);
+
+            category.CreatedById = _userContext.GetCurrentUser().Id;    
+
             await _expenseManagerRepository.CreateCategory(category);
 
             return Unit.Value;

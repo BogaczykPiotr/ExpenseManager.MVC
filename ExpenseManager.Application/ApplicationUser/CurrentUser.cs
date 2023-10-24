@@ -10,7 +10,7 @@ namespace ExpenseManager.Application.ApplicationUser
     {
         public CurrentUser(string id)
         {
-            id = Id;
+            Id = id;
         }
         public string Id { get; set; }
     }
