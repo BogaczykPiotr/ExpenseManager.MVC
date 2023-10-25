@@ -23,7 +23,7 @@ public class GetAllTransfersQueryHandler : IRequestHandler<GetAllTransfersQuery,
         {
             var Transfers = await _expenseManagerRepository.GetAllTransfers();
             var Dtos = _mapper.Map<IEnumerable<TransferDto>>(Transfers);
-
+            
             return Dtos;
         }
     }

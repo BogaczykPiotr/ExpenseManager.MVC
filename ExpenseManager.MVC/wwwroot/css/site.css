@@ -1607,12 +1607,9 @@ input:checked + label {
 .landing-page {
     text-align: center;
     color: rgb(175,175,175);
-    margin-top: 10vw;
+    margin-top: 12vw;
 }
 .landing-page p a {
     text-decoration: none;
     color: rgb(63, 153, 68)
-}
-.landing-page p a : hover {
-
 }
