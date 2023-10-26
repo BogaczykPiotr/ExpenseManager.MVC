@@ -39,8 +39,12 @@ namespace ExpenseManager.Infrastructure.Repositories
 
         public async Task<IEnumerable<Category>> GetAllCategories()
             => await _dbContext.Categories.ToListAsync();
-        public async Task<IEnumerable<Transfer>> GetAllTransfers()
-            => await _dbContext.Transfers.ToListAsync();
+        public async Task<IEnumerable<Transfer>> GetAllTransfers(string userId)
+        {
+            return await _dbContext.Transfers
+                .Where(t => t.CreatedById == userId)
+                .ToListAsync();
+        }
 
         public async Task<IEnumerable<SavingGoal>> GetAllSavingGoals()
             => await _dbContext.SavingGoals.ToListAsync();

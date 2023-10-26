@@ -40,7 +40,7 @@ namespace ExpenseManager.MVC.Controllers
             var stats = await _mediator.Send(new GetStatValuesQuery());
             return View(stats);
         }
-        [Authorize]
+        
         public async Task<IActionResult> Transfers()
         {
             await ViewLayoutData();
