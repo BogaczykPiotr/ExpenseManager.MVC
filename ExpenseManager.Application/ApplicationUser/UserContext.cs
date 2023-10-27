@@ -30,7 +30,10 @@ namespace ExpenseManager.Application.ApplicationUser
             }
 
             var id = user.FindFirst(c => c.Type == ClaimTypes.NameIdentifier)!.Value;
-
+            if (id == null)
+            {
+                return null;
+            }
             return new CurrentUser(id);
         }
 

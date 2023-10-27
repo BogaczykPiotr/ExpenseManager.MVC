@@ -37,8 +37,13 @@ namespace ExpenseManager.Infrastructure.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Category>> GetAllCategories()
-            => await _dbContext.Categories.ToListAsync();
+        public async Task<IEnumerable<Category>> GetAllCategories(string userId)
+        {
+            return await _dbContext.Categories
+                .Where(c => c.CreatedById == userId)
+                .ToListAsync();
+        }
+            
         public async Task<IEnumerable<Transfer>> GetAllTransfers(string userId)
         {
             return await _dbContext.Transfers
@@ -46,8 +51,12 @@ namespace ExpenseManager.Infrastructure.Repositories
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<SavingGoal>> GetAllSavingGoals()
-            => await _dbContext.SavingGoals.ToListAsync();
+        public async Task<IEnumerable<SavingGoal>> GetAllSavingGoals(string userId)
+        {
+            return await _dbContext.SavingGoals
+                .Where(sg => sg.CreatedById == userId)
+                .ToListAsync();
+        }
 
         public async Task<SavingGoal> GetLastSavingGoal()
             => await _dbContext.SavingGoals.OrderByDescending(sg => sg.Id).FirstOrDefaultAsync();
