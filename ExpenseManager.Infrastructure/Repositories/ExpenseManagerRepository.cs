@@ -37,26 +37,6 @@ namespace ExpenseManager.Infrastructure.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Category>> GetAllCategories(string userId)
-        {
-            return await _dbContext.Categories
-                .Where(c => c.CreatedById == userId)
-                .ToListAsync();
-        }
-            
-        public async Task<IEnumerable<Transfer>> GetAllTransfers(string userId)
-        {
-            return await _dbContext.Transfers
-                .Where(t => t.CreatedById == userId)
-                .ToListAsync();
-        }
-
-        public async Task<IEnumerable<SavingGoal>> GetAllSavingGoals(string userId)
-        {
-            return await _dbContext.SavingGoals
-                .Where(sg => sg.CreatedById == userId)
-                .ToListAsync();
-        }
 
         public async Task<SavingGoal> GetLastSavingGoal()
             => await _dbContext.SavingGoals.OrderByDescending(sg => sg.Id).FirstOrDefaultAsync();
@@ -77,5 +57,25 @@ namespace ExpenseManager.Infrastructure.Repositories
             => _dbContext.Transfers.Remove(transfer);
         public async Task DeleteCategory(Category category)
             => _dbContext.Categories.Remove(category);
+
+        public async Task<IEnumerable<Transfer>> GetAllTransfers(string id)
+        {
+            return await _dbContext.Transfers
+                .Where(t => t.CreatedById == id)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<SavingGoal>> GetAllSavingGoals(string id)
+        {
+            return await _dbContext.SavingGoals
+                .Where(sg => sg.CreatedById == id)
+                .ToListAsync();
+        }
+        public async Task<IEnumerable<Category>> GetAllCategories(string id)
+        {
+            return await _dbContext.Categories
+                .Where(c => c.CreatedById == id)
+                .ToListAsync();
+        }
     }
 }

@@ -24,11 +24,8 @@ public class GetAllTransfersQueryHandler : IRequestHandler<GetAllTransfersQuery,
         }
         public async Task<IEnumerable<TransferDto>> Handle(GetAllTransfersQuery request, CancellationToken cancellationToken)
         {
-            
-            var userId = _userContext.GetCurrentUser().Id;
-            var Transfers = await _expenseManagerRepository.GetAllTransfers(userId);
+            var Transfers = await _expenseManagerRepository.GetAllTransfers(_userContext.GetCurrentUser().Id);
             var Dtos = _mapper.Map<IEnumerable<TransferDto>>(Transfers);
-            Console.WriteLine(userId);
             return Dtos;
         }
     }

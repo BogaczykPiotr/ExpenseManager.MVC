@@ -26,15 +26,16 @@ namespace ExpenseManager.Application.ApplicationUser
             var user = _httpContextAccessor.HttpContext?.User;
             if (user == null)
             {
-                throw new InvalidOperationException("User not exist");
+                return null;
             }
 
-            var id = user.FindFirst(c => c.Type == ClaimTypes.NameIdentifier)!.Value;
-            if (id == null)
+            var Id = user.FindFirst(c => c.Type == ClaimTypes.NameIdentifier)!.Value;
+            if(Id == null || string.IsNullOrEmpty(Id))
             {
                 return null;
             }
-            return new CurrentUser(id);
+
+            return new CurrentUser(Id);
         }
 
     }

@@ -24,8 +24,8 @@ namespace ExpenseManager.Application.Queries.GetCategories
         }
         public async Task<IEnumerable<CategoryDto>> Handle(GetCategoriesQuery request, CancellationToken cancellationToken)
         {
-            var userId = _userContext.GetCurrentUser().Id;
-            var categories = await _expenseManagerRepository.GetAllCategories(userId);
+
+            var categories = await _expenseManagerRepository.GetAllCategories();
             var dtos = _mapper.Map<IEnumerable<CategoryDto>>(categories);
             return dtos;
         }
