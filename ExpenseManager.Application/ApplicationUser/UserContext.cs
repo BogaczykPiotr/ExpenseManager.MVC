@@ -10,7 +10,7 @@ namespace ExpenseManager.Application.ApplicationUser
 {
     public interface IUserContext
     {
-        CurrentUser GetCurrentUser();
+        CurrentUser? GetCurrentUser();
     }
 
     public class UserContext : IUserContext
@@ -21,19 +21,16 @@ namespace ExpenseManager.Application.ApplicationUser
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public CurrentUser GetCurrentUser()
+        public CurrentUser? GetCurrentUser()
         {
             var user = _httpContextAccessor.HttpContext?.User;
-            if (user == null)
+
+            if(user.Identity == null || !user.Identity.IsAuthenticated)
             {
                 return null;
             }
 
             var Id = user.FindFirst(c => c.Type == ClaimTypes.NameIdentifier)!.Value;
-            if(Id == null || string.IsNullOrEmpty(Id))
-            {
-                return null;
-            }
 
             return new CurrentUser(Id);
         }

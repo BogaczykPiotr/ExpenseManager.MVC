@@ -9,7 +9,6 @@ namespace ExpenseManager.Application.Queries.GetStatValues
     {
         private readonly IExpenseManagerRepository _expenseManagerRepository;
         private readonly IUserContext _userContext;
-
         public GetStatValuesQueryHandler(IExpenseManagerRepository expenseManagerRepository, IUserContext userContext)
         {
             _expenseManagerRepository = expenseManagerRepository;
@@ -18,7 +17,8 @@ namespace ExpenseManager.Application.Queries.GetStatValues
 
         public async Task<StatDto> Handle(GetStatValuesQuery request, CancellationToken cancellationToken)
         {
-            var transfers = await _expenseManagerRepository.GetAllTransfers(_userContext.GetCurrentUser().Id);
+            var userId = _userContext.GetCurrentUser()?.Id;
+            var transfers = await _expenseManagerRepository.GetAllTransfers(userId);
             var savingGoal = await _expenseManagerRepository.GetLastSavingGoal();
 
             var statDto = new StatDto();

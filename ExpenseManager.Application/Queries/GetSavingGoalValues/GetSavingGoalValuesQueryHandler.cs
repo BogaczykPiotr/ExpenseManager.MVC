@@ -15,17 +15,15 @@ namespace ExpenseManager.Application.Queries.GetSavingGoalValues
     {
         private readonly IExpenseManagerRepository _expenseManagerRepository;
         private readonly IMapper _mapper;
-        private readonly IUserContext _userContext;
 
-        public GetSavingGoalValuesQueryHandler(IExpenseManagerRepository expenseManagerRepository, IMapper mapper, IUserContext userContext)
+        public GetSavingGoalValuesQueryHandler(IExpenseManagerRepository expenseManagerRepository, IMapper mapper)
         {
             _expenseManagerRepository = expenseManagerRepository;
             _mapper = mapper;
-            _userContext = userContext;
         }
         public async Task<IEnumerable<SavingGoalDto>> Handle(GetSavingGoalValuesQuery request, CancellationToken cancellationToken)
         {
-            var lastSavingGoal = await _expenseManagerRepository.GetAllSavingGoals(_userContext.GetCurrentUser().Id);
+            var lastSavingGoal = await _expenseManagerRepository.GetAllSavingGoals();
             var dtos = _mapper.Map<IEnumerable<SavingGoalDto>>(lastSavingGoal);
 
             return dtos;

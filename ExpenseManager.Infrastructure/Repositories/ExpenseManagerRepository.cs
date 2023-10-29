@@ -58,24 +58,16 @@ namespace ExpenseManager.Infrastructure.Repositories
         public async Task DeleteCategory(Category category)
             => _dbContext.Categories.Remove(category);
 
-        public async Task<IEnumerable<Transfer>> GetAllTransfers(string id)
+        public async Task<IEnumerable<Transfer>> GetAllTransfers(string userId)
         {
             return await _dbContext.Transfers
-                .Where(t => t.CreatedById == id)
+                .Where(t => t.CreatedById == userId)
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<SavingGoal>> GetAllSavingGoals(string id)
-        {
-            return await _dbContext.SavingGoals
-                .Where(sg => sg.CreatedById == id)
-                .ToListAsync();
-        }
-        public async Task<IEnumerable<Category>> GetAllCategories(string id)
-        {
-            return await _dbContext.Categories
-                .Where(c => c.CreatedById == id)
-                .ToListAsync();
-        }
+        public async Task<IEnumerable<SavingGoal>> GetAllSavingGoals()
+            => await _dbContext.SavingGoals.ToListAsync();
+        public async Task<IEnumerable<Category>> GetAllCategories()
+            => await _dbContext.Categories.ToListAsync();
     }
 }

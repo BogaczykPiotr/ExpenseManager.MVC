@@ -25,9 +25,7 @@ namespace ExpenseManager.Application.Commands.CreateCategory
         }
         public async Task<Unit> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
         {
-            var category = _mapper.Map<Category>(request);
-
-            category.CreatedById = _userContext.GetCurrentUser().Id;    
+            var category = _mapper.Map<Category>(request); 
 
             await _expenseManagerRepository.CreateCategory(category);
 

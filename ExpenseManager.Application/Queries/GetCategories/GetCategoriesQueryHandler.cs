@@ -15,12 +15,10 @@ namespace ExpenseManager.Application.Queries.GetCategories
     {
         private readonly IExpenseManagerRepository _expenseManagerRepository;
         private readonly IMapper _mapper;
-        private readonly IUserContext _userContext;
-        public GetCategoriesQueryHandler(IExpenseManagerRepository expenseManagerRepository, IMapper mapper, IUserContext userContext)
+        public GetCategoriesQueryHandler(IExpenseManagerRepository expenseManagerRepository, IMapper mapper)
         {
             _expenseManagerRepository = expenseManagerRepository;
             _mapper = mapper;
-            _userContext = userContext;
         }
         public async Task<IEnumerable<CategoryDto>> Handle(GetCategoriesQuery request, CancellationToken cancellationToken)
         {
