@@ -9,9 +9,9 @@ namespace ExpenseManager.Domain.Interfaces
 {
     public interface IExpenseManagerRepository
     {
-        Task<IEnumerable<Transfer>> GetAllTransfers(string userId);
-        Task<IEnumerable<SavingGoal>> GetAllSavingGoals();
-        Task<IEnumerable<Category>> GetAllCategories();
+        Task<IEnumerable<Transfer>> GetAllTransfers(string Id);
+        Task<IEnumerable<SavingGoal>> GetAllSavingGoals(string Id);
+        Task<IEnumerable<Category>> GetAllCategories(string Id);
 
         Task CreateTransfer(Transfer transfer);
 
