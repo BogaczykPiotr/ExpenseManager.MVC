@@ -1,4 +1,6 @@
-﻿using ExpenseManager.Domain.Entities;
+﻿using ExpenseManager.Application.ApplicationUser;
+using ExpenseManager.Application.DTOS;
+using ExpenseManager.Domain.Entities;
 using ExpenseManager.Domain.Interfaces;
 using ExpenseManager.Infrastructure.Persistence;
 using System;
@@ -12,12 +14,10 @@ namespace ExpenseManager.Infrastructure.Seeders
     public class Seeder
     {
         private readonly ExpenseDbContext _dbContext;
-
-        public Seeder(ExpenseDbContext dbContext)
+        public Seeder(ExpenseDbContext dbContext, IUserContext userContext)
         {
             _dbContext = dbContext;
         }
-
         public async Task Seed()
         {
             if (await _dbContext.Database.CanConnectAsync())
@@ -28,7 +28,7 @@ namespace ExpenseManager.Infrastructure.Seeders
                     {
                         Language = "english",
                         Currency = "$",
-                        NumberOfDisplayedActions = 3
+                        NumberOfDisplayedActions = 3,
                     };
 
                     _dbContext.Add(settings);
@@ -40,7 +40,7 @@ namespace ExpenseManager.Infrastructure.Seeders
                     var savingGoal = new SavingGoal()
                     {
                         CreatedAt = DateTime.Now,
-                        Goal = 0
+                        Goal = 0,
                     };
 
                     _dbContext.SavingGoals.Add(savingGoal);

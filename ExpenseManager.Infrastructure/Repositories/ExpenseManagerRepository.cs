@@ -61,20 +61,20 @@ namespace ExpenseManager.Infrastructure.Repositories
         public async Task<IEnumerable<Transfer>> GetAllTransfers(string Id)
         {
             return await _dbContext.Transfers
-                .Where(t => t.CreatedById == Id)
+                .Where(t => t.CreatedById == Id || t.CreatedById == null)
                 .ToListAsync();
         }
 
         public async Task<IEnumerable<SavingGoal>> GetAllSavingGoals(string Id)
         {
             return await _dbContext.SavingGoals
-                .Where(sg => sg.CreatedById == Id)
+                .Where(sg => sg.CreatedById == Id || sg.CreatedById == null)
                 .ToListAsync();
         }
         public async Task<IEnumerable<Category>> GetAllCategories(string Id)
         {
             return await _dbContext.Categories
-                .Where(c => c.CreatedById == Id)
+                .Where(c => c.CreatedById == Id || c.CreatedById == null)
                 .ToListAsync();
         }
     }
