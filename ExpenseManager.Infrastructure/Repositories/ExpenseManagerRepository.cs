@@ -74,7 +74,7 @@ namespace ExpenseManager.Infrastructure.Repositories
         public async Task<IEnumerable<Category>> GetAllCategories(string Id)
         {
             return await _dbContext.Categories
-                .Where(c => c.CreatedById == Id || c.CreatedById == null)
+                .Where(c => c.CreatedById == Id)
                 .ToListAsync();
         }
     }
