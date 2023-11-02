@@ -233,10 +233,7 @@ namespace ExpenseManager.MVC.Controllers
                 command.NumberOfDisplayedActions = currentSettings.NumberOfDisplayedActions;
             }
 
-            if (ModelState.IsValid)
-            {
                 await _mediator.Send(command);
-            }
 
 
             var viewModel = new SettingViewModel();

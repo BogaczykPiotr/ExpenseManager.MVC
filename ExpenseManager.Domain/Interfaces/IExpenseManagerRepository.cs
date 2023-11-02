@@ -25,7 +25,7 @@ namespace ExpenseManager.Domain.Interfaces
 
         Task CreateSettings(Setting settings);
 
-        Task<Setting> GetSettings();
+        Task<Setting> GetSettings(string Id);
         Task<Transfer> GetByTransferId(int id);
         Task<Category> GetByCategoryId(int id);
         Task Commit();

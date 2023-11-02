@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ExpenseManager.Application.ApplicationUser;
 using ExpenseManager.Application.DTOS;
 using ExpenseManager.Domain.Interfaces;
 using MediatR;
@@ -14,14 +15,21 @@ namespace ExpenseManager.Application.Queries.GetSettingValues
     {
         private readonly IExpenseManagerRepository _expenseManagerRepository;
         private readonly IMapper _mapper;
-        public GetSettingValuesQueryHandler(IExpenseManagerRepository expenseManagerRepository, IMapper mapper)
+        private readonly IUserContext _userContext;
+        public GetSettingValuesQueryHandler(IExpenseManagerRepository expenseManagerRepository, IMapper mapper, IUserContext userContext)
         {
             _expenseManagerRepository = expenseManagerRepository;
             _mapper = mapper;
+            _userContext = userContext;
         }
         public async Task<SettingDto> Handle(GetSettingValuesQuery request, CancellationToken cancellationToken)
         {
-            var settings = await _expenseManagerRepository.GetSettings();
+            var userId = _userContext.GetCurrentUser()?.Id;
+            if (userId == null)
+            {
+                return (SettingDto)Enumerable.Empty<SettingDto>();
+            }
+            var settings = await _expenseManagerRepository.GetSettings(userId);
             var dto = _mapper.Map<SettingDto>(settings);
             return dto;
         }

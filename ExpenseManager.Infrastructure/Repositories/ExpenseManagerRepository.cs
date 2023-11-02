@@ -41,8 +41,15 @@ namespace ExpenseManager.Infrastructure.Repositories
         public async Task<SavingGoal> GetLastSavingGoal()
             => await _dbContext.SavingGoals.OrderByDescending(sg => sg.Id).FirstOrDefaultAsync();
 
-        public async Task<Setting> GetSettings()
-            => await _dbContext.Settings.OrderByDescending(se => se.Id).FirstOrDefaultAsync();
+        public async Task<Setting> GetSettings(string Id)
+        {
+            return await _dbContext.Settings
+                .Where(se => se.CreatedById == Id || se.CreatedById == null)
+                .OrderByDescending(se => se.Id)
+                .FirstOrDefaultAsync();
+                
+                
+        }
 
         public async Task<Transfer> GetByTransferId(int id)
             => await _dbContext.Transfers.FirstAsync(t => t.Id == id);
@@ -51,7 +58,7 @@ namespace ExpenseManager.Infrastructure.Repositories
             => await _dbContext.Categories.FirstAsync(t => t.Id == id);
 
         public async Task Commit()
-            => _dbContext.SaveChangesAsync();
+            => await _dbContext.SaveChangesAsync();
 
         public async Task DeleteTransfer(Transfer transfer)
             => _dbContext.Transfers.Remove(transfer);
