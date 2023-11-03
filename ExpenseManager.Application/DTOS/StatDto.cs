@@ -12,9 +12,9 @@ namespace ExpenseManager.Application.DTOS
         public float TotalAmount { get; set; }
         public float Spent { get; set; }
         public float Left { get; set; }
-        public SavingGoal SavingGoal { get; set; }
+        public SavingGoal? SavingGoal { get; set; }
 
-        public async Task AddTotalAmountStat(IEnumerable<Transfer> transfers, SavingGoal lastSavingGoal)
+        public void AddTotalAmountStat(IEnumerable<Transfer> transfers, SavingGoal lastSavingGoal)
         {
             DateTime month = DateTime.Now.AddDays(-30);
             float totalIngoingAmountStat = 0;

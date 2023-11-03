@@ -27,7 +27,7 @@ namespace ExpenseManager.Application.Queries.GetSettingValues
             var userId = _userContext.GetCurrentUser()?.Id;
             if (userId == null)
             {
-                return (SettingDto)Enumerable.Empty<SettingDto>();
+                return null;
             }
             var settings = await _expenseManagerRepository.GetSettings(userId);
             var dto = _mapper.Map<SettingDto>(settings);

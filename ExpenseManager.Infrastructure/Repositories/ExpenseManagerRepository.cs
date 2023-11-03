@@ -47,8 +47,6 @@ namespace ExpenseManager.Infrastructure.Repositories
                 .Where(se => se.CreatedById == Id || se.CreatedById == null)
                 .OrderByDescending(se => se.Id)
                 .FirstOrDefaultAsync();
-                
-                
         }
 
         public async Task<Transfer> GetByTransferId(int id)
