@@ -1,5 +1,6 @@
 ﻿@model ExpenseManager.Application.DTOS.StatDto
 @using Microsoft.AspNetCore.Identity
+@using Newtonsoft.Json;
 @inject SignInManager<IdentityUser> SignInManager
 @{
     var settingsDto = ViewData["SettingsDto"] as ExpenseManager.Application.DTOS.SettingDto;
@@ -147,5 +148,19 @@
 
     }
 </div>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" src="@Url.Content("~/js/site.js")"></script>
+<script>
+    var dataValues = @Html.Raw(JsonConvert.SerializeObject(ViewData["Values"]));
+    var currentMonthTransfers = dataValues.filter(function (transfer) {
+        var transferDate = new Date(transfer.CreatedAt);
+        var transferMonth = transferDate.getMonth();
+        return transferMonth === new Date().getMonth();
+    });
+    var totalAmountInMonth = currentMonthTransfers.reduce(function (sum, transfer) {
+        if (transfer.Ingoing === true) {
+            sum += transfer.Value;
+        }
+        return sum;
+    }, 0);
+    console.log(totalAmountInMonth);
+</script>
