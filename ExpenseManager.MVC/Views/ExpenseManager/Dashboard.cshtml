@@ -45,7 +45,6 @@
             </select>
             <select class="time-selector">
                 <!-- for ASP edit-->
-                <option>1 day</option>
                 <option>1 week</option>
                 <option>1 month</option>
                 <option>1 year</option>
@@ -90,7 +89,6 @@
             </select>
             <select class="time-selector">
                 <!-- for ASP edit-->
-                <option>1 dzień</option>
                 <option>1 tydzień</option>
                 <option>1 miesiąc</option>
                 <option>1 rok</option>
@@ -135,7 +133,6 @@
             </select>
             <select class="time-selector">
                 <!-- for ASP edit-->
-                <option>1 Tag</option>
                 <option>1 Woche</option>
                 <option>1 Monat</option>
                 <option>1 Jahr</option>
@@ -150,17 +147,129 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" src="@Url.Content("~/js/site.js")"></script>
 <script>
-    var dataValues = @Html.Raw(JsonConvert.SerializeObject(ViewData["Values"]));
-    var currentMonthTransfers = dataValues.filter(function (transfer) {
-        var transferDate = new Date(transfer.CreatedAt);
-        var transferMonth = transferDate.getMonth();
-        return transferMonth === new Date().getMonth();
-    });
-    var totalAmountInMonth = currentMonthTransfers.reduce(function (sum, transfer) {
+    let dataValues = @Html.Raw(JsonConvert.SerializeObject(ViewData["Values"]));
+    let totalAmountInMonth = Array.from({ length: 12 }, () => 0);
+    let totalSpentInMonth = Array.from({ length: 12 }, () => 0);
+    let totalLeftInMonth = Array.from({ length: 12 }, () => 0);
+
+    dataValues.forEach(function (transfer) {
+        let transferDate = new Date(transfer.CreatedAt).getMonth();
         if (transfer.Ingoing === true) {
-            sum += transfer.Value;
+            totalAmountInMonth[transferDate] += transfer.Value;
         }
-        return sum;
-    }, 0);
-    console.log(totalAmountInMonth);
+        else if (!transfer.Ingoing) {
+            totalSpentInMonth[transferDate] += transfer.Value;
+        }
+
+        totalLeftInMonth[transferDate] = totalAmountInMonth[transferDate] - totalSpentInMonth[transferDate]
+    });
+
+    dataValues.forEach(function (transfer) {
+            let transferDate = new Date(transfer.CreatedAt);
+            let transferMonth = transferDate.getMonth();
+            
+    });
+
+
+    let canvas = document.querySelector('.dashboard-chart')
+
+    let chartSelector = document.querySelector('.chart-selector')
+    let timeSelector = document.querySelector('.time-selector')
+
+    let data = {
+        labels: ['0', '4', '8', '12', '16', '20', '24'],
+        datasets: [
+            {
+                data: [12, 19, 3, 5, 2, 3, 12, 3, 14, 5, 6, 12],
+                borderColor: 'rgba(255, 140, 0, 1)',
+                borderWidth: 3,
+            },
+        ],
+    }
+
+    let options = {
+        scales: {
+            y: {
+                beginAtZero: true,
+            },
+        },
+        plugins: {
+            legend: {
+                display: false,
+            },
+        },
+    }
+
+    let chart = new Chart(canvas, {
+        type: 'line',
+        data: data,
+        options: options,
+    })
+
+    chartSelector.addEventListener('change', function () {
+        if (chartSelector.value === 'Total Amount') {
+            data.datasets[0].data = [totalAmountInMonth[0], totalAmountInMonth[1], totalAmountInMonth[2], totalAmountInMonth[3], totalAmountInMonth[4], totalAmountInMonth[5], totalAmountInMonth[6], totalAmountInMonth[7], totalAmountInMonth[8], totalAmountInMonth[9], totalAmountInMonth[10], totalAmountInMonth[11], totalAmountInMonth[12]];
+        } else if (chartSelector.value === 'Spent') {
+            data.datasets[0].data = [totalSpentInMonth[0], totalSpentInMonth[1], totalSpentInMonth[2], totalSpentInMonth[3], totalSpentInMonth[4], totalSpentInMonth[5], totalSpentInMonth[6], totalSpentInMonth[7], totalSpentInMonth[8], totalSpentInMonth[9], totalSpentInMonth[10], totalSpentInMonth[11]]
+        } else if (chartSelector.value === 'Left') {
+            data.datasets[0].data = [totalLeftInMonth[0], totalLeftInMonth[1], totalLeftInMonth[2], totalLeftInMonth[3], totalLeftInMonth[4], totalLeftInMonth[5], totalLeftInMonth[6], totalLeftInMonth[7], totalLeftInMonth[8], totalLeftInMonth[9], totalLeftInMonth[10], totalLeftInMonth[11]]
+        } else if (chartSelector.value === 'Saving Goal') {
+            data.datasets[0].data = [12, 3, 5, 9, 7, 4, 13, 6, 8, 2, 10, 9]
+        }
+        chart.update()
+    })
+
+    timeSelector.addEventListener('change', function () {
+        if (timeSelector.value === '1 day') {
+            data.labels = ['0', '4', '8', '12', '16', '20', '24']
+        } else if (timeSelector.value === '1 week') {
+            data.labels = ['1', '2', '3', '4', '5', '6', '7']
+        } else if (timeSelector.value === '1 month') {
+            data.labels = [
+                '1',
+                '2',
+                '3',
+                '4',
+                '5',
+                '6',
+                '7',
+                '8',
+                '9',
+                '10',
+                '11',
+                '12',
+                '13',
+                '14',
+                '15',
+                '16',
+                '17',
+                '18',
+                '19',
+                '20',
+                '21',
+                '22',
+                '23',
+                '24',
+                '25',
+                '26',
+                '27',
+                '28',
+                '29',
+                '30',
+                '31',
+            ]
+        } else if (timeSelector.value === '1 year') {
+            data.labels = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
+            data.datasets[0].data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, totalAmountInMonth, 12]
+        }
+        if (data.labels.length > data.datasets[0].data.length) {
+            let dataLabelsLength = data.labels.length
+            let dataLength = data.datasets[0].data.length
+            for (let i = dataLength; i < dataLabelsLength; i++) {
+                data.datasets[0].data.push(0)
+            }
+        }
+        chart.update()
+    })
+
 </script>
