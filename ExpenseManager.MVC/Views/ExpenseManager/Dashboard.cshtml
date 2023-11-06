@@ -147,30 +147,32 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" src="@Url.Content("~/js/site.js")"></script>
 <script>
-    let dataValues = @Html.Raw(JsonConvert.SerializeObject(ViewData["Values"]));
+    let transferValues = @Html.Raw(JsonConvert.SerializeObject(ViewData["TransferValues"]));
+    let savingGoalValues = @Html.Raw(JsonConvert.SerializeObject(ViewData["SavingGoalValues"]));
+
     let totalAmountInMonth = Array.from({ length: 12 }, () => 0);
     let totalSpentInMonth = Array.from({ length: 12 }, () => 0);
     let totalLeftInMonth = Array.from({ length: 12 }, () => 0);
+    let savingGoalInMonth = Array.from({ length: 12 }, () => 0);
 
-    dataValues.forEach(function (transfer) {
+    transferValues.forEach(function (transfer) {
         let transferDate = new Date(transfer.CreatedAt).getMonth();
         if (transfer.Ingoing === true) {
             totalAmountInMonth[transferDate] += transfer.Value;
         }
         else if (!transfer.Ingoing) {
             totalSpentInMonth[transferDate] += transfer.Value;
+
         }
 
         totalLeftInMonth[transferDate] = totalAmountInMonth[transferDate] - totalSpentInMonth[transferDate]
     });
+ 
+    savingGoalValues.forEach(function (savingGoal) {
+        let savingGoalDate = new Date(savingGoal.CreatedAt).getMonth();
+            savingGoalInMonth[savingGoalDate] = savingGoal.Goal;
 
-    dataValues.forEach(function (transfer) {
-            let transferDate = new Date(transfer.CreatedAt);
-            let transferMonth = transferDate.getMonth();
-            
     });
-
-
     let canvas = document.querySelector('.dashboard-chart')
 
     let chartSelector = document.querySelector('.chart-selector')
@@ -214,7 +216,7 @@
         } else if (chartSelector.value === 'Left') {
             data.datasets[0].data = [totalLeftInMonth[0], totalLeftInMonth[1], totalLeftInMonth[2], totalLeftInMonth[3], totalLeftInMonth[4], totalLeftInMonth[5], totalLeftInMonth[6], totalLeftInMonth[7], totalLeftInMonth[8], totalLeftInMonth[9], totalLeftInMonth[10], totalLeftInMonth[11]]
         } else if (chartSelector.value === 'Saving Goal') {
-            data.datasets[0].data = [12, 3, 5, 9, 7, 4, 13, 6, 8, 2, 10, 9]
+            data.datasets[0].data = [savingGoalInMonth[0], savingGoalInMonth[1], savingGoalInMonth[2], savingGoalInMonth[3], savingGoalInMonth[4], savingGoalInMonth[5], savingGoalInMonth[6], savingGoalInMonth[7], savingGoalInMonth[8], savingGoalInMonth[9], savingGoalInMonth[10], savingGoalInMonth[11]]
         }
         chart.update()
     })
