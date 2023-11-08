@@ -155,6 +155,32 @@
     let totalLeftInMonth = Array.from({ length: 12 }, () => 0);
     let savingGoalInMonth = Array.from({ length: 12 }, () => 0);
 
+    let totalAmountInDay = Array.from({ length: 31 }, () => 0);
+    let totalSpentInDay = Array.from({ length: 31 }, () => 0);
+    let totalLeftInDay = Array.from({ length: 31 }, () => 0);
+    let savingGoalInDay = Array.from({ length: 31 }, () => 0);
+
+
+    transferValues.forEach(function (transfer) {
+        let transferDate = new Date(transfer.CreatedAt)
+        let day = transferDate.getDate()
+
+        if (transfer.Ingoing === true) {
+            totalAmountInDay[day - 1] += transfer.Value
+        } else {
+            totalSpentInDay[day - 1] += transfer.Value
+        }
+
+        totalLeftInDay[day - 1] = totalAmountInDay[day - 1] - totalSpentInDay[day - 1];
+    });
+
+    savingGoalValues.forEach(function (savingGoal) {
+        let savingGoalDate = new Date(savingGoal.CreatedAt);
+        let day = savingGoalDate.getDate()
+
+            savingGoalInDay[day - 1] = savingGoal.Goal
+    }); // to fix
+
 
 
     transferValues.forEach(function (transfer) {
@@ -211,195 +237,85 @@
     })
 
     chartSelector.addEventListener('change', function () {
-        if (chartSelector.value === 'Total Amount' && timeSelector.value === '1 year') {
-            data.datasets[0].data = [totalAmountInMonth[0], totalAmountInMonth[1], totalAmountInMonth[2], totalAmountInMonth[3], totalAmountInMonth[4], totalAmountInMonth[5], totalAmountInMonth[6], totalAmountInMonth[7], totalAmountInMonth[8], totalAmountInMonth[9], totalAmountInMonth[10], totalAmountInMonth[11], totalAmountInMonth[12]];
+        if(chartSelector.value === 'Total Amount') {
+            if(timeSelector.value === '1 year') {
+            data.datasets[0].data = totalAmountInMonth
             data.labels = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
-        else if(chartSelector.value === 'Total Amount' && timeSelector.value === '1 month') {
-
-                data.labels = [
-                    '1',
-                    '2',
-                    '3',
-                    '4',
-                    '5',
-                    '6',
-                    '7',
-                    '8',
-                    '9',
-                    '10',
-                    '11',
-                    '12',
-                    '13',
-                    '14',
-                    '15',
-                    '16',
-                    '17',
-                    '18',
-                    '19',
-                    '20',
-                    '21',
-                    '22',
-                    '23',
-                    '24',
-                    '25',
-                    '26',
-                    '27',
-                    '28',
-                    '29',
-                    '30',
-                    '31',
-                ]
         }
+            if(timeSelector.value === '1 month') {
+                let numberOfDays = 31 // to fix
+                let label = []
+                for(let i = 0; i < numberOfDays; i++) {
+                    label.push(i.toString())
 
-        else if (chartSelector.value === 'Total Amount' && timeSelector.value === '1 week') {
-
-                data.labels = ['1', '2', '3', '4', '5', '6', '7']
-        }
-
-
-
-
-
-
-
-
-        }
-        if (chartSelector.value === 'Spent' && chartSelector.value === '1 year') {
-            data.datasets[0].data = [totalSpentInMonth[0], totalSpentInMonth[1], totalSpentInMonth[2], totalSpentInMonth[3], totalSpentInMonth[4], totalSpentInMonth[5], totalSpentInMonth[6], totalSpentInMonth[7], totalSpentInMonth[8], totalSpentInMonth[9], totalSpentInMonth[10], totalSpentInMonth[11]]
-            data.labels = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
-              else if (chartSelector.value === 'Spent' && timeSelector.value === '1 month') {
-
-                data.labels = [
-                    '1',
-                    '2',
-                    '3',
-                    '4',
-                    '5',
-                    '6',
-                    '7',
-                    '8',
-                    '9',
-                    '10',
-                    '11',
-                    '12',
-                    '13',
-                    '14',
-                    '15',
-                    '16',
-                    '17',
-                    '18',
-                    '19',
-                    '20',
-                    '21',
-                    '22',
-                    '23',
-                    '24',
-                    '25',
-                    '26',
-                    '27',
-                    '28',
-                    '29',
-                    '30',
-                    '31',
-                ]
+                    
+                }
+                data.datasets[0].data = totalAmountInDay
+                data.labels = label
+                console.log(1);
             }
 
-            else if (chartSelector.value === 'Spent' && timeSelector.value === '1 week') {
-
-                data.labels = ['1', '2', '3', '4', '5', '6', '7']
-            }
+            chart.update()
         }
-        if (chartSelector.value === 'Left' && timeSelector.value === '1 year') {
-            data.datasets[0].data = [totalLeftInMonth[0], totalLeftInMonth[1], totalLeftInMonth[2], totalLeftInMonth[3], totalLeftInMonth[4], totalLeftInMonth[5], totalLeftInMonth[6], totalLeftInMonth[7], totalLeftInMonth[8], totalLeftInMonth[9], totalLeftInMonth[10], totalLeftInMonth[11]]
-            data.labels = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
-                  else if (chartSelector.value === 'Left' && timeSelector.value === '1 month') {
+        if (chartSelector.value === 'Spent') {
+            if (timeSelector.value === '1 year') {
+                data.datasets[0].data = totalSpentInMonth
+                data.labels = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
+            }
+            if (timeSelector.value === '1 month') {
+                let numberOfDays = 31 // to fix
+                let label = []
+                for (let i = 0; i < numberOfDays; i++) {
+                    label.push(i.toString())
 
-                data.labels = [
-                    '1',
-                    '2',
-                    '3',
-                    '4',
-                    '5',
-                    '6',
-                    '7',
-                    '8',
-                    '9',
-                    '10',
-                    '11',
-                    '12',
-                    '13',
-                    '14',
-                    '15',
-                    '16',
-                    '17',
-                    '18',
-                    '19',
-                    '20',
-                    '21',
-                    '22',
-                    '23',
-                    '24',
-                    '25',
-                    '26',
-                    '27',
-                    '28',
-                    '29',
-                    '30',
-                    '31',
-                ]
+
+                }
+                data.datasets[0].data = totalSpentInDay
+                data.labels = label
+                console.log(1);
             }
 
-            else if (chartSelector.value === 'Left' && timeSelector.value === '1 week') {
-
-                data.labels = ['1', '2', '3', '4', '5', '6', '7']
-            }
+            chart.update()
         }
-        if (chartSelector.value === 'Saving Goal' && timeSelector.value === '1 year') {
-            data.datasets[0].data = [savingGoalInMonth[0], savingGoalInMonth[1], savingGoalInMonth[2], savingGoalInMonth[3], savingGoalInMonth[4], savingGoalInMonth[5], savingGoalInMonth[6], savingGoalInMonth[7], savingGoalInMonth[8], savingGoalInMonth[9], savingGoalInMonth[10], savingGoalInMonth[11]]
-            data.labels = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
-                  else if (chartSelector.value === 'Saving Goal' && timeSelector.value === '1 month') {
+        if (chartSelector.value === 'Left') {
+            if (timeSelector.value === '1 year') {
+                data.datasets[0].data = totalLeftInMonth
+                data.labels = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
+            }
+            if (timeSelector.value === '1 month') {
+                let numberOfDays = 31 // to fix
+                let label = []
+                for (let i = 0; i < numberOfDays; i++) {
+                    label.push(i.toString())
 
-                data.labels = [
-                    '1',
-                    '2',
-                    '3',
-                    '4',
-                    '5',
-                    '6',
-                    '7',
-                    '8',
-                    '9',
-                    '10',
-                    '11',
-                    '12',
-                    '13',
-                    '14',
-                    '15',
-                    '16',
-                    '17',
-                    '18',
-                    '19',
-                    '20',
-                    '21',
-                    '22',
-                    '23',
-                    '24',
-                    '25',
-                    '26',
-                    '27',
-                    '28',
-                    '29',
-                    '30',
-                    '31',
-                ]
+
+                }
+                data.datasets[0].data = totalLeftInDay
+                data.labels = label
+                console.log(1);
             }
 
-            else if (chartSelector.value === 'Saving Goal' && timeSelector.value === '1 week') {
-
-                data.labels = ['1', '2', '3', '4', '5', '6', '7']
-            }
+            chart.update()
         }
-        chart.update()
+        if (chartSelector.value === 'Saving Goal') {
+            if (timeSelector.value === '1 year') {
+                data.datasets[0].data = savingGoalInMonth
+                data.labels = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
+            }
+            if (timeSelector.value === '1 month') {
+                let numberOfDays = 31 // to fix
+                let label = []
+                for (let i = 0; i < numberOfDays; i++) {
+                    label.push(i.toString())
+
+
+                }
+                data.datasets[0].data = savingGoalInMonth
+                data.labels = label
+                console.log(1);
+            }
+
+            chart.update()
+        }
     })
-
 </script>
