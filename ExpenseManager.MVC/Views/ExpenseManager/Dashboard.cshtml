@@ -155,31 +155,35 @@
     let totalLeftInMonth = Array.from({ length: 12 }, () => 0);
     let savingGoalInMonth = Array.from({ length: 12 }, () => 0);
 
-    let totalAmountInDay = Array.from({ length: 31 }, () => 0);
-    let totalSpentInDay = Array.from({ length: 31 }, () => 0);
-    let totalLeftInDay = Array.from({ length: 31 }, () => 0);
-    let savingGoalInDay = Array.from({ length: 31 }, () => 0);
+    let totalAmountInDay = Array.from({ length: 12 }, () => Array.from({ length: 31 }, () => 0));
+    let totalSpentInDay = Array.from({ length: 12 }, () => Array.from({ length: 31 }, () => 0));
+    let totalLeftInDay = Array.from({ length: 12 }, () => Array.from({ length: 31 }, () => 0));
+    let savingGoalInDay = Array.from({ length: 12 }, () => Array.from({ length: 31 }, () => 0));
 
 
     transferValues.forEach(function (transfer) {
         let transferDate = new Date(transfer.CreatedAt)
+        let month = transferDate.getMonth()
         let day = transferDate.getDate()
 
-        if (transfer.Ingoing === true) {
-            totalAmountInDay[day - 1] += transfer.Value
-        } else {
-            totalSpentInDay[day - 1] += transfer.Value
-        }
+        if (transfer.Ingoing === true)
+            totalAmountInDay[month][day - 1] += transfer.Value
+           
+            else if (!transfer.Ingoing)
+            totalSpentInDay[month][day - 1] += transfer.Value
 
-        totalLeftInDay[day - 1] = totalAmountInDay[day - 1] - totalSpentInDay[day - 1];
+        totalLeftInDay[month][day - 1] = totalAmountInDay[month][day - 1] - totalSpentInDay[month][day - 1];
     });
 
     savingGoalValues.forEach(function (savingGoal) {
-        let savingGoalDate = new Date(savingGoal.CreatedAt);
+        let savingGoalDate = new Date(savingGoal.CreatedAt)
+        let month = savingGoalDate.getMonth()
         let day = savingGoalDate.getDate()
-
-            savingGoalInDay[day - 1] = savingGoal.Goal
-    }); // to fix
+        if(savingGoalInDay[month][day - 1] == 0) {
+            savingGoalInDay[month][day - 1] = savingGoal.Goal
+        }
+       
+    });
 
 
 
@@ -237,6 +241,8 @@
     })
 
     chartSelector.addEventListener('change', function () {
+        let actualMonth = new Date().getMonth();
+
         if(chartSelector.value === 'Total Amount') {
             if(timeSelector.value === '1 year') {
             data.datasets[0].data = totalAmountInMonth
@@ -245,14 +251,12 @@
             if(timeSelector.value === '1 month') {
                 let numberOfDays = 31 // to fix
                 let label = []
-                for(let i = 0; i < numberOfDays; i++) {
+                for(let i = 0; i < numberOfDays; i++)
                     label.push(i.toString())
 
-                    
-                }
-                data.datasets[0].data = totalAmountInDay
+
+                data.datasets[0].data = totalAmountInDay[actualMonth]
                 data.labels = label
-                console.log(1);
             }
 
             chart.update()
@@ -265,14 +269,11 @@
             if (timeSelector.value === '1 month') {
                 let numberOfDays = 31 // to fix
                 let label = []
-                for (let i = 0; i < numberOfDays; i++) {
+                for (let i = 0; i < numberOfDays; i++)
                     label.push(i.toString())
 
-
-                }
-                data.datasets[0].data = totalSpentInDay
+                data.datasets[0].data = totalSpentInDay[actualMonth]
                 data.labels = label
-                console.log(1);
             }
 
             chart.update()
@@ -285,14 +286,12 @@
             if (timeSelector.value === '1 month') {
                 let numberOfDays = 31 // to fix
                 let label = []
-                for (let i = 0; i < numberOfDays; i++) {
+                for (let i = 1; i <= numberOfDays; i++)
                     label.push(i.toString())
 
 
-                }
-                data.datasets[0].data = totalLeftInDay
+                data.datasets[0].data = totalLeftInDay[actualMonth]
                 data.labels = label
-                console.log(1);
             }
 
             chart.update()
@@ -302,17 +301,25 @@
                 data.datasets[0].data = savingGoalInMonth
                 data.labels = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
             }
+
             if (timeSelector.value === '1 month') {
                 let numberOfDays = 31 // to fix
                 let label = []
-                for (let i = 0; i < numberOfDays; i++) {
+                for (let i = 1; i <= numberOfDays; i++)
                     label.push(i.toString())
 
+                data.datasets[0].data = savingGoalInDay[actualMonth]
+                data.labels = label;
 
-                }
-                data.datasets[0].data = savingGoalInMonth
+            }
+            if (timeSelector.value === '1 week') {
+                let numberOfDays = 31 // to fix
+                let label = []
+                for (let i = 1; i <= numberOfDays; i++) 
+                    label.push(i.toString())
+                
+                data.datasets[0].data = savingGoalInDay
                 data.labels = label
-                console.log(1);
             }
 
             chart.update()
