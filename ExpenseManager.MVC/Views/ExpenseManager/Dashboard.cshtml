@@ -210,15 +210,17 @@
     let timeSelector = document.querySelector('.time-selector')
 
     let data = {
-        labels: ['0', '4', '8', '12', '16', '20', '24'],
+        labels: [],
         datasets: [
             {
-                data: [12, 19, 3, 5, 2, 3, 12, 3, 14, 5, 6, 12],
+                data: [],
                 borderColor: 'rgba(255, 140, 0, 1)',
                 borderWidth: 3,
             },
         ],
     }
+
+
 
     let options = {
         scales: {
@@ -238,6 +240,7 @@
         data: data,
         options: options,
     })
+    
 
     chartSelector.addEventListener('change', function () {
         let actualMonth = new Date().getMonth();
@@ -252,17 +255,19 @@
 
         let tempData = []
 
+        let firstDayOfMonth = new Date(new Date().getFullYear(), actualMonth, 1)
+        let lastDayOfMonth = new Date(new Date().getFullYear(), actualMonth + 1, 0)
+        let numberOfDays = (lastDayOfMonth - firstDayOfMonth) / (1000 * 60 * 60 * 24) + 1
+
         if(chartSelector.value === 'Total Amount') {
             if(timeSelector.value === '1 year') {
             data.datasets[0].data = totalAmountInMonth
             data.labels = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
         }
             if(timeSelector.value === '1 month') {
-                let numberOfDays = 31 // to fix
                 let label = []
-                for(let i = 0; i < numberOfDays; i++)
+                for(let i = 1; i < numberOfDays; i++)
                     label.push(i.toString())
-
 
                 data.datasets[0].data = totalAmountInDay[actualMonth]
                 data.labels = label
@@ -287,9 +292,8 @@
                 data.labels = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
             }
             if (timeSelector.value === '1 month') {
-                let numberOfDays = 31 // to fix
                 let label = []
-                for (let i = 0; i < numberOfDays; i++)
+                for (let i = 1; i < numberOfDays; i++)
                     label.push(i.toString())
 
                 data.datasets[0].data = totalSpentInDay[actualMonth]
@@ -305,7 +309,6 @@
                     counter++
                 }
                 data.datasets[0].data = tempData
-                console.log(totalSpentInDay)
                 data.labels = label
             }
 
@@ -317,11 +320,9 @@
                 data.labels = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
             }
             if (timeSelector.value === '1 month') {
-                let numberOfDays = 31 // to fix
                 let label = []
-                for (let i = 1; i <= numberOfDays; i++)
+                for (let i = 1; i < numberOfDays; i++)
                     label.push(i.toString())
-
 
                 data.datasets[0].data = totalLeftInDay[actualMonth]
                 data.labels = label
@@ -345,16 +346,20 @@
             if (timeSelector.value === '1 year') {
                 data.datasets[0].data = savingGoalInMonth
                 data.labels = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
+
+                chart.update()
             }
 
             if (timeSelector.value === '1 month') {
-                let numberOfDays = 31 // to fix
+
                 let label = []
                 for (let i = 1; i <= numberOfDays; i++)
                     label.push(i.toString())
 
                 data.datasets[0].data = savingGoalInDay[actualMonth]
                 data.labels = label;
+
+                chart.update()
 
             }
 
@@ -368,6 +373,8 @@
                 }
                 data.datasets[0].data = tempData
                 data.labels = label
+
+                chart.update()
             }
 
             
@@ -375,4 +382,7 @@
             chart.update()
         }
     })
+
+
+    
 </script>
