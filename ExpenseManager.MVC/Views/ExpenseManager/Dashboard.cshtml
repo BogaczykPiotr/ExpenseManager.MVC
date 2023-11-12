@@ -37,21 +37,21 @@
                 <p class="stat-text">Saving Goal</p>
             </div>
             <select class="chart-selector">
-                <!-- for ASP edit-->
                 <option>Total Amount</option>
                 <option>Spent</option>
                 <option>Left</option>
                 <option>Saving Goal</option>
             </select>
             <select class="time-selector">
-                <!-- for ASP edit-->
-                <option>1 week</option>
-                <option>1 month</option>
                 <option>1 year</option>
+                <option>1 month</option>
+                <option>1 week</option>
+                
+                
             </select>
 
             <div class="chart">
-                <canvas class="dashboard-chart"></canvas> <!--for ASP edit-->
+                <canvas class="dashboard-chart"></canvas> 
             </div>
         }
         else if (settingsDto.Language == "polski")
@@ -81,21 +81,21 @@
                 <p class="stat-text">Cel Oszczędnościowy</p>
             </div>
             <select class="chart-selector">
-                <!-- for ASP edit-->
                 <option>Całkowite wpływy</option>
                 <option>Wydano</option>
                 <option>Zostało</option>
                 <option>Cel Oszczędnościowy</option>
             </select>
             <select class="time-selector">
-                <!-- for ASP edit-->
-                <option>1 tydzień</option>
-                <option>1 miesiąc</option>
                 <option>1 rok</option>
+                <option>1 miesiąc</option>
+                <option>1 tydzień</option>
+                
+                
             </select>
 
             <div class="chart">
-                <canvas class="dashboard-chart"></canvas> <!--for ASP edit-->
+                <canvas class="dashboard-chart"></canvas>
             </div>
         }
         else if (settingsDto.Language == "deutsch")
@@ -125,21 +125,21 @@
                 <p class="stat-text">Einsparungsziel</p>
             </div>
             <select class="chart-selector">
-                <!-- for ASP edit-->
                 <option>Gesamtmenge</option>
                 <option>Ausgegebenes</option>
                 <option>bleibt</option>
                 <option>Einsparungsziel</option>
             </select>
             <select class="time-selector">
-                <!-- for ASP edit-->
-                <option>1 Woche</option>
-                <option>1 Monat</option>
                 <option>1 Jahr</option>
+                <option>1 Monat</option>
+                <option>1 Woche</option>
+                
+                
             </select>
 
             <div class="chart">
-                <canvas class="dashboard-chart"></canvas> <!--for ASP edit-->
+                <canvas class="dashboard-chart"></canvas>
             </div>
         }
 
@@ -167,20 +167,20 @@
         let day = transferDate.getDate()
 
         if (transfer.Ingoing === true)
-            totalAmountInDay[month][day] += transfer.Value
+            totalAmountInDay[month][day - 1] += transfer.Value
            
             else if (!transfer.Ingoing)
-            totalSpentInDay[month][day] += transfer.Value
+            totalSpentInDay[month][day - 1] += transfer.Value
 
-        totalLeftInDay[month][day] = totalAmountInDay[month][day] - totalSpentInDay[month][day]
+        totalLeftInDay[month][day - 1] = totalAmountInDay[month][day - 1] - totalSpentInDay[month][day - 1]
     });
 
     savingGoalValues.forEach(function (savingGoal) {
         let savingGoalDate = new Date(savingGoal.CreatedAt)
         let month = savingGoalDate.getMonth()
         let day = savingGoalDate.getDate()
-        if(savingGoalInDay[month][day] == 0) {
-            savingGoalInDay[month][day] = savingGoal.Goal
+        if(savingGoalInDay[month][day - 1] == 0) {
+            savingGoalInDay[month][day - 1] = savingGoal.Goal
         }
        
     });
@@ -210,16 +210,15 @@
     let timeSelector = document.querySelector('.time-selector')
 
     let data = {
-        labels: [],
+        labels: ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'],
         datasets: [
             {
-                data: [],
+                data: totalAmountInMonth,
                 borderColor: 'rgba(255, 140, 0, 1)',
                 borderWidth: 3,
             },
         ],
     }
-
 
 
     let options = {
@@ -242,7 +241,11 @@
     })
     
 
-    chartSelector.addEventListener('change', function () {
+    chartSelector.addEventListener('change', updateData)
+    timeSelector.addEventListener('change', updateData)
+
+
+    function updateData() {
         let actualMonth = new Date().getMonth();
         let actualDay = new Date().getDate();
         let actualDayRange;
@@ -266,7 +269,7 @@
         }
             if(timeSelector.value === '1 month') {
                 let label = []
-                for(let i = 1; i < numberOfDays; i++)
+                for(let i = 1; i <= numberOfDays; i++)
                     label.push(i.toString())
 
                 data.datasets[0].data = totalAmountInDay[actualMonth]
@@ -311,7 +314,6 @@
                 data.datasets[0].data = tempData
                 data.labels = label
             }
-
             chart.update()
         }
         if (chartSelector.value === 'Left') {
@@ -339,15 +341,12 @@
                 data.datasets[0].data = tempData
                 data.labels = label
             }
-
             chart.update()
         }
         if (chartSelector.value === 'Saving Goal') {
             if (timeSelector.value === '1 year') {
                 data.datasets[0].data = savingGoalInMonth
                 data.labels = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
-
-                chart.update()
             }
 
             if (timeSelector.value === '1 month') {
@@ -358,8 +357,6 @@
 
                 data.datasets[0].data = savingGoalInDay[actualMonth]
                 data.labels = label;
-
-                chart.update()
 
             }
 
@@ -373,15 +370,13 @@
                 }
                 data.datasets[0].data = tempData
                 data.labels = label
-
-                chart.update()
             }
 
             
 
             chart.update()
         }
-    })
+    }
 
 
     
