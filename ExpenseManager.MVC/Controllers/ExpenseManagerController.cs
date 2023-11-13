@@ -191,8 +191,7 @@ namespace ExpenseManager.MVC.Controllers
         [Route("/ExpenseManager/DeleteTransfer/{id}")]
         public async Task<IActionResult> DeleteTransfer(int id)
         {
-            var command = new DeleteTransferCommand { Id = id };
-            await _mediator.Send(command);
+            await _mediator.Send(new DeleteTransferCommand { Id = id });
 
             return RedirectToAction(nameof(Transfers));
         }
@@ -201,8 +200,7 @@ namespace ExpenseManager.MVC.Controllers
         [Route("/ExpenseManager/DeleteCategory/{id}")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
-            var command = new DeleteCategoryCommand { Id = id };
-            await _mediator.Send(command);
+            await _mediator.Send(new DeleteCategoryCommand { Id = id });
 
             return RedirectToAction(nameof(Actions));
         }

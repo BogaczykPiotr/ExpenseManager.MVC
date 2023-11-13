@@ -21,7 +21,7 @@
                 <a asp-controller="ExpenseManager" asp-action="Details" asp-route-Id="@transfer.Id" class="show-details">
                     <span>Details</span>
                 </a>
-                    <form method="post" asp-controller="ExpenseManager" asp-action="Delete" asp-route-Id="@transfer.Id">
+                    <form method="post" asp-controller="ExpenseManager" asp-action="DeleteTransfer" asp-route-Id="@transfer.Id">
                         <button type="submit" class="delete-transfer">X</button>
                     </form>
             </div>

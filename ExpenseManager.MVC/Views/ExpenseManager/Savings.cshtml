@@ -1,10 +1,12 @@
-﻿@model ExpenseManager.MVC.Controllers.SavingViewModel
+﻿@using Newtonsoft.Json;
+@model ExpenseManager.MVC.Controllers.SavingViewModel
 
 @{
     var settingsDto = ViewData["SettingsDto"] as ExpenseManager.Application.DTOS.SettingDto;
 
     var latestGoal = Model.SavingGoalDtos.OrderByDescending(g => g.CreatedAt).FirstOrDefault();
     var lastGoal = Model.SavingGoalDtos.Reverse().Skip(1).FirstOrDefault();
+
 }
 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 
@@ -99,4 +101,100 @@
     }
 </div>
 
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" src="@Url.Content("~/js/site.js")"></script>
+<script>
+        let savingGoalValues = @Html.Raw(JsonConvert.SerializeObject(ViewData["SavingGoalValues"]));
+
+    if (savingGoalValues) {
+        let savingGoalInMonth = Array.from({ length: 12 }, () => 0);
+
+        savingGoalValues.forEach(function (savingGoal) {
+            let savingGoalDate = new Date(savingGoal.CreatedAt).getMonth()
+            savingGoalInMonth[savingGoalDate] = savingGoal.Goal
+        });
+
+        console.log(savingGoalInMonth)
+    }
+        const canvas = document.querySelector('.progress-chart')
+        const value = document.querySelector('.saving-goal-value')
+        const plus = document.querySelector('.add-goal')
+        const minus = document.querySelector('.remove-goal')
+        const summary = document.querySelector('.summary')
+        const lastGoal = document.querySelector('.last-goal')
+        const goalText = document.querySelector('.goal-text')
+        const inputValue = document.querySelector('.input-value')
+        let newValue
+        plus.addEventListener('click', function () {
+            let currentValue = parseInt(value.textContent)
+            newValue = currentValue + 50
+            value.textContent = newValue
+            inputValue.value = newValue
+        })
+        minus.addEventListener('click', function () {
+            let currentValue = parseInt(value.textContent)
+            newValue = currentValue - 50
+            if (newValue >= 0) {
+                value.textContent = newValue
+                inputValue.value = newValue
+            }
+        })
+    if (parseInt(lastGoal.textContent) < 1) {
+            summary.classList.add('failed')
+            summary.classList.remove('completed')
+            goalText.innerText = 'Try in next month'
+        } else {
+            summary.classList.add('completed')
+            summary.classList.remove('failed')
+            goalText.innerText = 'Congratulations'
+        }
+
+        function updateValues() {
+            let currentValue = parseInt(value.textContent)
+            let inputNumber = parseInt(inputValue.value)
+
+            if (!isNaN(inputNumber)) {
+                if (inputNumber >= 0) {
+                    value.textContent = inputNumber
+                } else {
+                    inputValue.value = currentValue
+                }
+            } else {
+                inputValue.value = currentValue
+            }
+        }
+        updateValues()
+
+        inputValue.addEventListener('input', updateValues)
+
+        let data = {
+            labels: ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'july', 'aug', 'sep', 'oct', 'nov', 'dec'],
+            datasets: [
+                {
+                    data: [100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650],
+                    borderColor: 'rgba(255, 255, 0, 1)',
+                    borderWidth: 3,
+                },
+            ],
+        }
+
+        let options = {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                },
+            },
+            plugins: {
+                legend: {
+                    display: false,
+                },
+            },
+        }
+            
+        let progressChart = new Chart(canvas, {
+            type: 'line',
+            data: data,
+            options: options,
+        })
+</script>
+    
