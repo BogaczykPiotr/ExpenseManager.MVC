@@ -104,18 +104,18 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" src="@Url.Content("~/js/site.js")"></script>
 <script>
-        let savingGoalValues = @Html.Raw(JsonConvert.SerializeObject(ViewData["SavingGoalValues"]));
+    let savingGoalValues = @Html.Raw(JsonConvert.SerializeObject(Model.SavingGoalDtos));
 
-    if (savingGoalValues) {
-        let savingGoalInMonth = Array.from({ length: 12 }, () => 0);
+    let savingGoalInMonth = Array.from({ length: 12 }, () => 0);
 
         savingGoalValues.forEach(function (savingGoal) {
             let savingGoalDate = new Date(savingGoal.CreatedAt).getMonth()
             savingGoalInMonth[savingGoalDate] = savingGoal.Goal
         });
+        
 
-        console.log(savingGoalInMonth)
-    }
+
+
         const canvas = document.querySelector('.progress-chart')
         const value = document.querySelector('.saving-goal-value')
         const plus = document.querySelector('.add-goal')
@@ -139,7 +139,7 @@
                 inputValue.value = newValue
             }
         })
-    if (parseInt(lastGoal.textContent) < 1) {
+    if (parseInt(lastGoal.textContent) < savingGoalInMonth[PreviousMonth - 1]) {
             summary.classList.add('failed')
             summary.classList.remove('completed')
             goalText.innerText = 'Try in next month'
@@ -171,7 +171,7 @@
             labels: ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'july', 'aug', 'sep', 'oct', 'nov', 'dec'],
             datasets: [
                 {
-                    data: [100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650],
+                data: savingGoalInMonth,
                     borderColor: 'rgba(255, 255, 0, 1)',
                     borderWidth: 3,
                 },
@@ -197,4 +197,5 @@
             options: options,
         })
 </script>
+    
     
