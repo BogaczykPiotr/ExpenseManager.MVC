@@ -113,7 +113,7 @@
             savingGoalInMonth[savingGoalDate] = savingGoal.Goal
         });
         
-
+        let actualMonth = new Date().getMonth();
 
 
         const canvas = document.querySelector('.progress-chart')
@@ -139,7 +139,7 @@
                 inputValue.value = newValue
             }
         })
-    if (parseInt(lastGoal.textContent) < savingGoalInMonth[PreviousMonth - 1]) {
+    if (parseInt(lastGoal.textContent) < savingGoalInMonth[actualMonth - 1]) {
             summary.classList.add('failed')
             summary.classList.remove('completed')
             goalText.innerText = 'Try in next month'

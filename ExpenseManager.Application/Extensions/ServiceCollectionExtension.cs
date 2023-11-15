@@ -1,8 +1,6 @@
 ﻿using ExpenseManager.Application.ApplicationUser;
 using ExpenseManager.Application.Commands.CreateTransfer;
 using ExpenseManager.Application.Mappings;
-using FluentValidation;
-using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -22,10 +20,6 @@ namespace ExpenseManager.Application.Extensions
             services.AddAutoMapper(typeof(MappingProfiles));
 
             services.AddMediatR(typeof(CreateTransferCommand));
-
-            services.AddValidatorsFromAssemblyContaining<CreateTransferCommandValidator>()
-                .AddFluentValidationAutoValidation()
-                .AddFluentValidationClientsideAdapters();
 
         }
     }
