@@ -5,11 +5,6 @@ using ExpenseManager.Application.Commands.EditCategory;
 using ExpenseManager.Application.Commands.EditTransfer;
 using ExpenseManager.Application.DTOS;
 using ExpenseManager.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ExpenseManager.Application.Mappings
 {

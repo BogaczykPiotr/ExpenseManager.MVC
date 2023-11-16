@@ -11,7 +11,6 @@ using ExpenseManager.Application.DTOS;
 using ExpenseManager.Application.Queries.GetAllTransfers;
 using ExpenseManager.Application.Queries.GetCategories;
 using ExpenseManager.Application.Queries.GetCategoryById;
-using ExpenseManager.Application.Queries.GetCategoryByName;
 using ExpenseManager.Application.Queries.GetSavingGoalValues;
 using ExpenseManager.Application.Queries.GetSettingValues;
 using ExpenseManager.Application.Queries.GetStatValues;
@@ -19,7 +18,6 @@ using ExpenseManager.Application.Queries.GetTransferById;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Formatters;
 
 namespace ExpenseManager.MVC.Controllers
 {

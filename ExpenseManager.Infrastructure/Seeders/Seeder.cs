@@ -1,13 +1,5 @@
-﻿using ExpenseManager.Application.ApplicationUser;
-using ExpenseManager.Application.DTOS;
-using ExpenseManager.Domain.Entities;
-using ExpenseManager.Domain.Interfaces;
+﻿using ExpenseManager.Domain.Entities;
 using ExpenseManager.Infrastructure.Persistence;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ExpenseManager.Infrastructure.Seeders
 {

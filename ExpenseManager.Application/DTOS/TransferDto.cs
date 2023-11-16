@@ -1,5 +1,4 @@
 ﻿using ExpenseManager.Domain.Entities;
-
 namespace ExpenseManager.Application.DTOS
 {
     public class TransferDto

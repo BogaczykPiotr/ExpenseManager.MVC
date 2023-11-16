@@ -1,5 +1,4 @@
-﻿using ExpenseManager.Application.DTOS;
-using ExpenseManager.Domain.Entities;
+﻿using ExpenseManager.Domain.Entities;
 using ExpenseManager.Domain.Interfaces;
 using ExpenseManager.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;

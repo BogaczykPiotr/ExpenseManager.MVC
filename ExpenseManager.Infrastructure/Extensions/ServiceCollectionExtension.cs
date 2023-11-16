@@ -13,7 +13,7 @@ namespace ExpenseManager.Infrastructure.Extensions
     {
         public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<Persistence.ExpenseDbContext>(options
+            services.AddDbContext<ExpenseDbContext>(options
                 => options.UseSqlServer(configuration.GetConnectionString("Database")));
 
             services.AddDefaultIdentity<IdentityUser>(options =>

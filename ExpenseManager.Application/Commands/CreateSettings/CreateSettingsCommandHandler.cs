@@ -1,13 +1,7 @@
 ﻿using AutoMapper;
 using ExpenseManager.Application.ApplicationUser;
-using ExpenseManager.Domain.Entities;
 using ExpenseManager.Domain.Interfaces;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ExpenseManager.Application.Commands.CreateSettings
 {
