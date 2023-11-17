@@ -1,4 +1,7 @@
-﻿namespace ExpenseManager.Application.ApplicationUser
+﻿using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
+
+namespace ExpenseManager.Application.ApplicationUser
 {
     public interface IUserContext
     {
