@@ -1,4 +1,7 @@
-﻿<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
+
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 
 
 <div class="main-rectangle profile">
@@ -6,11 +9,11 @@
 </div>
 
     <div class="profile-information profile">
-        <h5>Username: </h5>
-        <a>Change username</a>
+        <h5>Username:</h5>
+        <a href="#">Change username</a>
        
     </div>
     <div class="profile-information profile">
-        <h5>Mail: </h5>
-        <a>Change mail</a>
+    <h5>Mail: @User.Identity.Name</h5>
+        <a href="#">Change mail</a>
     </div>
