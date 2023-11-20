@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ExpenseManager.Application.Commands.AddUserInformation;
 using ExpenseManager.Application.Commands.CreateCategory;
 using ExpenseManager.Application.Commands.CreateSavingGoal;
 using ExpenseManager.Application.Commands.CreateSettings;
@@ -241,6 +242,8 @@ namespace ExpenseManager.MVC.Controllers
 
         }
 
+
+
         [Authorize]
         public async Task<IActionResult> Contact()
         {
@@ -253,6 +256,13 @@ namespace ExpenseManager.MVC.Controllers
         {
             await ViewLayoutData();
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Profile(AddUserInformationCommand command)
+        {
+            await _mediator.Send(command);
+            return RedirectToAction(nameof(Profile));
         }
 
 

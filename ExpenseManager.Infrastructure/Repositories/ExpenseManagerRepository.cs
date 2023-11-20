@@ -36,6 +36,12 @@ namespace ExpenseManager.Infrastructure.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
+        public async Task CreateUserInformation(User user)
+        {
+            _dbContext.Add(user);
+            await _dbContext.SaveChangesAsync();
+        }
+
 
         public async Task<SavingGoal> GetLastSavingGoal()
             => await _dbContext.SavingGoals.OrderByDescending(sg => sg.Id).FirstOrDefaultAsync();
