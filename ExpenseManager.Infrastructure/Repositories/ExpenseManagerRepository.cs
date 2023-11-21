@@ -60,6 +60,9 @@ namespace ExpenseManager.Infrastructure.Repositories
         public async Task<Category> GetByCategoryId(int id)
             => await _dbContext.Categories.FirstAsync(t => t.Id == id);
 
+        public async Task<User> GetUserById(int id)
+            => await _dbContext.Users.FirstAsync(u => u.Id == id);
+
         public async Task Commit()
             => await _dbContext.SaveChangesAsync();
 
@@ -87,5 +90,7 @@ namespace ExpenseManager.Infrastructure.Repositories
                 .Where(c => c.CreatedById == Id)
                 .ToListAsync();
         }
+
+        
     }
 }

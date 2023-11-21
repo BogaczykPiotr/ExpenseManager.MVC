@@ -15,7 +15,7 @@ namespace ExpenseManager.Domain.Interfaces
         Task CreateSettings(Setting settings);
         Task CreateUserInformation(User user);
         Task<SavingGoal> GetLastSavingGoal();
-
+        Task<User> GetUserById(int id);
         Task<Setting> GetSettings(string Id);
         Task<Transfer> GetByTransferId(int id);
         Task<Category> GetByCategoryId(int id);

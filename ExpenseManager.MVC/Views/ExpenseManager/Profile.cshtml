@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject UserManager<IdentityUser> UserManager
+@model ExpenseManager.Application.DTOS.UserDto
 
 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 
@@ -9,11 +10,11 @@
 </div>
 
     <div class="profile-information profile">
-        <h5>Username:</h5>
+        <h5>Username: @Model.Username</h5>
         <a href="#">Change username</a>
        
     </div>
     <div class="profile-information profile">
-    <h5>Mail: @User.Identity.Name</h5>
+    <h5>Mail: @Model.Name</h5>
         <a href="#">Change mail</a>
     </div>
