@@ -40,6 +40,20 @@ namespace ExpenseManager.Infrastructure.Seeders
                     _dbContext.SavingGoals.Add(savingGoal);
                     await _dbContext.SaveChangesAsync();
                 }
+                if(!_dbContext.Users.Any())
+                {
+                    var user = new User()
+                    {
+                        Name = "Test",
+                        LastName = "Tests",
+                        Username = "TestTests",
+                    };
+
+                    _dbContext.Users.Add(user);
+                    await _dbContext.SaveChangesAsync();
+
+                }
+
             }
         }
     }
