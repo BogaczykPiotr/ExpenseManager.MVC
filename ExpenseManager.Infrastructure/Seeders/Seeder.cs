@@ -53,8 +53,34 @@ namespace ExpenseManager.Infrastructure.Seeders
                     await _dbContext.SaveChangesAsync();
 
                 }
-
+                if (!_dbContext.Roles.Any())
+                {
+                    var roles = GetRoles();
+                    _dbContext.Roles.AddRange(roles);
+                    await _dbContext.SaveChangesAsync();
+                }
             }
+        }
+        private IEnumerable<Role> GetRoles()
+        {
+            var roles = new List<Role>()
+            { 
+                new Role()
+                {
+                    Name = "User"
+                },
+                new Role()
+                {
+                    Name = "Manager"
+                },
+                new Role()
+                {
+                    Name = "Admin"
+                },
+            };
+
+            return roles;
+
         }
     }
 }
