@@ -5,6 +5,14 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\Account\RegisterUser.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Views\Account\RegisterUser.cshtml" />
+  </ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Chart.js" Version="3.7.1" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.9" />

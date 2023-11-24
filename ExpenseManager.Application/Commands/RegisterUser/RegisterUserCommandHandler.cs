@@ -2,24 +2,21 @@
 using ExpenseManager.Domain.Entities;
 using ExpenseManager.Domain.Interfaces;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ExpenseManager.Application.Commands.AddUserInformation
+
+namespace ExpenseManager.Application.Commands.RegisterUser
 {
-    public class AddUserInformationCommandHandler : IRequestHandler<AddUserInformationCommand>
+    public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand>
     {
         private readonly IExpenseManagerRepository _expenseManagerRepository;
         private readonly IMapper _mapper;
-        public AddUserInformationCommandHandler(IExpenseManagerRepository expenseManagerRepository, IMapper mapper)
+        public RegisterUserCommandHandler(IExpenseManagerRepository expenseManagerRepository, IMapper mapper)
         {
             _expenseManagerRepository = expenseManagerRepository;
             _mapper = mapper;
         }
-        public async Task<Unit> Handle(AddUserInformationCommand request, CancellationToken cancellationToken)
+
+        public async Task<Unit> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
         {
             var userInfo = _mapper.Map<User>(request);
 
