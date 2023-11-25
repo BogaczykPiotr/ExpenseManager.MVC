@@ -91,6 +91,6 @@ namespace ExpenseManager.Infrastructure.Repositories
                 .ToListAsync();
         }
 
-        
+
     }
 }

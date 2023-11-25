@@ -26,7 +26,6 @@ namespace ExpenseManager.Infrastructure.Extensions
             services.AddScoped<Seeder>();
 
             services.AddScoped<IExpenseManagerRepository, ExpenseManagerRepository>();
-
             
         }
     }
