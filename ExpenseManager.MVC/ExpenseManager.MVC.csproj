@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Views\Account\RegisterUser.cshtml" />
+    <Content Remove="Views\Account\Register.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="Views\Account\RegisterUser.cshtml" />
+    <Compile Include="Views\Account\Register.cshtml" />
   </ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Chart.js" Version="3.7.1" />

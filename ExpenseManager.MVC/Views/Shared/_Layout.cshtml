@@ -19,8 +19,6 @@
 <body>
     @if (settingsDto?.Language == "english")
     {
-        @if (SignInManager.IsSignedIn(User))
-        {
             <div class="left-rectangle">
                 <a href="@Url.Action("Dashboard", "ExpenseManager")">
                 <img class="logo" src="@Url.Content("~/images/Logo.png")">
@@ -51,11 +49,7 @@
                     <img src="@Url.Content("~/images/ContactUs.png")">
                     <span class="text">Contact us</span>
                 </a>
-                <partial name="_LoginPartial" />
             </div>
-        }
-        @if (SignInManager.IsSignedIn(User))
-        {
             <div class="right-rectangle">
 
                 <div class="right-content">
@@ -101,12 +95,9 @@
                 </div>
             
         </div>
-        }
     }
     else if(settingsDto?.Language == "deutsch")
     {
-        @if (SignInManager.IsSignedIn(User))
-        {
             <div class="left-rectangle">
                 <a href="@Url.Action("Dashboard", "ExpenseManager")">
                 <img class="logo" src="@Url.Content("~/images/Logo.png")">
@@ -137,11 +128,7 @@
                 <img src="@Url.Content("~/images/ContactUs.png")">
                 <span class="text">Kontakt</span>
             </a>
-                <partial name="_LoginPartial" />
         </div>
-        }
-        @if (SignInManager.IsSignedIn(User))
-        {
             <div class="right-rectangle">
 
                 <div class="right-content">
@@ -187,12 +174,9 @@
                 </div>
             
         </div>
-        }
     }
     else if (settingsDto?.Language == "polski")
     {
-        @if (SignInManager.IsSignedIn(User))
-        {
             <div class="left-rectangle">
                 <a href="@Url.Action("Dashboard", "ExpenseManager")">
                 <img class="logo" src="@Url.Content("~/images/Logo.png")">
@@ -223,11 +207,8 @@
                     <img src="@Url.Content("~/images/ContactUs.png")">
                 <span class="text">Kontakt</span>
             </a>
-                <partial name="_LoginPartial" />
         </div>
-        }
-        @if (SignInManager.IsSignedIn(User))
-        {
+
             <div class="right-rectangle">
 
                 <div class="right-content">
@@ -274,10 +255,6 @@
             
         </div>
         }
-    }
-    @if(!SignInManager.IsSignedIn(User))
-    {
-        <partial name="_LoginPartial" />
     }
     
     @RenderBody()

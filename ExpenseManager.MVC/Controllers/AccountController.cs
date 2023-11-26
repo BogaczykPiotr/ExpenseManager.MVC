@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ExpenseManager.MVC.Controllers
 {
-    [Route("Account")]
     public class AccountController : Controller
     {
         private readonly IMediator _mediator;
@@ -15,7 +14,7 @@ namespace ExpenseManager.MVC.Controllers
         }
 
         [HttpPost("Register")]
-        public async Task<IActionResult> RegisterUser(RegisterUserCommand command)
+        public async Task<IActionResult> Register(RegisterUserCommand command)
         {
             await _mediator.Send(command);
             return RedirectToAction("Index");

@@ -46,6 +46,6 @@ app.MapRazorPages();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=ExpenseManager}/{action=dashboard}/{id?}");
+    pattern: "{controller=Account}/{action=Register}/{id?}");
 
 app.Run();
