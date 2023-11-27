@@ -1637,3 +1637,35 @@ input:checked + label {
         font-size: 2vw;
         line-height: 0;
     }
+
+
+/*Langing page*/
+.landing-page-main-container {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: linear-gradient(to bottom, #050d56, #3a0940);
+}
+.landing-page-card {
+    color: rgb(175, 175, 175);
+    display: block;
+    margin-top: 40%;
+    text-align: center;
+    justify-content: center;
+    background-color: rgba(8, 78, 212, 0.2);
+    border-radius: 40px;
+    padding: 2px
+}
+.landing-page-card h1 {
+    font-weight: lighter;
+}
+.landing-page-card p a {
+    text-decoration: none;
+    color: rgb(0, 0, 0)
+}
+
+.login-btn {
+    background-color: #067af7;
+    padding: 0.4vw;
+    border-radius: 11px;
+}

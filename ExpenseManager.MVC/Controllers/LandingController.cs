@@ -1,6 +1,12 @@
-﻿namespace ExpenseManager.MVC.Controllers
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace ExpenseManager.MVC.Controllers
 {
-    public class LandingController
+    public class LandingController : Controller
     {
+        public async Task<IActionResult> Index()
+        {
+            return View();
+        }
     }
 }
