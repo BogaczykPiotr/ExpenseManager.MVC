@@ -1,1 +1,30 @@
-﻿
+﻿@model ExpenseManager.Application.Commands.RegisterUser.RegisterUserCommand
+<div class="register-main-rectangle">
+    <div class="register-form">
+        <form method="post">
+            <div>
+                <label>Email</label>
+                <input title="Enter Email" asp-for="Email" />
+            </div>
+            <div>
+                <label>Password</label>
+                <input title="Enter Password" asp-for="Password" type="password" />
+            </div>
+            <div>
+                <label>Name</label>
+                <input title="Enter Name" asp-for="Name" />
+            </div>
+            <div>
+                <label>LastName</label>
+                <input title="Enter LastName" asp-for="LastName" />
+            </div>
+            <div>
+                <label>UserName</label>
+                <input title="Enter username" asp-for="Username" />
+            </div>
+            <div>
+                <button type="Submit">Confirm</button>
+            </div>
+        </form>
+    </div>
+</div>

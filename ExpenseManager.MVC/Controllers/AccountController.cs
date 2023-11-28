@@ -13,7 +13,12 @@ namespace ExpenseManager.MVC.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost("Register")]
+
+        public async Task<IActionResult> Register()
+        {
+            return View();
+        }
+        [HttpPost]
         public async Task<IActionResult> Register(RegisterUserCommand command)
         {
             await _mediator.Send(command);
