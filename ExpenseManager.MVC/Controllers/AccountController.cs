@@ -13,6 +13,17 @@ namespace ExpenseManager.MVC.Controllers
             _mediator = mediator;
         }
 
+        public async Task<IActionResult> Login()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Login()
+        {
+
+        }
+
+
 
         public async Task<IActionResult> Register()
         {

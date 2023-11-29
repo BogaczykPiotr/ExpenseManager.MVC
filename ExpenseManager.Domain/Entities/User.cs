@@ -6,6 +6,7 @@ namespace ExpenseManager.Domain.Entities
     {
         public int Id { get; set; }
         [MaxLength(25)]
+        public string Email { get; set; }
         public string? Name { get; set; }
         [MaxLength(25)]
         public string? LastName { get; set; }
