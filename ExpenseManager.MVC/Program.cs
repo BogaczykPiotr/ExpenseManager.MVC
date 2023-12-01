@@ -38,6 +38,8 @@ app.UseStaticFiles(new StaticFileOptions
     RequestPath = "/Images"
 });
 
+app.UseAuthentication();
+
 app.UseRouting();
 
 app.UseAuthorization();

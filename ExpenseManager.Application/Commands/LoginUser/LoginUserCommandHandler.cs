@@ -46,7 +46,7 @@ namespace ExpenseManager.Application.Commands.LoginUser
                 new Claim(ClaimTypes.Role, $"{userDto.Role.Name}"),
             };
 
-            var key = new SymmetricSecurityKey()
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes()); // to continue
 
 
         }

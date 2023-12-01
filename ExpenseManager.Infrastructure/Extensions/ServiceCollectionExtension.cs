@@ -1,4 +1,5 @@
-﻿using ExpenseManager.Domain.Interfaces;
+﻿using ExpenseManager.Application.Authentication;
+using ExpenseManager.Domain.Interfaces;
 using ExpenseManager.Infrastructure.Persistence;
 using ExpenseManager.Infrastructure.Repositories;
 using ExpenseManager.Infrastructure.Seeders;
@@ -6,6 +7,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace ExpenseManager.Infrastructure.Extensions
 {
@@ -26,7 +29,28 @@ namespace ExpenseManager.Infrastructure.Extensions
             services.AddScoped<Seeder>();
 
             services.AddScoped<IExpenseManagerRepository, ExpenseManagerRepository>();
-            
+
+            var authenticationService = new AuthenticationSettings();
+
+            configuration.GetSection("Authentication").Bind(authenticationService);
+
+            services.AddAuthentication(option =>
+            {
+                option.DefaultAuthenticateScheme = "Bearer";
+                option.DefaultScheme = "Bearer";
+                option.DefaultChallengeScheme = "Bearer";
+            }).AddJwtBearer(cfg =>
+            {
+                cfg.RequireHttpsMetadata = false;
+                cfg.SaveToken = true;
+                cfg.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidIssuer = authenticationService.JwtIssuer,
+                    ValidAudience = authenticationService.JwtIssuer,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authenticationService.JwtKey)),
+
+                };
+            });
         }
     }
 }
