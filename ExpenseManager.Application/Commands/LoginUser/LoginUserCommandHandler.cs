@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using ExpenseManager.Application.Authentication;
+using ExpenseManager.Application.DTOS;
 using ExpenseManager.Domain.Entities;
 using ExpenseManager.Domain.Interfaces;
 using MediatR;
@@ -6,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
@@ -18,27 +21,34 @@ namespace ExpenseManager.Application.Commands.LoginUser
         private readonly IExpenseManagerRepository _expenseManagerRepository;
         private readonly IMapper _mapper;
         private readonly IPasswordHasher<User> _passwordHasher;
+        private readonly AuthenticationSettings _authenticationSettings;
         public LoginUserCommandHandler(IExpenseManagerRepository expenseManagerRepository, 
             IMapper mapper,
-            IPasswordHasher<User> passwordHasher)
+            IPasswordHasher<User> passwordHasher,
+            AuthenticationSettings authenticationSettings)
         {
             _expenseManagerRepository = expenseManagerRepository;
             _mapper = mapper;
             _passwordHasher = passwordHasher;
+            _authenticationSettings = authenticationSettings;
         }
-        public Task<Unit> Handle(LoginUserCommand request, CancellationToken cancellationToken)
+
+        Task<Unit> IRequestHandler<LoginUserCommand, Unit>.Handle(LoginUserCommand request, CancellationToken cancellationToken)
         {
             var user = _expenseManagerRepository.GetUserByEmail(request.Email);
-            if(user == null)
+            if (user == null)
             {
-                throw new Exception();
+                throw new Exception("User not found");
             }
+
             var userDto = _mapper.Map<User>(user);
             var result = _passwordHasher.VerifyHashedPassword(userDto, userDto.Password, request.Password);
-            if(result == PasswordVerificationResult.Failed)
+
+            if (result == PasswordVerificationResult.Failed)
             {
-                throw new Exception();
+                throw new Exception("Invalid password");
             }
+
             var claims = new List<Claim>()
             {
                 new Claim(ClaimTypes.NameIdentifier, userDto.Id.ToString()),
@@ -46,9 +56,21 @@ namespace ExpenseManager.Application.Commands.LoginUser
                 new Claim(ClaimTypes.Role, $"{userDto.Role.Name}"),
             };
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes()); // to continue
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_authenticationSettings.JwtKey));
+            var cred = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var expires = DateTime.Now.AddDays(_authenticationSettings.JwtExpireDays);
 
+            var token = new JwtSecurityToken(_authenticationSettings.JwtIssuer,
+                _authenticationSettings.JwtIssuer,
+                claims,
+                expires: expires,
+                signingCredentials: cred);
 
+            var tokenHandler = new JwtSecurityTokenHandler();
+
+            tokenHandler.WriteToken(token);
+
+            return Task.FromResult(Unit.Value);
         }
     }
 }

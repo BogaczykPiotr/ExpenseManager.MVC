@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ExpenseManager.Application.Commands.Login;
 using ExpenseManager.Application.Commands.RegisterUser;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -18,9 +19,10 @@ namespace ExpenseManager.MVC.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Login()
+        public async Task<IActionResult> Login(LoginCommandHandler command)
         {
-
+            await _mediator.Send(command);
+            return View();
         }
 
 
