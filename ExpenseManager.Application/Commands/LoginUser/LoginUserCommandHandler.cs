@@ -20,11 +20,11 @@ namespace ExpenseManager.Application.Commands.LoginUser
     {
         private readonly IExpenseManagerRepository _expenseManagerRepository;
         private readonly IMapper _mapper;
-        private readonly IPasswordHasher<User> _passwordHasher;
+        private readonly IPasswordHasher<UserDto> _passwordHasher;
         private readonly AuthenticationSettings _authenticationSettings;
         public LoginUserCommandHandler(IExpenseManagerRepository expenseManagerRepository, 
             IMapper mapper,
-            IPasswordHasher<User> passwordHasher,
+            IPasswordHasher<UserDto> passwordHasher,
             AuthenticationSettings authenticationSettings)
         {
             _expenseManagerRepository = expenseManagerRepository;

@@ -2,7 +2,6 @@
 using ExpenseManager.Application.Commands.CreateTransfer;
 using ExpenseManager.Application.DTOS;
 using ExpenseManager.Application.Mappings;
-using ExpenseManager.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,7 +14,7 @@ namespace ExpenseManager.Application.Extensions
         {
             services.AddScoped<IUserContext, UserContext>();
 
-            services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+            services.AddScoped<IPasswordHasher<UserDto>, PasswordHasher<UserDto>>();
 
             services.AddAutoMapper(typeof(MappingProfiles));
 
