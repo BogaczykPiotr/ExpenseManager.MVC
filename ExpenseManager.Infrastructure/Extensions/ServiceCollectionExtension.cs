@@ -34,6 +34,8 @@ namespace ExpenseManager.Infrastructure.Extensions
 
             configuration.GetSection("Authentication").Bind(authenticationService);
 
+            services.AddScoped<AuthenticationSettings>();
+
             services.AddAuthentication(option =>
             {
                 option.DefaultAuthenticateScheme = "Bearer";

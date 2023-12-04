@@ -41,8 +41,8 @@ namespace ExpenseManager.Application.Commands.LoginUser
                 throw new Exception("User not found");
             }
 
-            var userDto = _mapper.Map<User>(user);
-            var result = _passwordHasher.VerifyHashedPassword(userDto, userDto.Password, request.Password);
+            var userInfo = _mapper.Map<User>(user);
+            var result = _passwordHasher.VerifyHashedPassword(request, userInfo.Password, request.Password);
 
             if (result == PasswordVerificationResult.Failed)
             {
@@ -51,9 +51,9 @@ namespace ExpenseManager.Application.Commands.LoginUser
 
             var claims = new List<Claim>()
             {
-                new Claim(ClaimTypes.NameIdentifier, userDto.Id.ToString()),
-                new Claim(ClaimTypes.Name, $"{userDto.Name} {userDto.LastName}"),
-                new Claim(ClaimTypes.Role, $"{userDto.Role.Name}"),
+                new Claim(ClaimTypes.NameIdentifier, userInfo.Id.ToString()),
+                new Claim(ClaimTypes.Name, $"{userInfo.Name} {userInfo.LastName}"),
+                new Claim(ClaimTypes.Role, $"{userInfo.Role.Name}"),
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_authenticationSettings.JwtKey));
