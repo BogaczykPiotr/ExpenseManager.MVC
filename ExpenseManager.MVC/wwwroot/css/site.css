@@ -1362,13 +1362,13 @@ input {
         transform: scale(1.1);
     }
 
-input[type='checkbox'] {
+.input-box input[type='checkbox'] {
     height: 0;
     width: 0;
     visibility: hidden;
 }
 
-label {
+.input-box label {
     cursor: pointer;
     width: 7vw;
     height: 3.5vw;
@@ -1380,23 +1380,23 @@ label {
     top: 1vw;
 }
 
-    label:after {
-        content: '';
-        position: absolute;
-        width: 3.5vw;
-        height: 3.5vw;
-        background: #fff;
-        border-radius: 10vw;
-        transition: 0.3s;
-    }
+.input-box label:after {
+    content: '';
+    position: absolute;
+    width: 3.5vw;
+    height: 3.5vw;
+    background: #fff;
+    border-radius: 10vw;
+    transition: 0.3s;
+}
 
-input:checked + label {
+.input-box input:checked + label {
     background: rgb(63, 153, 68);
 }
 
-    input:checked + label:after {
-        left: calc(50%);
-    }
+.input-box input:checked + label:after {
+    left: calc(50%);
+}
 
 .switch-text {
     color: white;
@@ -1668,4 +1668,17 @@ input:checked + label {
     background-color: #067af7;
     padding: 0.4vw;
     border-radius: 11px;
+}
+
+/*Login-Register pages*/
+.login-register-title {
+    text-align: center;
+    margin-top: 5vh;
+    color: rgb(175, 175, 175)
+}
+.login-register-main-rectangle {
+    margin-left: 4vw;
+}
+.login-register-form {
+    margin-top: 2vh;
 }
