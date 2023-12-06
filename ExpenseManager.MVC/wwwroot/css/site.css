@@ -548,147 +548,6 @@ body {
     margin-top: 5%;
 }
 
-
-/* achievements */
-.main-rectangle-achievements {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 3vw;
-    margin-top: 6.5vw;
-    position: absolute;
-    overflow-y: auto;
-    top: 10%;
-    left: 25%;
-}
-
-.unlocked-badges {
-    color: rgb(255, 255, 255);
-    font-size: 2vw;
-    font-weight: bold;
-    display: flex;
-    margin-top: 5vw;
-    justify-content: center;
-}
-
-.locked-badges {
-    color: rgb(255, 255, 255);
-    font-size: 2vw;
-    font-weight: bold;
-    margin-left: 25%;
-    margin-top: 5vw;
-    grid-column: 2;
-    display: flex;
-    justify-content: center;
-}
-
-.badge {
-    padding: 2vw;
-    background-color: rgba(170, 243, 0, 0.4);
-    text-decoration: none;
-    border-radius: 50%;
-    width: 10vw;
-    height: 10vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: rgb(0, 0, 0);
-    margin-bottom: 2vw;
-}
-
-    .badge.locked {
-        padding: 2vw;
-        background-color: rgba(92, 79, 79, 0.4);
-        text-decoration: none;
-        border-radius: 50%;
-        width: 10vw;
-        height: 10vw;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: rgb(0, 0, 0);
-        margin-bottom: 2vw;
-    }
-
-.title {
-    position: absolute;
-    top: 2vw;
-    color: rgb(175, 175, 175);
-    font-size: 3vw;
-    line-height: 0;
-}
-
-.input-box {
-    display: flex;
-    flex-direction: column;
-    margin-top: 2vw;
-    margin-left: -20vw;
-}
-
-.details {
-    font-weight: bold;
-    margin-bottom: 1vw;
-    color: rgb(175, 175, 175);
-    font-size: 1.5vw;
-}
-
-input {
-    background-color: rgb(175, 175, 175);
-    padding: 2vw 3vw;
-    border-radius: 3vw;
-    font-size: 1vw;
-}
-
-.create-button {
-    width: 10vw;
-    height: 3vw;
-    border-radius: 4vw;
-    margin-top: 4vw;
-    font-size: 1.5vw;
-    color: black;
-    font-weight: bold;
-    background-color: rgb(175, 175, 175);
-}
-
-    .create-button:hover {
-        transform: scale(1.1);
-    }
-
-input[type='checkbox'] {
-    height: 0;
-    width: 0;
-    visibility: hidden;
-}
-
-label {
-    cursor: pointer;
-    width: 7vw;
-    height: 3.5vw;
-    background: #b44343;
-    display: block;
-    border-radius: 10vw;
-    position: relative;
-    left: 20vw;
-    top: 1vw;
-}
-
-    label:after {
-        content: '';
-        position: absolute;
-        width: 3.5vw;
-        height: 3.5vw;
-        background: #fff;
-        border-radius: 10vw;
-        transition: 0.3s;
-    }
-
-input:checked + label {
-    background: rgb(63, 153, 68);
-}
-
-    input:checked + label:after {
-        left: calc(50%);
-    }
-
 .switch-text {
     color: white;
     position: absolute;
@@ -1677,8 +1536,22 @@ input {
     color: rgb(175, 175, 175)
 }
 .login-register-main-rectangle {
-    margin-left: 4vw;
+    color: rgb(175, 175, 175);
+    margin-left: 10vw;
 }
 .login-register-form {
     margin-top: 2vh;
+}
+.login-register-btn {
+    background-color: rgb(175, 175, 175);
+    color: black;
+    font-size: larger;
+    border-radius: 20px;
+    border: none;
+    margin-top: 5vh;
+    margin-left: 10vw;
+}
+.login-register-btn:hover {
+    background-color: rgb(200, 200, 200);
+    transform: scale(1.1);
 }

@@ -1,6 +1,7 @@
 ﻿@model ExpenseManager.Application.Commands.RegisterUser.RegisterUserCommand
 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 <div class="login-register-main-rectangle">
+    <h1 class="login-register-title">Register</h1>
     <div class="login-register-form">
         <form method="post">
             <div class="login-register-form-data">
@@ -24,7 +25,7 @@
                 <input title="Enter username" asp-for="Username" />
             </div>
             <div>
-                <button type="Submit">Confirm</button>
+                <button class="login-register-btn" type="Submit">Confirm</button>
             </div>
         </form>
     </div>
