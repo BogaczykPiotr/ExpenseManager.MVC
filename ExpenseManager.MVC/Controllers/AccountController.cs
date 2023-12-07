@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ExpenseManager.Application.Commands.Login;
+using ExpenseManager.Application.Commands.LoginUser;
 using ExpenseManager.Application.Commands.RegisterUser;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -19,10 +20,10 @@ namespace ExpenseManager.MVC.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Login(LoginCommandHandler command)
+        public async Task<IActionResult> Login(LoginUserCommand command)
         {
             await _mediator.Send(command);
-            return View();
+            return RedirectToAction("Index");
         }
 
 

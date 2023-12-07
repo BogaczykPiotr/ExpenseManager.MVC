@@ -1,4 +1,5 @@
 ﻿using ExpenseManager.Application.Authentication;
+using ExpenseManager.Domain.Entities;
 using ExpenseManager.Domain.Interfaces;
 using ExpenseManager.Infrastructure.Persistence;
 using ExpenseManager.Infrastructure.Repositories;
@@ -27,6 +28,7 @@ namespace ExpenseManager.Infrastructure.Extensions
 
 
             services.AddScoped<Seeder>();
+            services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 
             services.AddScoped<IExpenseManagerRepository, ExpenseManagerRepository>();
 

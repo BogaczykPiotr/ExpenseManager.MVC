@@ -1,15 +1,20 @@
-﻿using ExpenseManager.Domain.Entities;
+﻿using ExpenseManager.Application.DTOS;
+using ExpenseManager.Domain.Entities;
 using ExpenseManager.Infrastructure.Persistence;
+using Microsoft.AspNetCore.Identity;
 
 namespace ExpenseManager.Infrastructure.Seeders
 {
     public class Seeder
     {
         private readonly ExpenseDbContext _dbContext;
+        private readonly IPasswordHasher<User> _passwordHasher;
 
-        public Seeder(ExpenseDbContext dbContext)
+        public Seeder(ExpenseDbContext dbContext,
+            IPasswordHasher<User> passwordHasher)
         {
             _dbContext = dbContext;
+            _passwordHasher = passwordHasher;
         }
 
         public async Task Seed()
@@ -44,12 +49,49 @@ namespace ExpenseManager.Infrastructure.Seeders
                 {
                     var user = new User()
                     {
-                        Name = "Test",
-                        LastName = "Tests",
-                        Username = "TestTests",
+                        Name = "user",
+                        LastName = "user",
+                        Email = "user@user",
+                        Username = "useruser",
+                        Role = new Role()
+                        {
+                            Name = "user"
+                        }
                     };
-
+                    user.Password = _passwordHasher.HashPassword(user, "tVzNB4MR3nhs8th");
                     _dbContext.Users.Add(user);
+
+
+                    var manager = new User()
+                    {
+                        Name = "manager",
+                        LastName = "manager",
+                        Email = "manager@manager",
+                        Username = "manager",
+                        Role = new Role()
+                        {
+                            Name = "manager"
+                        }
+                    };
+                    manager.Password = _passwordHasher.HashPassword(manager, "tVzNB4MR3nhs8th");
+                    _dbContext.Users.Add(manager);
+
+
+                    var admin = new User()
+                    {
+                        Name = "admin",
+                        LastName = "admin",
+                        Email = "admin@admin",
+                        Username = "admin",
+                        Role = new Role()
+                        {
+                            Name = "admin"
+                        }
+                    };
+                    admin.Password = _passwordHasher.HashPassword(admin, "tVzNB4MR3nhs8th");
+                    _dbContext.Users.Add(admin);
+
+
                     await _dbContext.SaveChangesAsync();
 
                 }
