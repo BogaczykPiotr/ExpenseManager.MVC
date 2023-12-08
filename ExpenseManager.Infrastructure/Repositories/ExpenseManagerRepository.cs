@@ -91,7 +91,9 @@ namespace ExpenseManager.Infrastructure.Repositories
                 .ToListAsync();
         }
 
-        public async Task<User> GetUserByEmail(string email)
-            => await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == email);
+            public User GetUserByEmail(string email)
+                => _dbContext.Users.Include(u => u.Role)
+                    .FirstOrDefault(u => u.Email == email)
+                ;
     }
 }

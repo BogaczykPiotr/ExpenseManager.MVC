@@ -22,6 +22,6 @@ namespace ExpenseManager.Domain.Interfaces
         Task Commit();
         Task DeleteTransfer(Transfer transfer);
         Task DeleteCategory(Category category);
-        Task<User> GetUserByEmail(string email);
+        User GetUserByEmail(string email);
     }
 }
