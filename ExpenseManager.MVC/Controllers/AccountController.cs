@@ -1,12 +1,12 @@
-﻿using AutoMapper;
-using ExpenseManager.Application.Commands.Login;
-using ExpenseManager.Application.Commands.LoginUser;
+﻿using ExpenseManager.Application.Commands.LoginUser;
 using ExpenseManager.Application.Commands.RegisterUser;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExpenseManager.MVC.Controllers
 {
+    [AllowAnonymous]
     public class AccountController : Controller
     {
         private readonly IMediator _mediator;
@@ -22,8 +22,19 @@ namespace ExpenseManager.MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginUserCommand command)
         {
-            await _mediator.Send(command);
-            return RedirectToAction("Index");
+            try
+            {
+               
+                var token = await _mediator.Send(command);
+
+                
+                return RedirectToAction("Dashboard", "ExpenseManager", new { token });
+            }
+            catch (Exception e)
+            {
+                ModelState.AddModelError(string.Empty, "Błąd logowania. Sprawdź swoje dane.");
+                return View(command);
+            }
         }
 
 

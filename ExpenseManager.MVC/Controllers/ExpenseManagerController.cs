@@ -22,6 +22,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ExpenseManager.MVC.Controllers
 {
+    [Authorize]
     public class ExpenseManagerController : Controller
     {
 
@@ -41,14 +42,12 @@ namespace ExpenseManager.MVC.Controllers
             ViewData["SavingGoalValues"] = await _mediator.Send(new GetSavingGoalValuesQuery());
             return View(stats);
         }
-        [Authorize]
         public async Task<IActionResult> Transfers()
         {
             await ViewLayoutData();
             var Transfers = await _mediator.Send(new GetAllTransfersQuery());
             return View(Transfers);
         }
-        [Authorize]
         public async Task<IActionResult> Savings()
         {
             await ViewLayoutData();
@@ -61,7 +60,6 @@ namespace ExpenseManager.MVC.Controllers
 
             return View(viewModel);
         }
-        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Savings(CreateSavingGoalCommand command)
         {
@@ -74,17 +72,12 @@ namespace ExpenseManager.MVC.Controllers
             };
             return View(viewModel);
         }
-
-
-        [Authorize]
         public async Task<IActionResult> Create()
         {
             await ViewLayoutData();
             ViewData["CategoryDtos"] = await _mediator.Send(new GetCategoriesQuery());
             return View();
         }
-
-        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Create(CreateTransferCommand command)
         {
@@ -92,14 +85,12 @@ namespace ExpenseManager.MVC.Controllers
             return RedirectToAction(nameof(Transfers));
 
         }
-        [Authorize]
         public async Task<IActionResult> Actions()
         {
             await ViewLayoutData();
             var categories = await _mediator.Send(new GetCategoriesQuery());  // for category table update
             return View(categories);
         }
-        [Authorize]
         [Route("ExpenseManager/{Id}/Details")]
         public async Task<IActionResult> Details(int id)
         {
@@ -107,7 +98,6 @@ namespace ExpenseManager.MVC.Controllers
             var dto = await _mediator.Send(new GetTransferByIdQuery(id));
             return View(dto);
         }
-        [Authorize]
         [Route("ExpenseManager/{Id}/EditTransfer")]
         public async Task<IActionResult> EditTransfer(int id)
         {
@@ -117,8 +107,6 @@ namespace ExpenseManager.MVC.Controllers
             EditTransferCommand model = _mapper.Map<EditTransferCommand>(dto);
             return View(model);
         }
-
-        [Authorize]
         [HttpPost]
         [Route("ExpenseManager/{Id}/EditTransfer")]
         public async Task<IActionResult> EditTransfer(EditTransferCommand command, int id)
@@ -129,7 +117,6 @@ namespace ExpenseManager.MVC.Controllers
             return RedirectToAction(nameof(Transfers));
 
         }
-        [Authorize]
         [Route("ExpenseManager/{Id}/EditCategory")]
         public async Task<IActionResult> Edit(int id)
         {
@@ -140,7 +127,6 @@ namespace ExpenseManager.MVC.Controllers
             return View(model);
             
         }
-        [Authorize]
         [HttpPost]
         [Route("ExpenseManager/{Id}/EditCategory")]
         public async Task<IActionResult> Edit(EditCategoryCommand command, int id)
@@ -152,33 +138,28 @@ namespace ExpenseManager.MVC.Controllers
             return RedirectToAction(nameof(Actions));
 
         }
-        [Authorize]
         public async Task<IActionResult> CreateNewCategory()
         {
             await ViewLayoutData();
             return View();
         }
-        [Authorize]
         [HttpPost]
         public async Task<IActionResult> CreateNewCategory(CreateCategoryCommand command)
         {
             await _mediator.Send(command);
             return RedirectToAction(nameof(Actions));
         }
-        [Authorize]
         public async Task<IActionResult> CreateUpcomingAction()
         {
             await ViewLayoutData();
             return View();
         }
-        [Authorize]
         [HttpPost]
         public async Task<IActionResult> CreateUpcomingAction(CreateTransferCommand command)
         {
             await _mediator.Send(command);
             return RedirectToAction(nameof(Actions));
         }
-        [Authorize]
         [HttpPost]
         [Route("/ExpenseManager/DeleteTransfer/{id}")]
         public async Task<IActionResult> DeleteTransfer(int id)
@@ -187,7 +168,6 @@ namespace ExpenseManager.MVC.Controllers
 
             return RedirectToAction(nameof(Transfers));
         }
-        [Authorize]
         [HttpPost]
         [Route("/ExpenseManager/DeleteCategory/{id}")]
         public async Task<IActionResult> DeleteCategory(int id)
@@ -196,7 +176,6 @@ namespace ExpenseManager.MVC.Controllers
 
             return RedirectToAction(nameof(Actions));
         }
-        [Authorize]
         public async Task<IActionResult> Settings()
         {
             await ViewLayoutData();
@@ -204,8 +183,6 @@ namespace ExpenseManager.MVC.Controllers
             viewModel.SettingsDto = await _mediator.Send(new GetSettingValuesQuery());
             return View(viewModel);
         }
-
-        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Settings(CreateSettingsCommand command)
         {
@@ -234,17 +211,11 @@ namespace ExpenseManager.MVC.Controllers
             return RedirectToAction(nameof(Settings));
 
         }
-
-
-
-        [Authorize]
         public async Task<IActionResult> Contact()
         {
             await ViewLayoutData();
             return View();
         }
-
-        [Authorize]
         public async Task<IActionResult> Profile(int id)
         {
             await ViewLayoutData();

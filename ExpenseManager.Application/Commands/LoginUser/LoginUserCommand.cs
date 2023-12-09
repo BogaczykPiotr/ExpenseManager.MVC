@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ExpenseManager.Application.Commands.LoginUser
 {
-    public class LoginUserCommand : UserDto, IRequest
+    public class LoginUserCommand : UserDto, IRequest<string>
     {
     }
 }

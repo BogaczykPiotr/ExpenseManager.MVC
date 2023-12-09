@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace ExpenseManager.Application.Commands.LoginUser
 {
-    public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand>
+    public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, string>
     {
         private readonly IExpenseManagerRepository _expenseManagerRepository;
         private readonly IMapper _mapper;
@@ -33,7 +33,7 @@ namespace ExpenseManager.Application.Commands.LoginUser
             _authenticationSettings = authenticationSettings;
         }
 
-        Task<Unit> IRequestHandler<LoginUserCommand, Unit>.Handle(LoginUserCommand request, CancellationToken cancellationToken)
+        async Task<string> IRequestHandler<LoginUserCommand, string>.Handle(LoginUserCommand request, CancellationToken cancellationToken)
         {
             var user = _expenseManagerRepository.GetUserByEmail(request.Email);
             if (user == null)
@@ -68,9 +68,9 @@ namespace ExpenseManager.Application.Commands.LoginUser
 
             var tokenHandler = new JwtSecurityTokenHandler();
 
-            tokenHandler.WriteToken(token);
 
-            return Task.FromResult(Unit.Value);
+
+            return tokenHandler.WriteToken(token);
         }
     }
 }

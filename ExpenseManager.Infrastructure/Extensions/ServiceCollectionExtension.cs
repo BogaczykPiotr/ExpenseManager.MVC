@@ -4,6 +4,7 @@ using ExpenseManager.Domain.Interfaces;
 using ExpenseManager.Infrastructure.Persistence;
 using ExpenseManager.Infrastructure.Repositories;
 using ExpenseManager.Infrastructure.Seeders;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -33,16 +34,15 @@ namespace ExpenseManager.Infrastructure.Extensions
             services.AddScoped<IExpenseManagerRepository, ExpenseManagerRepository>();
 
             var authenticationService = new AuthenticationSettings();
-
             configuration.GetSection("Authentication").Bind(authenticationService);
 
-            services.AddScoped<AuthenticationSettings>();
+            services.AddSingleton<AuthenticationSettings>(provider => authenticationService);
 
-            services.AddAuthentication(option =>
+            services.AddAuthentication(options =>
             {
-                option.DefaultAuthenticateScheme = "Bearer";
-                option.DefaultScheme = "Bearer";
-                option.DefaultChallengeScheme = "Bearer";
+                options.DefaultAuthenticateScheme = "Bearer";
+                options.DefaultScheme = "Bearer";
+                options.DefaultChallengeScheme = "Bearer";
             }).AddJwtBearer(cfg =>
             {
                 cfg.RequireHttpsMetadata = false;
@@ -52,9 +52,9 @@ namespace ExpenseManager.Infrastructure.Extensions
                     ValidIssuer = authenticationService.JwtIssuer,
                     ValidAudience = authenticationService.JwtIssuer,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authenticationService.JwtKey)),
-
                 };
             });
+
         }
     }
 }
