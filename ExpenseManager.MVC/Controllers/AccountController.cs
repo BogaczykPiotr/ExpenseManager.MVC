@@ -22,19 +22,11 @@ namespace ExpenseManager.MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginUserCommand command)
         {
-            try
-            {
-               
-                var token = await _mediator.Send(command);
+            var token = await _mediator.Send(command);
 
-                
-                return RedirectToAction("Dashboard", "ExpenseManager", new { token });
-            }
-            catch (Exception e)
-            {
-                ModelState.AddModelError(string.Empty, "Błąd logowania. Sprawdź swoje dane.");
-                return View(command);
-            }
+            Response.Cookies.Append("Jwt", token);
+
+            return RedirectToAction("Dashboard", "ExpenseManager");
         }
 
 
