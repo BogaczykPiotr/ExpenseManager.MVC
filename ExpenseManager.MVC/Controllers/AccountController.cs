@@ -24,8 +24,6 @@ namespace ExpenseManager.MVC.Controllers
         {
             var token = await _mediator.Send(command);
 
-            Response.Cookies.Append("Jwt", token);
-
             return RedirectToAction("Dashboard", "ExpenseManager");
         }
 
