@@ -24,7 +24,7 @@ namespace ExpenseManager.MVC.Controllers
         {
             var token = await _mediator.Send(command);
 
-            return RedirectToAction("Dashboard", "ExpenseManager");
+            return Ok(token);
         }
 
 
