@@ -176,41 +176,6 @@ namespace ExpenseManager.MVC.Controllers
 
             return RedirectToAction(nameof(Actions));
         }
-        public async Task<IActionResult> Settings()
-        {
-            await ViewLayoutData();
-            var viewModel = new SettingViewModel();
-            viewModel.SettingsDto = await _mediator.Send(new GetSettingValuesQuery());
-            return View(viewModel);
-        }
-        [HttpPost]
-        public async Task<IActionResult> Settings(CreateSettingsCommand command)
-        {
-            var currentSettings = await _mediator.Send(new GetSettingValuesQuery());
-
-
-            
-
-            if (string.IsNullOrEmpty(command.Currency))
-                command.Currency = currentSettings.Currency;
-
-            if (string.IsNullOrEmpty(command.Language))
-                command.Language = currentSettings.Language;
-
-            if(command.NumberOfDisplayedActions == null)
-            {
-                command.NumberOfDisplayedActions = currentSettings.NumberOfDisplayedActions;
-            }
-
-                await _mediator.Send(command);
-
-
-            var viewModel = new SettingViewModel();
-            viewModel.CreateSavingGoalCommand = command;
-            viewModel.SettingsDto = currentSettings;
-            return RedirectToAction(nameof(Settings));
-
-        }
         public async Task<IActionResult> Contact()
         {
             await ViewLayoutData();
