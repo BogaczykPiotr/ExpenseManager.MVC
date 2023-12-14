@@ -25,7 +25,8 @@ namespace ExpenseManager.Application.Commands.LoginUser
         public LoginUserCommandHandler(IExpenseManagerRepository expenseManagerRepository, 
             IMapper mapper,
             IPasswordHasher<UserDto> passwordHasher,
-            AuthenticationSettings authenticationSettings)
+            AuthenticationSettings authenticationSettings,
+            SignInManager<User> signInManager)
         {
             _expenseManagerRepository = expenseManagerRepository;
             _mapper = mapper;
@@ -48,7 +49,7 @@ namespace ExpenseManager.Application.Commands.LoginUser
             {
                 throw new Exception("Invalid password");
             }
-
+    
             var claims = new List<Claim>()
             {
                 new Claim(ClaimTypes.NameIdentifier, userInfo.Id.ToString()),
