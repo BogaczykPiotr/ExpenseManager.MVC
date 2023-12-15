@@ -15,9 +15,7 @@ using ExpenseManager.Application.Queries.GetSavingGoalValues;
 using ExpenseManager.Application.Queries.GetSettingValues;
 using ExpenseManager.Application.Queries.GetStatValues;
 using ExpenseManager.Application.Queries.GetTransferById;
-using ExpenseManager.Application.Queries.GetUser;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExpenseManager.MVC.Controllers
@@ -179,12 +177,6 @@ namespace ExpenseManager.MVC.Controllers
         {
             await ViewLayoutData();
             return View();
-        }
-        public async Task<IActionResult> Profile(int id)
-        {
-            await ViewLayoutData();
-            var user = await _mediator.Send(new GetUserQuery(id));
-            return View(user);
         }
 
 

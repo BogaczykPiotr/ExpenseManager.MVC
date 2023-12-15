@@ -14,8 +14,6 @@ namespace ExpenseManager.Application.Extensions
         {
             services.AddScoped<IUserContext, UserContext>();
 
-            services.AddScoped<IPasswordHasher<UserDto>, PasswordHasher<UserDto>>();
-
             services.AddAutoMapper(typeof(MappingProfiles));
 
             services.AddMediatR(typeof(CreateTransferCommand));

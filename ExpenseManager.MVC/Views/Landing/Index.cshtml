@@ -1,9 +1,8 @@
 ﻿<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 <div class="landing-page-main-container">
-    <div class="landing-page-card">
-        <h1>Welcome In Expense Manager</h1>
-
-        <p>If you have an account <a class="login-btn" href="@Url.Action("Login", "Account")">Log In</a></p>
-        <p>Or <a class="login-btn" href="@Url.Action("Register", "Account")">Create an account</a></p>
-    </div>
+        <div class="landing-page">
+            <h1>Welcome in Expense Manager</h1>
+            <p>If you have an account <a asp-area="Identity" asp-page="/Account/Login">Login</a></p>
+            <p>Create an account <a asp-area="Identity" asp-page="/Account/Register">Register</a></p>
+        </div>
 </div>

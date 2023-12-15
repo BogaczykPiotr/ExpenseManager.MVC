@@ -13,15 +13,12 @@ namespace ExpenseManager.Domain.Interfaces
         Task CreateSavingGoal(SavingGoal goal);
         Task CreateCategory(Category name);
         Task CreateSettings(Setting settings);
-        Task CreateUserInformation(User user);
         Task<SavingGoal> GetLastSavingGoal();
-        Task<User> GetUserById(int id);
         Task<Setting> GetSettings(string Id);
         Task<Transfer> GetByTransferId(int id);
         Task<Category> GetByCategoryId(int id);
         Task Commit();
         Task DeleteTransfer(Transfer transfer);
         Task DeleteCategory(Category category);
-        User GetUserByEmail(string email);
     }
 }
