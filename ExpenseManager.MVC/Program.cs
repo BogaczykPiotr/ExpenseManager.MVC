@@ -1,8 +1,16 @@
 using Microsoft.Extensions.FileProviders;
 using ExpenseManager.Infrastructure.Extensions;
 using ExpenseManager.Application.Extensions;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using ExpenseManager.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("ExpenseDbContextConnection") ?? throw new InvalidOperationException("Connection string 'ExpenseDbContextConnection' not found.");
+
+builder.Services.AddDbContext<ExpenseDbContext>(options => options.UseSqlServer(connectionString));
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ExpenseDbContext>();
 
 builder.Services.AddInfrastructure(builder.Configuration);
 

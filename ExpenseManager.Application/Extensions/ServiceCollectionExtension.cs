@@ -1,9 +1,7 @@
 ﻿using ExpenseManager.Application.ApplicationUser;
 using ExpenseManager.Application.Commands.CreateTransfer;
-using ExpenseManager.Application.DTOS;
 using ExpenseManager.Application.Mappings;
 using MediatR;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ExpenseManager.Application.Extensions
