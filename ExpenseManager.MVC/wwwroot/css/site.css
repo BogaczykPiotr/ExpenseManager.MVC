@@ -1235,8 +1235,8 @@ input {
     display: block;
     border-radius: 10vw;
     position: relative;
-    left: 20vw;
-    top: 1vw;
+    left: 30vw;
+    top: 0.5vw;
 }
 
 .input-box label:after {
@@ -1529,29 +1529,235 @@ input {
     border-radius: 11px;
 }
 
-/*Login-Register pages*/
-.login-register-title {
-    text-align: center;
-    margin-top: 5vh;
-    color: rgb(175, 175, 175)
+/*Login page*/
+
+.login-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 }
-.login-register-main-rectangle {
-    color: rgb(175, 175, 175);
-    margin-left: 10vw;
+
+.login-column {
+    flex: 0 0 100%;
+    max-width: 50vw;
 }
-.login-register-form {
+
+
+.login-form {
+    background-color: #fff;
+    padding: 3vh;
+    border: 1px solid #ddd;
+    border-radius: 1vw;
+    width: 100%;
+}
+
+.login-heading {
+    color: #007bff;
+}
+
+.login-divider {
+    border: 1px solid #ddd;
+}
+
+.login-error-message {
+    color: #dc3545;
+}
+
+.login-input-group {
+    position: relative;
+    margin-bottom: 1vw;
+    max-width: 96%;
+}
+
+.login-input {
+    display: block;
+    width: 100%;
+    padding: 1vw;
+    font-size: 1.5vw;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.login-button {
+    display: block;
+    width: 100%;
+    padding: 1vw;
+    font-size: 2vh;
+    line-height: 1.5;
+    color: #fff;
+    background-color: #007bff;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+
+.login-checkbox {
+    display: block;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}
+
+.login-check-input {
+    position: static;
     margin-top: 2vh;
+    margin-bottom: 2vh;
 }
-.login-register-btn {
-    background-color: rgb(175, 175, 175);
-    color: black;
-    font-size: larger;
-    border-radius: 20px;
-    border: none;
-    margin-top: 5vh;
-    margin-left: 10vw;
+
+.login-col-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding: 0 1vh;
 }
-.login-register-btn:hover {
-    background-color: rgb(200, 200, 200);
-    transform: scale(1.1);
+
+.login-offset-col-2 {
+    margin-left: 16.66666667%;
+}
+
+.login-heading3 {
+    color: #007bff;
+}
+
+.login-external-form {
+    background-color: #f8f9fa;
+    padding: 2vw;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    height: 100%;
+}
+
+.login-external-button {
+    display: inline-block;
+    font-weight: 400;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    background-color: #007bff;
+    border: 1px solid #007bff;
+    padding: 1vw;
+    font-size: 1vw;
+    line-height: 1.5;
+    border-radius: 5px;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+
+/* Register page */
+
+.register-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.register-column {
+    flex: 0 0 100%;
+    max-width: 50vw;
+}
+
+.register-form {
+    background-color: #fff;
+    padding: 3vh;
+    border: 1px solid #ddd;
+    border-radius: 1vw;
+    width: 100%;
+}
+
+.register-heading2 {
+    color: #007bff;
+}
+
+.register-divider {
+    border: 1px solid #ddd;
+}
+
+.register-error-message {
+    color: #dc3545;
+}
+
+.register-input-group {
+    position: relative;
+    margin-bottom: 1vw;
+    max-width: 96%;
+}
+
+.register-input {
+    display: block;
+    width: 100%;
+    padding: 1vw;
+    font-size: 1.5vw;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.register-button {
+    display: block;
+    width: 100%;
+    padding: 1vw;
+    font-size: 2vh;
+    line-height: 1.5;
+    color: #fff;
+    background-color: #007bff;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+
+.register-checkbox {
+    display: block;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}
+
+.register-check-input {
+    position: static;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+.register-col-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding: 0 1vh;
+}
+
+.register-offset-col-2 {
+    margin-left: 16.66666667%;
+}
+
+.register-heading3 {
+    color: #007bff;
+}
+
+.register-external-form {
+    background-color: #f8f9fa;
+    padding: 2vw;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    height: 100%;
+}
+
+.register-external-button {
+    display: inline-block;
+    font-weight: 400;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    background-color: #007bff;
+    border: 1px solid #007bff;
+    padding: 1vw;
+    font-size: 1vw;
+    line-height: 1.5;
+    border-radius: 5px;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
 }
