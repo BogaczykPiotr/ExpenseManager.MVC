@@ -2,10 +2,12 @@
 using ExpenseManager.Application.Queries.GetAllTransfers;
 using ExpenseManager.Application.Queries.GetSettingValues;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExpenseManager.MVC.Controllers
 {
+    [Authorize]
     public class SettingsController : Controller
     {
         private readonly IMediator _mediator;
