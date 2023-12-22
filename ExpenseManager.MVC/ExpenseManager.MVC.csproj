@@ -22,6 +22,7 @@
     <ProjectReference Include="..\ExpenseManager.Infrastructure\ExpenseManager.Infrastructure.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\Identity\Data\" />
     <Folder Include="Views\Home\" />
   </ItemGroup>
 

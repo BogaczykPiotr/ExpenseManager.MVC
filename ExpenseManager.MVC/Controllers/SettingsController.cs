@@ -51,6 +51,12 @@ namespace ExpenseManager.MVC.Controllers
 
         }
 
+        public async Task<IActionResult> Profile()
+        {
+            ViewLayoutData();
+            return View();
+        }
+
 
         protected async Task ViewLayoutData()
         {
