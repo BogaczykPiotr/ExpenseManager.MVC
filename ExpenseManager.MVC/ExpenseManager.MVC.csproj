@@ -6,7 +6,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="bootstrap" Version="5.3.2" />
 		<PackageReference Include="Chart.js" Version="3.7.1" />
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.12" />
 		<PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="7.0.12" />
@@ -22,7 +21,6 @@
     <ProjectReference Include="..\ExpenseManager.Infrastructure\ExpenseManager.Infrastructure.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Identity\Data\" />
     <Folder Include="Views\Home\" />
   </ItemGroup>
 
