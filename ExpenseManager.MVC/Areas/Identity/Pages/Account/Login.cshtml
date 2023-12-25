@@ -5,12 +5,12 @@
     ViewData["Title"] = "Log in";
 }
 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-<div class="login-row">
-    <div class="login-column">
-        <section class="login-section">
+<div class="container-fluid">
+    <div class="row justify-content-center mt-5">
+        <section class="col-sm-5">
             <form id="account" method="post" class="login-form">
-                <h2 class="login-heading">Use a local account to log in.</h2>
-                <hr class="login-divider" />
+                    <h2 class="text-primary text-center">log In</h2>
+                
                 <div asp-validation-summary="ModelOnly" class="login-error-message" role="alert"></div>
                 <div class="login-input-group">
                     <input asp-for="Input.Email" class="login-input" autocomplete="username" aria-required="true" placeholder="name@example.com" />
