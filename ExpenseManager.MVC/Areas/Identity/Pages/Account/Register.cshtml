@@ -3,14 +3,14 @@
 @{
     ViewData["Title"] = "Register";
 }
-
+<div class="container mt-5">
 <div class="row d-flex justify-content-center mt-5 rounded">
-    <div class="col-sm-5">
-        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="register-form">
-            <h2 class="text-primary mb-4">Create a new account</h2>
+    <div class="card p-4 col-sm-5">
+        <h2 class="text-primary text-center mb-4">Create a new account</h2>
+        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
             <div class="form-floating mb-3">
-                <input asp-for="Input.Email" class="form-control register-input" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
                 <label asp-for="Input.Email">Email</label>
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
             </div>
@@ -26,7 +26,13 @@
             </div>
             <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary register-button rounded-3">Register</button>
         </form>
+        <div class="mt-2 text-center">
+            <p>
+                <a id="forgot-password" asp-page="./Login">or Log Into your account</a>
+            </p>
+        </div>
     </div>
+</div>
 </div>
 
 @section Scripts {
