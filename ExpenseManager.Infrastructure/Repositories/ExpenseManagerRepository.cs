@@ -1,7 +1,9 @@
 ﻿using ExpenseManager.Domain.Entities;
 using ExpenseManager.Domain.Interfaces;
 using ExpenseManager.Infrastructure.Persistence;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Runtime.CompilerServices;
 
 namespace ExpenseManager.Infrastructure.Repositories
 {
@@ -11,7 +13,9 @@ namespace ExpenseManager.Infrastructure.Repositories
         public ExpenseManagerRepository(ExpenseDbContext dbContext)
         {
             _dbContext = dbContext;
+
         }
+
 
         public async Task CreateSavingGoal(SavingGoal goal)
         {

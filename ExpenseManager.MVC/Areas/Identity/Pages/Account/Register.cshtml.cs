@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 using System.ComponentModel.DataAnnotations;
+using ExpenseManager.Domain.Entities;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -91,6 +92,14 @@ namespace ExpenseManager.MVC.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
 
+
+            [Required]
+            public string UserName { get; set; }
+
+            [Required]
+            [StringLength(9)]
+            public string PhoneNumber { get; set; }
+
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
@@ -99,7 +108,10 @@ namespace ExpenseManager.MVC.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
+                var user = new User { Email = Input.Email,
+                    UserName = Input.UserName,
+                    PhoneNumber = Input.PhoneNumber
+                };
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
