@@ -1,10 +1,11 @@
 ﻿using ExpenseManager.Domain.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace ExpenseManager.Infrastructure.Persistence
 {
-    public class ExpenseDbContext : IdentityDbContext 
+    public class ExpenseDbContext : IdentityDbContext<IdentityUser>
     {
         public ExpenseDbContext(DbContextOptions<ExpenseDbContext> options) : base(options)
         {

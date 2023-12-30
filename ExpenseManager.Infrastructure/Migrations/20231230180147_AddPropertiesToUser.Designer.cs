@@ -4,6 +4,7 @@ using ExpenseManager.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ExpenseManager.Infrastructure.Migrations
 {
     [DbContext(typeof(ExpenseDbContext))]
-    partial class ExpenseDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231230180147_AddPropertiesToUser")]
+    partial class AddPropertiesToUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,7 +45,7 @@ namespace ExpenseManager.Infrastructure.Migrations
 
                     b.HasIndex("CreatedById");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("ExpenseManager.Domain.Entities.SavingGoal", b =>
@@ -66,7 +69,7 @@ namespace ExpenseManager.Infrastructure.Migrations
 
                     b.HasIndex("CreatedById");
 
-                    b.ToTable("SavingGoals", (string)null);
+                    b.ToTable("SavingGoals");
                 });
 
             modelBuilder.Entity("ExpenseManager.Domain.Entities.Setting", b =>
@@ -93,7 +96,7 @@ namespace ExpenseManager.Infrastructure.Migrations
 
                     b.HasIndex("CreatedById");
 
-                    b.ToTable("Settings", (string)null);
+                    b.ToTable("Settings");
                 });
 
             modelBuilder.Entity("ExpenseManager.Domain.Entities.Stat", b =>
@@ -125,7 +128,7 @@ namespace ExpenseManager.Infrastructure.Migrations
 
                     b.HasIndex("SavingGoalId");
 
-                    b.ToTable("Stats", (string)null);
+                    b.ToTable("Stats");
                 });
 
             modelBuilder.Entity("ExpenseManager.Domain.Entities.Transfer", b =>
@@ -164,7 +167,7 @@ namespace ExpenseManager.Infrastructure.Migrations
 
                     b.HasIndex("CreatedById");
 
-                    b.ToTable("Transfers", (string)null);
+                    b.ToTable("Transfers");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

@@ -1,4 +1,5 @@
 ﻿using ExpenseManager.Domain.Entities;
+using Microsoft.AspNetCore.Identity;
 
 namespace ExpenseManager.Domain.Interfaces
 {

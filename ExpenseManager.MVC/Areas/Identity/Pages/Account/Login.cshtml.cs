@@ -3,6 +3,8 @@
 #nullable disable
 
 using System.ComponentModel.DataAnnotations;
+using ExpenseManager.Domain.Entities;
+using ExpenseManager.Domain.Interfaces;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -14,11 +16,15 @@ namespace ExpenseManager.MVC.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly UserManager<User> _userManager;
 
-        public LoginModel(SignInManager<IdentityUser> signInManager, ILogger<LoginModel> logger)
+        public LoginModel(SignInManager<IdentityUser> signInManager, 
+            ILogger<LoginModel> logger,
+            UserManager<User> userManager)
         {
             _signInManager = signInManager;
             _logger = logger;
+            _userManager = userManager;
         }
 
         /// <summary>
@@ -108,6 +114,8 @@ namespace ExpenseManager.MVC.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
+                    var user = await _userManager.FindByEmailAsync(Input.Email);
+                    user.LastLogin = DateTime.Now;
                     return RedirectToAction("Dashboard", "ExpenseManager");
                 }
                 if (result.RequiresTwoFactor)

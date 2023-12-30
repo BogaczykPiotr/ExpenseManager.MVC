@@ -94,9 +94,11 @@ namespace ExpenseManager.MVC.Areas.Identity.Pages.Account
 
 
             [Required]
+            [Display(Name = "User Name")]
             public string UserName { get; set; }
 
             [Required]
+            [Display(Name = "Phone Number")]
             [StringLength(9)]
             public string PhoneNumber { get; set; }
 
@@ -110,7 +112,9 @@ namespace ExpenseManager.MVC.Areas.Identity.Pages.Account
             {
                 var user = new User { Email = Input.Email,
                     UserName = Input.UserName,
-                    PhoneNumber = Input.PhoneNumber
+                    PhoneNumber = Input.PhoneNumber,
+                    CreatedAt = DateTime.UtcNow
+                    
                 };
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
