@@ -114,7 +114,6 @@ namespace ExpenseManager.MVC.Areas.Identity.Pages.Account
                     UserName = Input.UserName,
                     PhoneNumber = Input.PhoneNumber,
                     CreatedAt = DateTime.UtcNow
-                    
                 };
                 var result = await _userManager.CreateAsync(user, Input.Password);
 

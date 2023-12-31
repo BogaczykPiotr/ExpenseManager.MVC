@@ -1,6 +1,7 @@
 ﻿using ExpenseManager.Application.Commands.CreateSettings;
 using ExpenseManager.Application.Queries.GetAllTransfers;
 using ExpenseManager.Application.Queries.GetSettingValues;
+using ExpenseManager.Application.Queries.GetUser;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -54,7 +55,8 @@ namespace ExpenseManager.MVC.Controllers
         public async Task<IActionResult> Profile()
         {
             ViewLayoutData();
-            return View();
+            var dto = await _mediator.Send(new GetUserQuery());
+            return View(dto);
         }
 
 

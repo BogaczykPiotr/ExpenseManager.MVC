@@ -5,6 +5,7 @@ using ExpenseManager.Application.Commands.EditCategory;
 using ExpenseManager.Application.Commands.EditTransfer;
 using ExpenseManager.Application.DTOS;
 using ExpenseManager.Domain.Entities;
+using Microsoft.AspNetCore.Identity;
 
 namespace ExpenseManager.Application.Mappings
 {
@@ -29,6 +30,16 @@ namespace ExpenseManager.Application.Mappings
 
             CreateMap<CategoryDto, EditCategoryCommand>();
             CreateMap<TransferDto, EditTransferCommand>();
+
+
+            CreateMap<IdentityUser, UserDto>()
+            .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.UserName))
+            .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))
+            .ForMember(dest => dest.PhoneNumber, opt => opt.MapFrom(src => src.PhoneNumber))
+            .ForMember(dest => dest.PhoneNumberConfirmed, opt => opt.MapFrom(src => src.PhoneNumberConfirmed))
+            .ForMember(dest => dest.TwoFactorEnabled, opt => opt.MapFrom(src => src.TwoFactorEnabled));
+
+            CreateMap<User, UserDto>();
 
         }
     }
