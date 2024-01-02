@@ -4,7 +4,6 @@
 
 using System.ComponentModel.DataAnnotations;
 using ExpenseManager.Domain.Entities;
-using ExpenseManager.Domain.Interfaces;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -16,11 +15,11 @@ namespace ExpenseManager.MVC.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
-        private readonly UserManager<User> _userManager;
+        private readonly UserManager<IdentityUser> _userManager;
 
         public LoginModel(SignInManager<IdentityUser> signInManager, 
             ILogger<LoginModel> logger,
-            UserManager<User> userManager)
+            UserManager<IdentityUser> userManager)
         {
             _signInManager = signInManager;
             _logger = logger;
@@ -114,8 +113,10 @@ namespace ExpenseManager.MVC.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    var user = await _userManager.FindByEmailAsync(Input.Email);
+                    var user = await _userManager.FindByEmailAsync(Input.Email) as User;
+
                     user.LastLogin = DateTime.Now;
+
                     return RedirectToAction("Dashboard", "ExpenseManager");
                 }
                 if (result.RequiresTwoFactor)
