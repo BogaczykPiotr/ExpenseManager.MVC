@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ExpenseManager.Infrastructure.Persistence
 {
-    public class ExpenseDbContext : IdentityDbContext<IdentityUser>
+    public class ExpenseDbContext : IdentityDbContext<User>
     {
         public ExpenseDbContext(DbContextOptions<ExpenseDbContext> options) : base(options)
         {
@@ -20,6 +20,8 @@ namespace ExpenseManager.Infrastructure.Persistence
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<User>().HasKey(u => u.Id);
         }
 
     }

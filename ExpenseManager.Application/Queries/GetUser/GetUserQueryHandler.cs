@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ExpenseManager.Application.DTOS;
+using ExpenseManager.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -9,10 +10,10 @@ namespace ExpenseManager.Application.Queries.GetUser
 {
     public class GetUserQueryHandler : IRequestHandler<GetUserQuery, UserDto>
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<User> _userManager;
         private readonly IMapper _mapper;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        public GetUserQueryHandler(UserManager<IdentityUser> userManager,
+        public GetUserQueryHandler(UserManager<User> userManager,
             IMapper mapper,
             IHttpContextAccessor httpContextAccessor)
         {

@@ -1,4 +1,5 @@
-﻿using ExpenseManager.Domain.Interfaces;
+﻿using ExpenseManager.Domain.Entities;
+using ExpenseManager.Domain.Interfaces;
 using ExpenseManager.Infrastructure.Persistence;
 using ExpenseManager.Infrastructure.Repositories;
 using ExpenseManager.Infrastructure.Seeders;
@@ -16,7 +17,7 @@ namespace ExpenseManager.Infrastructure.Extensions
             services.AddDbContext<ExpenseDbContext>(options
                 => options.UseSqlServer(configuration.GetConnectionString("Database")));
 
-            services.AddDefaultIdentity<IdentityUser>(options =>
+            services.AddDefaultIdentity<User>(options =>
             {
                 options.Stores.MaxLengthForKeys = 450;
             })
