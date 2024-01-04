@@ -10,6 +10,6 @@ namespace ExpenseManager.Domain.Entities
         [MinLength(1)]
         public string Name { get; set; }
         public string? CreatedById { get; set; }
-        public IdentityUser? CreatedBy { get; set; }
+        public ApplicationUser? CreatedBy { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace ExpenseManager.Domain.Entities
 {
-    public class User : IdentityUser
+    public class ApplicationUser : IdentityUser
     {
         [PersonalData]
         public string Address { get; set; }

@@ -13,13 +13,13 @@ namespace ExpenseManager.MVC.Areas.Identity.Pages.Account
 {
     public class LoginModel : PageModel
     {
-        private readonly SignInManager<User> _signInManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
-        private readonly UserManager<User> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public LoginModel(SignInManager<User> signInManager, 
+        public LoginModel(SignInManager<ApplicationUser> signInManager, 
             ILogger<LoginModel> logger,
-            UserManager<User> userManager)
+            UserManager<ApplicationUser> userManager)
         {
             _signInManager = signInManager;
             _logger = logger;
@@ -113,9 +113,9 @@ namespace ExpenseManager.MVC.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    var user = await _userManager.FindByEmailAsync(Input.Email) as User;
+                    var user = await _userManager.FindByEmailAsync(Input.Email);
 
-                    user.LastLogin = DateTime.Now;
+                    //user.LastLogin = DateTime.Now;
 
                     return RedirectToAction("Dashboard", "ExpenseManager");
                 }

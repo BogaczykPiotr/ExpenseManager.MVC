@@ -9,7 +9,7 @@ namespace ExpenseManager.Domain.Entities
         public string? Language { get; set; }
         public int NumberOfDisplayedActions { get; set; }
         public string? CreatedById { get; set; }
-        public IdentityUser? CreatedBy { get; set; }
+        public ApplicationUser? CreatedBy { get; set; }
     }
 }
 

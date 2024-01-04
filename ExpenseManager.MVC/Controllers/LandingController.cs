@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using ExpenseManager.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,8 +8,8 @@ namespace ExpenseManager.MVC.Controllers
     [AllowAnonymous]
     public class LandingController : Controller
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
-        public LandingController(SignInManager<IdentityUser> signInManager)
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        public LandingController(SignInManager<ApplicationUser> signInManager)
         {
             _signInManager = signInManager;
         }

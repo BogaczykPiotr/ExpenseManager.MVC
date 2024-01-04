@@ -10,7 +10,7 @@ namespace ExpenseManager.Domain.Entities
         public float Left { get; set; }
         public SavingGoal SavingGoal { get; set; }
         public string? CreatedById { get; set; }
-        public IdentityUser? CreatedBy { get; set; }
+        public ApplicationUser? CreatedBy { get; set; }
 
     }
 }

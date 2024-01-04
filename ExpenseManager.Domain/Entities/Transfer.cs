@@ -16,6 +16,6 @@ namespace ExpenseManager.Domain.Entities
         public bool Ingoing { get; set; }
         public bool Upcoming { get; set; } = false;
         public string? CreatedById { get; set; }
-        public IdentityUser? CreatedBy { get; set; }
+        public ApplicationUser? CreatedBy { get; set; }
     }
 }

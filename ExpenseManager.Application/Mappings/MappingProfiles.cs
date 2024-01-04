@@ -32,14 +32,14 @@ namespace ExpenseManager.Application.Mappings
             CreateMap<TransferDto, EditTransferCommand>();
 
 
-            CreateMap<IdentityUser, UserDto>()
+            CreateMap<Domain.Entities.ApplicationUser, UserDto>()
             .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.UserName))
             .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))
             .ForMember(dest => dest.PhoneNumber, opt => opt.MapFrom(src => src.PhoneNumber))
             .ForMember(dest => dest.PhoneNumberConfirmed, opt => opt.MapFrom(src => src.PhoneNumberConfirmed))
             .ForMember(dest => dest.TwoFactorEnabled, opt => opt.MapFrom(src => src.TwoFactorEnabled));
 
-            CreateMap<User, UserDto>();
+            CreateMap<Domain.Entities.ApplicationUser, UserDto>();
 
         }
     }

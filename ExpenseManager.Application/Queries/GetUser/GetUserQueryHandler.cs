@@ -10,10 +10,10 @@ namespace ExpenseManager.Application.Queries.GetUser
 {
     public class GetUserQueryHandler : IRequestHandler<GetUserQuery, UserDto>
     {
-        private readonly UserManager<User> _userManager;
+        private readonly UserManager<Domain.Entities.ApplicationUser> _userManager;
         private readonly IMapper _mapper;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        public GetUserQueryHandler(UserManager<User> userManager,
+        public GetUserQueryHandler(UserManager<Domain.Entities.ApplicationUser> userManager,
             IMapper mapper,
             IHttpContextAccessor httpContextAccessor)
         {
@@ -27,7 +27,7 @@ namespace ExpenseManager.Application.Queries.GetUser
             var currentUser = await _userManager.FindByEmailAsync(_httpContextAccessor.HttpContext.User.Identity.Name);
 
 
-            var dto = _mapper.Map<IdentityUser, UserDto>(currentUser);
+            var dto = _mapper.Map<Domain.Entities.ApplicationUser, UserDto>(currentUser);
 
             return dto;
         }
