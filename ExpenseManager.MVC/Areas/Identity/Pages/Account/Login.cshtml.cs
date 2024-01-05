@@ -115,7 +115,7 @@ namespace ExpenseManager.MVC.Areas.Identity.Pages.Account
                     _logger.LogInformation("User logged in.");
                     var user = await _userManager.FindByEmailAsync(Input.Email);
 
-                    //user.LastLogin = DateTime.Now;
+                    user.LastLogin = DateTime.Now;
 
                     return RedirectToAction("Dashboard", "ExpenseManager");
                 }

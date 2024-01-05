@@ -113,7 +113,10 @@ namespace ExpenseManager.MVC.Areas.Identity.Pages.Account
                 var user = new ApplicationUser { Email = Input.Email,
                     UserName = Input.UserName,
                     PhoneNumber = Input.PhoneNumber,
-                    CreatedAt = DateTime.UtcNow
+                    CreatedAt = DateTime.UtcNow,
+                    LastLogin = DateTime.UtcNow,
+                    IsActive = true,
+                    LastPasswordChange = DateTime.UtcNow,
                 };
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
