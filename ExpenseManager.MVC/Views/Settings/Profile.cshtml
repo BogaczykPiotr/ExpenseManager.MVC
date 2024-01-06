@@ -1,22 +1,33 @@
 ﻿@model ExpenseManager.Application.DTOS.UserDto
+
 <h1 class="text-center text-white">Profile</h1>
-<div class="row text-white">
-    <div class="mb-2">
-        <p>Email: @Model.UserName</p>
-    </div>
-    <div class="mb-2">
-        <p>Email: @Model.Email</p>
-    </div>
-    <div class="mb-2">
-        <p>Email: @Model.PhoneNumber</p>
-    </div>
-    @if(Model.Address != null && Model.Country != null)
-    {
-        <div class="mb-2">
-            <p>Address: @Model.Address</p>
+<div class="container text-white">
+    <div class="row mb-2">
+        <div class="col">
+            <p>UserName: @Model.UserName</p>
         </div>
-        <div class="mb-2">
-            <p>Country: @Model.Country</p>
+    </div>
+    <div class="row mb-2">
+        <div class="col">
+            <p>Email: @Model.Email</p>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col">
+            <p>Phone Number: @Model.PhoneNumber</p>
+        </div>
+    </div>
+    @if (Model.Address != null && Model.Country != null)
+    {
+        <div class="row mb-2">
+            <div class="col">
+                <p>Address: @Model.Address</p>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col">
+                <p>Country: @Model.Country</p>
+            </div>
         </div>
     }
 </div>

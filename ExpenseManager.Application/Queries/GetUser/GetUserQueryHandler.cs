@@ -24,7 +24,7 @@ namespace ExpenseManager.Application.Queries.GetUser
         public async Task<UserDto> Handle(GetUserQuery request, CancellationToken cancellationToken)
         {
 
-            var currentUser = await _userManager.FindByEmailAsync(_httpContextAccessor.HttpContext.User.Identity.Name);
+            var currentUser = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
 
 
             var dto = _mapper.Map<Domain.Entities.ApplicationUser, UserDto>(currentUser);
