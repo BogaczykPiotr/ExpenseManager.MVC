@@ -1,4 +1,22 @@
-﻿let links = document.querySelectorAll('.link')
+﻿function updateLeftRectangleVisibility() {
+    const leftRectangle = document.querySelector('.left-rectangle');
+    if (window.innerWidth <= 767) {
+        leftRectangle.classList.remove('show');
+    } else {
+        leftRectangle.classList.add('show');
+    }
+}
+
+updateLeftRectangleVisibility();
+
+window.addEventListener('resize', updateLeftRectangleVisibility);
+
+
+
+
+
+
+let links = document.querySelectorAll('.link')
 
 for (let i = 0; i < links.length; i++) {
 	if (links[i].href === window.location.href) {
@@ -21,3 +39,5 @@ if (window.location.pathname === '/ExpenseManager/Create') {
         }
     })
 }
+
+           

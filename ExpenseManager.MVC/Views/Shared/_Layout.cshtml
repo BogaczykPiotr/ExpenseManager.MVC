@@ -8,6 +8,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
+
     <title>@ViewBag.Title</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
@@ -17,7 +18,9 @@
 <body>
     @if (settingsDto?.Language == "english")
     {
-            <div class="left-rectangle">
+        <div class="container-fluid">
+            <div class="row d-md-flex">
+                <div class="left-rectangle col-12 col-md-4">
                 <a href="@Url.Action("Dashboard", "ExpenseManager")">
                 <img class="logo" src="@Url.Content("~/images/Logo.png")">
             </a>
@@ -48,9 +51,9 @@
                     <span class="text">Contact us</span>
                 </a>
             </div>
-            <div class="right-rectangle">
+            <div class="right-rectangle col-md-8 d-none d-md-block">
 
-                <div class="right-content">
+                <div class="right-content ">
                     <a href="#" class="right-links">
                         <img class="right-link" src="@Url.Content("~/images/Stats.png")">
                     </a>
@@ -91,7 +94,8 @@
                         </div>
                     }
                 </div>
-            
+            </div>
+            </div>
         </div>
     }
     else if(settingsDto?.Language == "deutsch")
@@ -258,11 +262,26 @@
     @RenderBody()
 
     <footer>
+        <script>
+            function updateLeftRectangleVisibility() {
+                const leftRectangle = document.querySelector('.left-rectangle');
+                if (window.innerWidth <= 767) {
+                    leftRectangle.classList.remove('show');
+                } else {
+                    leftRectangle.classList.add('show');
+                }
+            }
+
+            updateLeftRectangleVisibility();
+
+            window.addEventListener('resize', updateLeftRectangleVisibility);
+            </script>
         <script src="~/lib/jquery/dist/jquery.min.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
         @RenderSection("Scripts", required: false)
     </footer>
+
 </body>
 </html>
