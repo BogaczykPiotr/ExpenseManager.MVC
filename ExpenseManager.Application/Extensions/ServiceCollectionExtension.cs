@@ -1,4 +1,5 @@
-﻿using ExpenseManager.Application.ApplicationUser;
+﻿using AutoMapper;
+using ExpenseManager.Application.ApplicationUser;
 using ExpenseManager.Application.Commands.CreateTransfer;
 using ExpenseManager.Application.Mappings;
 using MediatR;
@@ -12,7 +13,13 @@ namespace ExpenseManager.Application.Extensions
         {
             services.AddScoped<IUserContext, UserContext>();
 
-            services.AddAutoMapper(typeof(MappingProfiles));
+            services.AddScoped(provider => new MapperConfiguration(cfg =>
+            {
+                var scope = provider.CreateScope();
+                var userContext = scope.ServiceProvider.GetService<IUserContext>();
+                cfg.AddProfile(new MappingProfiles(userContext));
+            }).CreateMapper()
+            );
 
             services.AddMediatR(typeof(CreateTransferCommand));
 

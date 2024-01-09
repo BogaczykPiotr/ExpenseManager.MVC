@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ExpenseManager.Application.ApplicationUser;
 using ExpenseManager.Application.Commands.CreateCategory;
 using ExpenseManager.Application.Commands.CreateTransfer;
 using ExpenseManager.Application.Commands.EditCategory;
@@ -11,8 +12,11 @@ namespace ExpenseManager.Application.Mappings
 {
     public class MappingProfiles : Profile
     {
-        public MappingProfiles()
+        public MappingProfiles(IUserContext userContext)
         {
+            var user = userContext.GetCurrentUser();
+
+
             CreateMap<Setting, SettingDto>();
             CreateMap<SettingDto, Setting>();
             CreateMap<SavingGoal, SavingGoalDto>();

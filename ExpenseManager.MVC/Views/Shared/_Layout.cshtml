@@ -262,20 +262,7 @@
     @RenderBody()
 
     <footer>
-        <script>
-            function updateLeftRectangleVisibility() {
-                const leftRectangle = document.querySelector('.left-rectangle');
-                if (window.innerWidth <= 767) {
-                    leftRectangle.classList.remove('show');
-                } else {
-                    leftRectangle.classList.add('show');
-                }
-            }
-
-            updateLeftRectangleVisibility();
-
-            window.addEventListener('resize', updateLeftRectangleVisibility);
-            </script>
+        
         <script src="~/lib/jquery/dist/jquery.min.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
