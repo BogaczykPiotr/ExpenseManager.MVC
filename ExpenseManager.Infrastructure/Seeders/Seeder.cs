@@ -41,6 +41,54 @@ namespace ExpenseManager.Infrastructure.Seeders
                     _dbContext.SavingGoals.Add(savingGoal);
                     await _dbContext.SaveChangesAsync();
                 }
+                if (!_dbContext.Users.Any())
+                {
+                    var user = new ApplicationUser()
+                    {
+                        UserName = "user",
+                        NormalizedUserName = "USER",
+                        Email = "user@user",
+                        NormalizedEmail = "USER@USER",
+                        Address = "user",
+                        CreatedAt = DateTime.Now,
+                        Country = "Poland",
+                        EmailConfirmed = true,
+                        IsActive = true,
+                        LastLogin = DateTime.Now,
+                        LastPasswordChange = DateTime.Now
+                    };
+
+                    PasswordHasher <ApplicationUser> phUser = new PasswordHasher<ApplicationUser>();
+
+                    user.PasswordHash = phUser.HashPassword(user, "t]rep)I8+UWM&IcS!QU^");
+
+                    await _dbContext.Users.AddAsync(user);
+
+
+                    var admin = new ApplicationUser()
+                    {
+                        UserName = "admin",
+                        Email = "admin@admin",
+                        NormalizedEmail = "ADMIN@ADMIN",
+                        NormalizedUserName = "ADMIN",
+                        Address = "admin",
+                        CreatedAt = DateTime.Now,
+                        Country = "Poland",
+                        EmailConfirmed = true,
+                        IsActive = true,
+                        LastLogin = DateTime.Now,
+                        LastPasswordChange = DateTime.Now
+                    };
+
+                    PasswordHasher<ApplicationUser> phAdmin = new PasswordHasher<ApplicationUser>();
+
+                    admin.PasswordHash = phUser.HashPassword(admin, "t]rep)I8+UWM&IcS!QU^");
+
+                    await _dbContext.Users.AddAsync(admin);
+
+                    await _dbContext.SaveChangesAsync();
+
+                }
             }
         }
     }
