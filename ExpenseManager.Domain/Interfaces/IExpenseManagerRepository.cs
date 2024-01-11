@@ -17,7 +17,6 @@ namespace ExpenseManager.Domain.Interfaces
         Task<SavingGoal> GetLastSavingGoal();
         Task<Setting> GetSettings(string Id);
         Task<Transfer> GetByTransferId(int id);
-        Task<ApplicationUser> GetUserByEmail(string email);
         Task<Category> GetByCategoryId(int id);
         Task Commit();
         Task DeleteTransfer(Transfer transfer);

@@ -1,10 +1,8 @@
 ﻿using AutoMapper;
 using ExpenseManager.Application.DTOS;
-using ExpenseManager.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using System.Security.Claims;
 
 namespace ExpenseManager.Application.Queries.GetUser
 {

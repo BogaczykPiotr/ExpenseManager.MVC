@@ -85,11 +85,5 @@ namespace ExpenseManager.Infrastructure.Repositories
                 .ToListAsync();
         }
 
-        public async Task<ApplicationUser> GetUserByEmail(string email)
-        {
-            return await _dbContext.Users
-                .FirstOrDefaultAsync(u => u.Email == email);
-                
-        }
     }
 }
