@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ExpenseManager.Application.DTOS;
+using MediatR;
 
 namespace ExpenseManager.Application.Queries.GetAllUsers
 {
-    internal class GetAllUsersQuery
-    {
-    }
+    public class GetAllUsersQuery : IRequest<IEnumerable<UserDto>>
+    {}
 }

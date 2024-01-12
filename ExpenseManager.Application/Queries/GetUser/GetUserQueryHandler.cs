@@ -25,7 +25,7 @@ namespace ExpenseManager.Application.Queries.GetUser
             var currentUser = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
 
 
-            var dto = _mapper.Map<Domain.Entities.ApplicationUser, UserDto>(currentUser);
+            var dto = _mapper.Map<UserDto>(currentUser);
 
             return dto;
         }

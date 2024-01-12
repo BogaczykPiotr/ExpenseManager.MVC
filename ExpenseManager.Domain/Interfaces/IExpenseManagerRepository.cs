@@ -1,6 +1,4 @@
 ﻿using ExpenseManager.Domain.Entities;
-using Microsoft.AspNetCore.Identity;
-
 namespace ExpenseManager.Domain.Interfaces
 {
     public interface IExpenseManagerRepository
@@ -8,6 +6,7 @@ namespace ExpenseManager.Domain.Interfaces
         Task<IEnumerable<Transfer>> GetAllTransfers(string Id);
         Task<IEnumerable<SavingGoal>> GetAllSavingGoals(string Id);
         Task<IEnumerable<Category>> GetAllCategories(string Id);
+        Task<IEnumerable<ApplicationUser>> GetAllUsers();
 
         Task CreateTransfer(Transfer transfer);
 

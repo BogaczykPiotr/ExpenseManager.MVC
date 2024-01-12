@@ -85,5 +85,7 @@ namespace ExpenseManager.Infrastructure.Repositories
                 .ToListAsync();
         }
 
+        public async Task<IEnumerable<ApplicationUser>> GetAllUsers()
+            => await _dbContext.Users.ToListAsync();
     }
 }
