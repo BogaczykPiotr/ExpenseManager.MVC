@@ -19,5 +19,19 @@ namespace ExpenseManager.MVC.Controllers
 
             return View(users);
         }
+
+        public async Task<IActionResult> EditUser()
+        {
+            return View();
+        }
+
+        //[HttpPost]
+        //public async Task<IActionResult> EditUser()
+        //{
+        //    return RedirectToAction(nameof(ManageUsers));
+        //}
+
+
+
     }
 }
