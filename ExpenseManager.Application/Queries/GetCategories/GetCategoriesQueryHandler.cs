@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using ExpenseManager.Application.ApplicationUser;
 using ExpenseManager.Application.DTOS;
+using ExpenseManager.Application.UserService;
 using ExpenseManager.Domain.Interfaces;
 using MediatR;
 

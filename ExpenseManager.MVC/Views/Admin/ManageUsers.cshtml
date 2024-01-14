@@ -39,7 +39,7 @@
                             </td>
                             <td>
                                 <a href="" class="btn btn-outline-danger btn-circle btn-lg btn-circle ml-2" title="Delete"><i class="fa fa-trash"></i> </a>
-                                <a asp-page="/Admin/EditUser" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2" title="Edit"><i class="fa fa-edit"></i> </a>
+                                <a asp-controller="Admin" asp-action="EditUser" asp-route-Id="@item.Id" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2" title="Edit"><i class="fa fa-edit"></i> </a>
                             </td>
                             </tr>
                             counter++;

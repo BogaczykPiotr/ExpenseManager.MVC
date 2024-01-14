@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 
-namespace ExpenseManager.Application.ApplicationUser
+namespace ExpenseManager.Application.UserService
 {
     public interface IUserContext
     {

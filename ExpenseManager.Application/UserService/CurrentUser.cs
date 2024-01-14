@@ -1,4 +1,4 @@
-﻿namespace ExpenseManager.Application.ApplicationUser
+﻿namespace ExpenseManager.Application.UserService
 {
     public class CurrentUser
     {

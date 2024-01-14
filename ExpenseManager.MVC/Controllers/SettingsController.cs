@@ -1,7 +1,6 @@
 ﻿using ExpenseManager.Application.Commands.CreateSettings;
 using ExpenseManager.Application.Queries.GetAllTransfers;
 using ExpenseManager.Application.Queries.GetSettingValues;
-using ExpenseManager.Application.Queries.GetUser;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -9,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ExpenseManager.MVC.Controllers
 {
     [Authorize]
+    [ValidateAntiForgeryToken]
     public class SettingsController : Controller
     {
         private readonly IMediator _mediator;

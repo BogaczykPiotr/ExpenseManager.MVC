@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using ExpenseManager.Application.ApplicationUser;
 using ExpenseManager.Application.Commands.CreateTransfer;
 using ExpenseManager.Application.Mappings;
+using ExpenseManager.Application.UserService;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 

@@ -17,8 +17,10 @@ namespace ExpenseManager.Domain.Interfaces
         Task<Setting> GetSettings(string Id);
         Task<Transfer> GetByTransferId(int id);
         Task<Category> GetByCategoryId(int id);
+        Task<ApplicationUser> GetUserById(string id);
         Task Commit();
         Task DeleteTransfer(Transfer transfer);
         Task DeleteCategory(Category category);
+        
     }
 }

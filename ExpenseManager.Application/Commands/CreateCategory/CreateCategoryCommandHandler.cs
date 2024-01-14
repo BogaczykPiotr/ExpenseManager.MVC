@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using ExpenseManager.Application.ApplicationUser;
+using ExpenseManager.Application.UserService;
 using ExpenseManager.Domain.Entities;
 using ExpenseManager.Domain.Interfaces;
 using MediatR;
