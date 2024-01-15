@@ -64,6 +64,8 @@ namespace ExpenseManager.Infrastructure.Repositories
             => _dbContext.Transfers.Remove(transfer);
         public async Task DeleteCategory(Category category)
             => _dbContext.Categories.Remove(category);
+        public async Task DeleteUser(ApplicationUser user)
+            => _dbContext.Users.Remove(user);
 
         public async Task<IEnumerable<Transfer>> GetAllTransfers(string Id)
         {
@@ -90,5 +92,7 @@ namespace ExpenseManager.Infrastructure.Repositories
 
         public async Task<ApplicationUser> GetUserById(string id)
             => await _dbContext.Users.FirstAsync(u => u.Id == id);
+
+        
     }
 }

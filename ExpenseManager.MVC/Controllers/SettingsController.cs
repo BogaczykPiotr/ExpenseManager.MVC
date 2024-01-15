@@ -52,12 +52,12 @@ namespace ExpenseManager.MVC.Controllers
 
         }
 
-        public async Task<IActionResult> Profile()
-        {
-            ViewLayoutData();
-            var dto = await _mediator.Send(new GetUserQuery());
-            return View(dto);
-        }
+        //public async Task<IActionResult> Profile()
+        //{
+        //    ViewLayoutData();
+        //    var dto = await _mediator.Send(new GetUser);
+        //    return View(dto);
+        //}
 
 
         protected async Task ViewLayoutData()

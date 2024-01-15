@@ -37,18 +37,37 @@
                                                                 {
                                                                     <span class="text-success">Email Confirmed</span>
                                                                 }
+                                                                else
+                                                                {
+                                                                    <span class="text-danger">Email Is Not Confirmed</span>
+                                                                }
+
                                                                 @if (Model.PhoneNumberConfirmed)
                                                                 {
                                                                     <span class="text-success">Phone Confirmed</span>
                                                                 }
+                                                                else
+                                                                {
+                                                                    <span class="text-danger">Phone Is Not Confirmed</span>
+                                                                }
+
                                                                 @if (Model.IsActive)
                                                                 {
                                                                     <span class="text-success">Account Is Active</span>
                                                                 }
-                                                                @if (!Model.LockoutEnabled)
+                                                                else
                                                                 {
-                                                                    <span class="text-success">Account Has Not Lockout</span>
-                                                                }             
+                                                                    <span class="text-danger">Account Is Not Active</span>
+                                                                }
+
+                                                                @if (Model.LockoutEnabled)
+                                                                {
+                                                                    <span class="text-success">Account Has Lockout</span>
+                                                                }   
+                                                                else
+                                                                {
+                                                                    <span class="text-danger">Account Has Not Lockout</span>
+                                                                }
                                                             </div>
                                                         </div>
                                                     </div>

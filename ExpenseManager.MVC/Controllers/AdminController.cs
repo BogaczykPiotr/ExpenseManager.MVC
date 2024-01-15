@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using ExpenseManager.Application.Commands.DeleteCategory;
+using ExpenseManager.Application.Commands.DeleteUser;
 using ExpenseManager.Application.Commands.EditUser;
 using ExpenseManager.Application.Queries.GetAllUsers;
 using ExpenseManager.Application.Queries.GetUserById;
@@ -9,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ExpenseManager.MVC.Controllers
 {
     [Authorize]
+    [ValidateAntiForgeryToken]
     public class AdminController : Controller
     {
         private readonly IMediator _mediator;
@@ -26,6 +29,15 @@ namespace ExpenseManager.MVC.Controllers
 
             return View(users);
         }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteUser(string id)
+        {
+            await _mediator.Send(new DeleteUserCommand(id));
+
+            return RedirectToAction(nameof(ManageUsers));
+        }
+
         [Route("Admin/{id}/EditUser")]
         public async Task<IActionResult> EditUser(string id)
         {

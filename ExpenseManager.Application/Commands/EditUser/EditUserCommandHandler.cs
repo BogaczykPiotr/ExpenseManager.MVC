@@ -14,7 +14,7 @@ namespace ExpenseManager.Application.Commands.EditUser
         {
             var user = await _expenseManagerRepository.GetUserById(request.Id!);
 
-            user.UserName = request.PhoneNumber!;
+            user.UserName = request.UserName!;
             user.Email = request.Email!;
             user.PhoneNumber = request.PhoneNumber!;
             user.Address = request.Address!;
