@@ -21,8 +21,8 @@ namespace ExpenseManager.Infrastructure.Extensions
             {
                 options.Stores.MaxLengthForKeys = 450;
             })
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ExpenseDbContext>();
-
 
             services.AddScoped<Seeder>();
 

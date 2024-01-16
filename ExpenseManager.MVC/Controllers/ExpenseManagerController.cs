@@ -22,7 +22,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace ExpenseManager.MVC.Controllers
 {
     [Authorize]
-    [ValidateAntiForgeryToken]
     public class ExpenseManagerController : Controller
     {
 

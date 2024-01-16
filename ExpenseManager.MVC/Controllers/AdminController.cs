@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace ExpenseManager.MVC.Controllers
 {
     [Authorize]
-    [ValidateAntiForgeryToken]
     public class AdminController : Controller
     {
         private readonly IMediator _mediator;
@@ -30,7 +29,8 @@ namespace ExpenseManager.MVC.Controllers
             return View(users);
         }
 
-        [HttpDelete]
+        [HttpPost]
+        [Route("/Admin/Delete/{id}")]
         public async Task<IActionResult> DeleteUser(string id)
         {
             await _mediator.Send(new DeleteUserCommand(id));

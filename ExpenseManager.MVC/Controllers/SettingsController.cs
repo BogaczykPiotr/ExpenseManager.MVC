@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace ExpenseManager.MVC.Controllers
 {
     [Authorize]
-    [ValidateAntiForgeryToken]
     public class SettingsController : Controller
     {
         private readonly IMediator _mediator;

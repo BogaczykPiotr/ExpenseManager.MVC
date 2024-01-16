@@ -1,5 +1,4 @@
-﻿using ExpenseManager.Application.DTOS;
-using ExpenseManager.Domain.Entities;
+﻿using ExpenseManager.Domain.Entities;
 using ExpenseManager.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Identity;
 
@@ -12,7 +11,6 @@ namespace ExpenseManager.Infrastructure.Seeders
         {
             _dbContext = dbContext;
         }
-
         public async Task Seed()
         {
             if (await _dbContext.Database.CanConnectAsync())
@@ -57,13 +55,11 @@ namespace ExpenseManager.Infrastructure.Seeders
                         LastLogin = DateTime.Now,
                         LastPasswordChange = DateTime.Now
                     };
+                    PasswordHasher <ApplicationUser> userhash = new PasswordHasher<ApplicationUser>();
 
-                    PasswordHasher <ApplicationUser> phUser = new PasswordHasher<ApplicationUser>();
-
-                    user.PasswordHash = phUser.HashPassword(user, "t]rep)I8+UWM&IcS!QU^");
+                    user.PasswordHash = userhash.HashPassword(user, "t]rep)I8+UWM&IcS!QU^");
 
                     await _dbContext.Users.AddAsync(user);
-
 
                     var admin = new ApplicationUser()
                     {
@@ -79,10 +75,9 @@ namespace ExpenseManager.Infrastructure.Seeders
                         LastLogin = DateTime.Now,
                         LastPasswordChange = DateTime.Now
                     };
-
                     PasswordHasher<ApplicationUser> phAdmin = new PasswordHasher<ApplicationUser>();
 
-                    admin.PasswordHash = phUser.HashPassword(admin, "t]rep)I8+UWM&IcS!QU^");
+                    admin.PasswordHash = userhash.HashPassword(admin, "t]rep)I8+UWM&IcS!QU^");
 
                     await _dbContext.Users.AddAsync(admin);
 
