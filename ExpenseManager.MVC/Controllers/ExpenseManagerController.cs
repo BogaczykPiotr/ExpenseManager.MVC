@@ -21,7 +21,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ExpenseManager.MVC.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "User")]
     public class ExpenseManagerController : Controller
     {
 
@@ -180,10 +180,6 @@ namespace ExpenseManager.MVC.Controllers
             await ViewLayoutData();
             return View();
         }
-
-
-
-
 
         protected async Task ViewLayoutData()
         {

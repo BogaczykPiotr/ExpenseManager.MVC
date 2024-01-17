@@ -1,9 +1,6 @@
 using Microsoft.Extensions.FileProviders;
 using ExpenseManager.Infrastructure.Extensions;
 using ExpenseManager.Application.Extensions;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using ExpenseManager.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
