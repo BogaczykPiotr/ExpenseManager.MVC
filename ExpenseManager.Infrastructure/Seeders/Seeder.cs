@@ -7,9 +7,12 @@ namespace ExpenseManager.Infrastructure.Seeders
     public class Seeder
     {
         private readonly ExpenseDbContext _dbContext;
-        public Seeder(ExpenseDbContext dbContext)
+        private readonly UserManager<ApplicationUser> _userManager;
+        public Seeder(ExpenseDbContext dbContext,
+            UserManager<ApplicationUser> userManager)
         {
             _dbContext = dbContext;
+            _userManager = userManager;
         }
         public async Task Seed()
         {
@@ -59,6 +62,8 @@ namespace ExpenseManager.Infrastructure.Seeders
 
                     user.PasswordHash = userhash.HashPassword(user, "t]rep)I8+UWM&IcS!QU^");
 
+                    
+
                     await _dbContext.Users.AddAsync(user);
 
                     var admin = new ApplicationUser()
@@ -73,15 +78,41 @@ namespace ExpenseManager.Infrastructure.Seeders
                         EmailConfirmed = true,
                         IsActive = true,
                         LastLogin = DateTime.Now,
-                        LastPasswordChange = DateTime.Now
+                        LastPasswordChange = DateTime.Now,
                     };
-                    PasswordHasher<ApplicationUser> phAdmin = new PasswordHasher<ApplicationUser>();
 
                     admin.PasswordHash = userhash.HashPassword(admin, "t]rep)I8+UWM&IcS!QU^");
 
+                    
+
                     await _dbContext.Users.AddAsync(admin);
 
+
+
+                    var moderator = new ApplicationUser()
+                    {
+                        UserName = "moderator",
+                        Email = "moderator@moderator",
+                        NormalizedEmail = "MODERATOR@MODERATOR",
+                        NormalizedUserName = "MODERATOR",
+                        Address = "moderator",
+                        CreatedAt = DateTime.Now,
+                        Country = "Poland",
+                        EmailConfirmed = true,
+                        IsActive = true,
+                        LastLogin = DateTime.Now,
+                        LastPasswordChange = DateTime.Now,
+                    };
+
+                    moderator.PasswordHash = userhash.HashPassword(moderator, "t]rep)I8+UWM&IcS!QU^");
+
+                    await _dbContext.Users.AddAsync(moderator);
+
                     await _dbContext.SaveChangesAsync();
+
+                    await _userManager.AddToRoleAsync(moderator, "moderator");
+                    await _userManager.AddToRoleAsync(user, "user");
+                    await _userManager.AddToRoleAsync(admin, "admin");
 
                 }
             }

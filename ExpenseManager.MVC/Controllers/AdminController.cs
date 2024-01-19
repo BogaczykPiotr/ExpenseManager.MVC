@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ExpenseManager.MVC.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "admin")]
     public class AdminController : Controller
     {
         private readonly IMediator _mediator;

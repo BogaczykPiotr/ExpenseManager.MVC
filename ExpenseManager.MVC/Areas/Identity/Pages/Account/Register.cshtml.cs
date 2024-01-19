@@ -118,12 +118,14 @@ namespace ExpenseManager.MVC.Areas.Identity.Pages.Account
                     IsActive = true,
                     LastPasswordChange = DateTime.UtcNow,
                 };
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
+                await _userManager.AddToRoleAsync(user, "user");
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
-                    var userId = await _userManager.GetUserIdAsync(user);
+                    
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Dashboard", "ExpenseManager");

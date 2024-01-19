@@ -16,7 +16,5 @@ namespace ExpenseManager.Domain.Entities
         public DateTime CreatedAt { get; set; }
         [PersonalData]
         public DateTime LastPasswordChange { get; set; }
-
-        public ICollection<IdentityUserRole<string>> Roles { get; } = new List<IdentityUserRole<string>>();
     }
 }

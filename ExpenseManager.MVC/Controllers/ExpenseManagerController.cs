@@ -21,7 +21,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ExpenseManager.MVC.Controllers
 {
-    [Authorize(Roles = "User")]
+    [Authorize]
     public class ExpenseManagerController : Controller
     {
 
