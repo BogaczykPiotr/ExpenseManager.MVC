@@ -15,9 +15,12 @@ using ExpenseManager.Application.Queries.GetSavingGoalValues;
 using ExpenseManager.Application.Queries.GetSettingValues;
 using ExpenseManager.Application.Queries.GetStatValues;
 using ExpenseManager.Application.Queries.GetTransferById;
+using ExpenseManager.MVC.Extensions;
+using ExpenseManager.MVC.Models;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace ExpenseManager.MVC.Controllers
 {
@@ -81,6 +84,7 @@ namespace ExpenseManager.MVC.Controllers
         public async Task<IActionResult> Create(CreateTransferCommand command)
         {
             await _mediator.Send(command);
+            this.SetNotification("success", "Transfer was created successfully");
             return RedirectToAction(nameof(Transfers));
 
         }

@@ -29,6 +29,7 @@ namespace ExpenseManager.MVC.Controllers
             return View(users);
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [Route("/Admin/Delete/{id}")]
         public async Task<IActionResult> DeleteUser(string id)
