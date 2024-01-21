@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Identity;
-
 namespace ExpenseManager.Domain.Entities
 {
     public class Setting

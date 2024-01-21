@@ -57,7 +57,6 @@ namespace ExpenseManager.MVC.Controllers
 
             var viewModel = new SavingViewModel();
             viewModel.SavingGoalDtos = await _mediator.Send(new GetSavingGoalValuesQuery());
-
             ViewBag.Stats = stats;
 
             return View(viewModel);

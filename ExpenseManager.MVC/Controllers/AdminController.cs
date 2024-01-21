@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using ExpenseManager.Application.Commands.DeleteCategory;
 using ExpenseManager.Application.Commands.DeleteUser;
 using ExpenseManager.Application.Commands.EditUser;
 using ExpenseManager.Application.Queries.GetAllUsers;

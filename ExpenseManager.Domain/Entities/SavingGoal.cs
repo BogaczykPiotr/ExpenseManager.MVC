@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-
-namespace ExpenseManager.Domain.Entities
+﻿namespace ExpenseManager.Domain.Entities
 {
     public class SavingGoal
     {
