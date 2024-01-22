@@ -114,6 +114,26 @@ namespace ExpenseManager.Infrastructure.Seeders
                     await _userManager.AddToRoleAsync(user, "user");
                     await _userManager.AddToRoleAsync(admin, "admin");
 
+                    var firstLogin = new Achievement()
+                    {
+                        Name = "First Login",
+                    };
+                    var firstTransfer = new Achievement()
+                    {
+                        Name = "First Transfer",
+                    };
+                    var tenTransfers = new Achievement()
+                    {
+                        Name = "Ten Transfers",
+                    };
+                    var hundredTransfers = new Achievement()
+                    {
+                        Name = "Hundred Transfers",
+                    };
+                    var aThousandTransfers = new Achievement()
+                    {
+                        Name = "A Thousand Transfers",
+                    };
                 }
             }
         }

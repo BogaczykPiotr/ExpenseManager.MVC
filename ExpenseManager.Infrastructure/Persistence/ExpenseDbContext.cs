@@ -16,6 +16,7 @@ namespace ExpenseManager.Infrastructure.Persistence
         public DbSet<Transfer> Transfers { get; set; }
         public DbSet<Setting> Settings { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Achievement> Achievements { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
