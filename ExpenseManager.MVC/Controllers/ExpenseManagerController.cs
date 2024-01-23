@@ -40,6 +40,7 @@ namespace ExpenseManager.MVC.Controllers
             var stats = await _mediator.Send(new GetStatValuesQuery());
             ViewData["TransferValues"] = await _mediator.Send(new GetAllTransfersQuery());
             ViewData["SavingGoalValues"] = await _mediator.Send(new GetSavingGoalValuesQuery());
+
             return View(stats);
         }
         public async Task<IActionResult> Transfers()

@@ -93,6 +93,11 @@ namespace ExpenseManager.Infrastructure.Repositories
         public async Task<ApplicationUser> GetUserById(string id)
             => await _dbContext.Users.FirstAsync(u => u.Id == id);
 
-        
+        public async Task<IEnumerable<Achievement>> GetAllAchievements(string id)
+        {
+            return await _dbContext.Achievements
+                .Where(a => a.CreatedById == id)
+                .ToListAsync(); 
+        }
     }
 }

@@ -22,6 +22,7 @@ namespace ExpenseManager.Domain.Interfaces
         Task DeleteTransfer(Transfer transfer);
         Task DeleteCategory(Category category);
         Task DeleteUser(ApplicationUser user);
+        Task<IEnumerable<Achievement>> GetAllAchievements(int id);
         
     }
 }
