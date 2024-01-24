@@ -8,6 +8,7 @@ using ExpenseManager.Application.Commands.DeleteTransfer;
 using ExpenseManager.Application.Commands.EditCategory;
 using ExpenseManager.Application.Commands.EditTransfer;
 using ExpenseManager.Application.DTOS;
+using ExpenseManager.Application.Queries.GetAllAchievements;
 using ExpenseManager.Application.Queries.GetAllTransfers;
 using ExpenseManager.Application.Queries.GetCategories;
 using ExpenseManager.Application.Queries.GetCategoryById;
@@ -176,6 +177,13 @@ namespace ExpenseManager.MVC.Controllers
             await _mediator.Send(new DeleteCategoryCommand { Id = id });
 
             return RedirectToAction(nameof(Actions));
+        }
+
+        public async Task<IActionResult> Achievements()
+        {
+            var achievements = await _mediator.Send(new GetAllAchievementsQuery());
+
+            return View(achievements);
         }
         public async Task<IActionResult> Contact()
         {
