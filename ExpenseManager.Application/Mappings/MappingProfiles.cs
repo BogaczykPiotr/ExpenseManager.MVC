@@ -23,6 +23,7 @@ namespace ExpenseManager.Application.Mappings
             CreateMap<SavingGoalDto, SavingGoal>();
             CreateMap<Stat, StatDto>();
             CreateMap<Category, CategoryDto>();
+            CreateMap<Achievement, AchievementDto>();
 
             CreateMap<Transfer, TransferDto>()
                 .ForMember(t => t.Category, opt => opt.MapFrom(src => src.Category.Name));
