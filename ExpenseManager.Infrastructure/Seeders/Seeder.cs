@@ -42,6 +42,44 @@ namespace ExpenseManager.Infrastructure.Seeders
                     _dbContext.SavingGoals.Add(savingGoal);
                     await _dbContext.SaveChangesAsync();
                 }
+                if(!_dbContext.Achievements.Any())
+                {
+                    var firstLogin = new Achievement()
+                    {
+                        Name = "First Login",
+                        IsActive = true
+                    };
+                    var firstTransfer = new Achievement()
+                    {
+                        Name = "First Transfer",
+                        IsActive = false
+                    };
+                    var tenTransfers = new Achievement()
+                    {
+                        Name = "Ten Transfers",
+                        IsActive = false
+                    };
+                    var hundredTransfers = new Achievement()
+                    {
+                        Name = "Hundred Transfers",
+                        IsActive = false
+                    };
+                    var aThousandTransfers = new Achievement()
+                    {
+                        Name = "A Thousand Transfers",
+                        IsActive = false
+                    };
+
+                    await _dbContext.AddRangeAsync(firstLogin,
+                        firstTransfer,
+                        tenTransfers,
+                        hundredTransfers,
+                        aThousandTransfers
+                        );
+
+                    await _dbContext.SaveChangesAsync();
+                }
+
                 if (!_dbContext.Users.Any())
                 {
                     var user = new ApplicationUser()
@@ -114,26 +152,7 @@ namespace ExpenseManager.Infrastructure.Seeders
                     await _userManager.AddToRoleAsync(user, "user");
                     await _userManager.AddToRoleAsync(admin, "admin");
 
-                    var firstLogin = new Achievement()
-                    {
-                        Name = "First Login",
-                    };
-                    var firstTransfer = new Achievement()
-                    {
-                        Name = "First Transfer",
-                    };
-                    var tenTransfers = new Achievement()
-                    {
-                        Name = "Ten Transfers",
-                    };
-                    var hundredTransfers = new Achievement()
-                    {
-                        Name = "Hundred Transfers",
-                    };
-                    var aThousandTransfers = new Achievement()
-                    {
-                        Name = "A Thousand Transfers",
-                    };
+                    
                 }
             }
         }

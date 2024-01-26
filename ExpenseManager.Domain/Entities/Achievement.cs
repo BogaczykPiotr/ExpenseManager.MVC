@@ -7,5 +7,6 @@
         public DateTime? AddAt { get; set; }
         public string? CreatedById { get; set; }
         public ApplicationUser? CreatedBy { get; set; }
+        public bool IsActive { get; set; }
     }
 }
