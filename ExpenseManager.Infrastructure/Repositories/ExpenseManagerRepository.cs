@@ -96,7 +96,6 @@ namespace ExpenseManager.Infrastructure.Repositories
         public async Task<IEnumerable<Achievement>> GetAllAchievements(string id)
         {
             return await _dbContext.Achievements
-                .Where(a => a.CreatedById == id)
                 .ToListAsync(); 
         }
     }

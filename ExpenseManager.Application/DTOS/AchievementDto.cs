@@ -10,7 +10,5 @@ namespace ExpenseManager.Application.DTOS
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public DateTime? AddAt { get; set; }
-        public bool IsActive { get; set; }
     }
 }

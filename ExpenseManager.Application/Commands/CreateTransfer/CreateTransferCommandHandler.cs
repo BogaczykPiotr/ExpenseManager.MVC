@@ -23,6 +23,8 @@ namespace ExpenseManager.Application.Commands.CreateTransfer
 
             transfer.CreatedById = _userContext.GetCurrentUser().Id;
 
+            transfer.TransfersCount++;
+
             await _expenseManagerRepository.CreateTransfer(transfer);
 
 

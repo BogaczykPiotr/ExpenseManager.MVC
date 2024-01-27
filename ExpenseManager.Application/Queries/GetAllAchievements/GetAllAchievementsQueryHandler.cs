@@ -32,6 +32,7 @@ namespace ExpenseManager.Application.Queries.GetAllAchievements
             {
                 return Enumerable.Empty<AchievementDto>();
             }
+
             var Achievements = await _expenseManagerRepository.GetAllAchievements(userId);
             var Dtos = _mapper.Map<IEnumerable<AchievementDto>>(Achievements);
 
