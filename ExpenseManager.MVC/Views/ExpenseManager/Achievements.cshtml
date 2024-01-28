@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<ExpenseManager.Application.DTOS.AchievementDto>
 <div class="container">
-    @foreach(var item in Model.Where(m => m.IsActive == true))
+    @foreach(var item in Model)
     {
         <div class="row">
             <div class="col-xl-6 col-lg-6">
@@ -11,9 +11,9 @@
                         </div>
                         <div class="row align-items-center mb-2 d-flex">
                             <div class="col-8">
-                                <h2 class="d-flex align-items-center mb-0">
-                                    @item.AddAt
-                                </h2>
+                                @*<h2 class="d-flex align-items-center mb-0">
+                                    @item.
+                                </h2>*@
                             </div>
                         </div>
                     </div>

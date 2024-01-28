@@ -1,61 +1,56 @@
 ﻿@model IEnumerable<ExpenseManager.Application.DTOS.CategoryDto>
-
 @{
     var settingsDto = ViewData["SettingsDto"] as ExpenseManager.Application.DTOS.SettingDto;
-    string language = settingsDto.Language;
-    string newActionText, newCategoryText;
-
-    switch (language)
-    {
-        case "english":
-            newActionText = "New Upcoming Action";
-            newCategoryText = "Create New Category";
-            break;
-        case "polski":
-            newActionText = "Nowa Nadchodząca Akcja";
-            newCategoryText = "Stwórz Nową Kategorię";
-            break;
-        case "deutsch":
-            newActionText = "Neue bevorstehende Aktion";
-            newCategoryText = "Erstelle eine neue Kategorie";
-            break;
-        default:
-            newActionText = "New Action";
-            newCategoryText = "Create New Category";
-            break;
-    }
 }
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
 
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-md-6">
-            <h1 class="mb-4">Actions</h1>
-
-            @foreach (var category in Model.Distinct())
-            {
-                <div class="card mb-4">
-                    <div class="card-header text-center">
-                        <h2>@category.Name</h2>
-                    </div>
-                    <div class="card-body d-flex justify-content-around">
-                        <a class="btn btn-primary" asp-controller="ExpenseManager" asp-action="Edit" asp-route-Id="@category.Id">
-                            <span>Edit</span>
-                        </a>
-                        <form method="post" asp-controller="ExpenseManager" asp-action="DeleteCategory" asp-route-Id="@category.Id">
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
+    <div class="row text-white">
+        <div class="col-md-12">
+                    <h2 class="text-white text-center pb-3 mt-5">Actions</h2>
+                </div>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade active show" style="margin-left:20vw"; id="inbox" aria-labelledby="inbox-tab" role="tabpanel">
+                        <div>
+                            <div class="row p-4 no-gutters align-items-center">
+                                <div class="col-sm-12 col-md-6" >
+                                    <h3 class="font-light mb-0"><i class="mr-2"></i>Your Categories</h3>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <ul class="list-inline dl mb-0 float-left float-md-right">
+                                        <li class="list-inline-item text-info">
+                                            <a href="@Url.Action("CreateNewCategory", "ExpenseManager")">
+                                                <button class="btn btn-circle btn-success text-white">
+                                                    <i class="fa fa-plus"></i>
+                                                </button>
+                                                <span class="ml-2 font-normal text-white">Create New Category</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-borderless no-wrap table-hover mb-0 font-14" style="max-width: 60vw;">
+                                    <tbody>
+                                        @foreach(var item in Model)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <span class="mb-0 text-muted">@item.Name</span>
+                                                </td>
+                                                <td class="d-flex justify-content-end">
+                                                    <form method="post" asp-controller="ExpenseManager" asp-action="DeleteCategory" asp-route-Id="@item.Id">
+                                                        <button type="submit" class="btn btn-circle btn-danger text-white">
+                                                        <i class="fa fa-trash"></i>
+                                                        </button>                                     
+                                            
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
                     </div>
                 </div>
-            }
-        </div>
-
-        <div class="col-md-6">
-            <div class="text-md-right">
-                <a class="btn btn-primary mb-3" href="@Url.Action("CreateUpcomingAction", "ExpenseManager")">@newActionText</a>
-            </div>
-            <div class="text-md-right">
-                <a class="btn btn-success" href="@Url.Action("CreateNewCategory", "ExpenseManager")">@newCategoryText</a>
             </div>
         </div>
-    </div>
 </div>
